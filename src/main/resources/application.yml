@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/final_homework?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: '0206'
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.zhanghao.finalHomework.model
+
+
+
+
+
+# 注意yml和properties的区别.

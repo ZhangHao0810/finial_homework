@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanghao.DemoSpringBoot.dao.StudentDao">
+    <!--下面的property应该用驼峰命名法,而不是 _ 来分隔单词-->
+    <resultMap id="Student" type="com.zhanghao.DemoSpringBoot.model.Student">
+        <result column="id" property="id"/>
+        <result column="stu_id" property="stuId"/>
+        <result column="sname" property="sName"/>
+        <result column="age" property="age"/>
+        <result column="stu_info" property="stuInfo"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="start_show_time" property="startShowTime"/>
+        <result column="img_url" property="imgUrl"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        stu_id,
+        sname,
+        age,
+        stu_info,
+        create_time,
+        update_time,
+        start_show_time,
+        img_url
+    </sql>
+
+
+    <!--注意,下面的id 一定要和dao里面的方法一一对应,相当于dao的实现类框架帮我写!!!! 我只需要写sql就行.对象就能调用dao接口声明的方法了.-->
+
+    <!-- 查询（根据主键ID查询） -->
+    <select id="selectByPrimaryKey" resultMap="Student" parameterType="java.lang.Long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM product
+        where id=#{id}
+    </select>
+
+    <!--删除：根据主键ID删除 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from
+        product
+        where id=#{id}
+    </delete>
+
+    <!-- 添加 -->
+    <insert id="insert" parameterType="com.zhanghao.DemoSpringBoot.model.Student">
+        insert into product(
+        stu_id,
+        sname,
+        age,
+        stu_info,
+        create_time,
+        update_time,
+        start_show_time,
+        img_url
+        )
+        values (
+        #{stuId},
+        #{sName},
+        #{age},
+        #{stuInfo},
+        #{createTime},
+        #{updateTime},
+        #{startShowTime},
+        #{imgUrl}
+        )
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            select
+            LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!--修改-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.DemoSpringBoot.model.Student">
+        update product
+        <set>
+            <if test="stuId !=null and stuId !=''">
+                stu_id=#{stuId },
+            </if>
+            <if test="sName!=null">
+                sname=#{sName },
+            </if>
+            <if test="age!=null ">
+                age=#{age },
+            </if>
+            <if test="stuInfo !=null ">
+                stu_info=#{stuInfo },
+            </if>
+            <if test="createTime!=null ">
+                create_time=#{createTime },
+            </if>
+            <if test="updateTime!=null ">
+                update_time=#{updateTime },
+            </if>
+            <if test="startShowTime != null and startShowTime != ''">
+                start_show_time = #{startShowTime},
+            </if>
+            <if test="imgUrl != null">
+                img_url = #{imgUrl},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- list 查询  注意没有, -->
+    <select id="list" resultMap="Student">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from product
+        where 1=1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="stuId !=null and stuId !=''">
+            and stu_id=#{stuId }
+        </if>
+        <if test="sName!=null">
+            and sname=#{sName}
+        </if>
+        <if test="age!=null ">
+            and age=#{age}
+        </if>
+        <if test="stuInfo !=null ">
+            and stu_info=#{stuInfo }
+        </if>
+        <if test="createTime!=null ">
+            and create_time=#{createTime }
+        </if>
+        <if test="updateTime!=null ">
+            and update_time=#{updateTime }
+        </if>
+        <if test="startShowTime != null">
+            and start_show_time = #{startShowTime}
+        </if>
+        <if test="imgUrl != null">
+            and img_url = #{imgUrl}
+        </if>
+    </select>
+
+    <!-- count 总数 -->
+    <select id="count" resultType="long">
+        SELECT
+        count(1)
+        from product
+        where 1=1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="stuId !=null and stuId !=''">
+            and stu_id=#{stuId }
+        </if>
+        <if test="sName!=null">
+            and sname=#{sName}
+        </if>
+        <if test="age!=null ">
+            and age=#{age}
+        </if>
+        <if test="stuInfo !=null ">
+            and stu_info=#{stuInfo }
+        </if>
+        <if test="createTime!=null ">
+            and create_time=#{createTime }
+        </if>
+        <if test="updateTime!=null ">
+            and update_time=#{updateTime }
+        </if>
+        <if test="startShowTime != null">
+            and start_show_time = #{startShowTime}
+        </if>
+        <if test="imgUrl != null">
+            and img_url = #{imgUrl}
+        </if>
+    </select>
+
+    <!-- list4Page 分页查询 -->
+    <select id="list4Page" resultMap="Student">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from product
+        where 1=1
+        <if test="record.id != null">
+            and id = #{record.id}
+        </if>
+        <if test="record.stuId !=null and record.stuId !=''">
+            and stu_id=#{record.stuId }
+        </if>
+        <if test="record.sName!=null">
+            and sname=#{record.sName}
+        </if>
+        <if test="record.age!=null ">
+            and age=#{record.age}
+        </if>
+        <if test="record.stuInfo !=null ">
+            and stu_info=#{record.stuInfo }
+        </if>
+        <if test="record.createTime!=null ">
+            and create_time=#{record.createTime }
+        </if>
+        <if test="record.updateTime!=null ">
+            and update_time=#{record.updateTime }
+        </if>
+        <if test="record.startShowTime != null">
+            and start_show_time = #{record.startShowTime}
+        </if>
+        <if test="record.imgUrl != null">
+            and img_url = #{record.imgUrl}
+        </if>
+        <if test="commonQueryParam != null">
+            <if test="commonQueryParam.order != null ">
+                order by #{commonQueryParam.order}
+                <if test="commonQueryParam.sort != null ">#{commonQueryParam.sort}</if>
+            </if>
+            <if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+                limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+            </if>
+        </if>
+    </select>
+
+    <select id="listByOrdetNo" resultMap="Student">
+		select p.* from product p, `order` o where p.stu_id= o.product_id
+		and o.order_no=#{orderNo}
+	</select>
+
+
+</mapper>
