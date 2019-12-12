@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanghao.finalHomework.dao.CompDao">
+
+	<resultMap id="Comp" type="com.zhanghao.finalHomework.model.Comp" >
+		<result column="comp_id" property="compId"/>
+		<result column="comp_name" property="compName"/>
+		<result column="class_id" property="classId"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		comp_id,
+		comp_name,
+		class_id
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="Comp" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM comp
+		 WHERE comp_id = #{compId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM comp
+		 WHERE comp_id = #{compId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.Comp" >
+		 INSERT INTO comp
+ 		(
+			 comp_id,
+			 comp_name,
+			 class_id
+		) 
+		 VALUES 
+ 		(
+			 #{compId},
+			 #{compName},
+			 #{classId}
+ 		) 
+		 <selectKey keyProperty="compId" resultType="Long" order="AFTER">
+			 select LAST_INSERT_ID()
+		 </selectKey>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Comp" >
+		 UPDATE comp
+ 		 <set> 
+			<if test="compName != null and compName != ''">
+				 comp_name = #{compName},
+			</if>
+			<if test="classId != null">
+				 class_id = #{classId},
+			</if>
+
+ 		 </set>
+		 WHERE comp_id = #{compId}
+	</update>
+
+	<!-- list4Page 分页查询-->
+	<select id="list4Page" resultMap="Comp">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from comp
+ 		 where 1=1  
+		<if test="record.compId != null">
+			 and comp_id = #{record.compId} 
+		</if>
+		<if test="record.compName != null and record.compName != ''">
+			 and comp_name = #{record.compName} 
+		</if>
+		<if test="record.classId != null">
+			 and class_id = #{record.classId} 
+		</if>
+		<if test="commonQueryParam != null">
+			<if test="commonQueryParam.order != null ">
+				 order by #{commonQueryParam.order}			<if test="commonQueryParam.sort != null ">				 #{commonQueryParam.sort}			</if>
+			</if>
+			<if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+				 limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+			</if>
+		</if>
+	</select>
+	<!-- count 总数-->
+	<select id="count" resultType="long">
+		 SELECT 
+		 count(1) 
+		 from comp
+ 		 where 1=1  
+		<if test="compId != null">
+			 and comp_id = #{compId} 
+		</if>
+		<if test="compName != null and compName != ''">
+			 and comp_name = #{compName} 
+		</if>
+		<if test="classId != null">
+			 and class_id = #{classId} 
+		</if>
+	</select>
+	<!-- list 查询-->
+	<select id="list" resultMap="Comp">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from comp
+ 		 where 1=1  
+		<if test="compId != null">
+			 and comp_id = #{compId} 
+		</if>
+		<if test="compName != null and compName != ''">
+			 and comp_name = #{compName} 
+		</if>
+		<if test="classId != null">
+			 and class_id = #{classId} 
+		</if>
+	</select>
+</mapper>

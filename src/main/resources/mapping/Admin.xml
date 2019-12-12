@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanghao.finalHomework.dao.AdminDao">
+
+	<resultMap id="Admin" type="com.zhanghao.finalHomework.model.Admin" >
+		<result column="admin_id" property="adminId"/>
+		<result column="admin_name" property="adminName"/>
+		<result column="password" property="password"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		admin_id,
+		admin_name,
+		password
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="Admin" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM admin
+		 WHERE admin_id = #{adminId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM admin
+		 WHERE admin_id = #{adminId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.Admin" >
+		 INSERT INTO admin
+ 		(
+			 admin_id,
+			 admin_name,
+			 password
+		) 
+		 VALUES 
+ 		(
+			 #{adminId},
+			 #{adminName},
+			 #{password}
+ 		) 
+		 <selectKey keyProperty="adminId" resultType="Long" order="AFTER">
+			 select LAST_INSERT_ID()
+		 </selectKey>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Admin" >
+		 UPDATE admin
+ 		 <set> 
+			<if test="adminName != null and adminName != ''">
+				 admin_name = #{adminName},
+			</if>
+			<if test="password != null and password != ''">
+				 password = #{password},
+			</if>
+
+ 		 </set>
+		 WHERE admin_id = #{adminId}
+	</update>
+
+	<!-- list4Page 分页查询-->
+	<select id="list4Page" resultMap="Admin">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from admin
+ 		 where 1=1  
+		<if test="record.adminId != null">
+			 and admin_id = #{record.adminId} 
+		</if>
+		<if test="record.adminName != null and record.adminName != ''">
+			 and admin_name = #{record.adminName} 
+		</if>
+		<if test="record.password != null and record.password != ''">
+			 and password = #{record.password} 
+		</if>
+		<if test="commonQueryParam != null">
+			<if test="commonQueryParam.order != null ">
+				 order by #{commonQueryParam.order}			<if test="commonQueryParam.sort != null ">				 #{commonQueryParam.sort}			</if>
+			</if>
+			<if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+				 limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+			</if>
+		</if>
+	</select>
+	<!-- count 总数-->
+	<select id="count" resultType="long">
+		 SELECT 
+		 count(1) 
+		 from admin
+ 		 where 1=1  
+		<if test="adminId != null">
+			 and admin_id = #{adminId} 
+		</if>
+		<if test="adminName != null and adminName != ''">
+			 and admin_name = #{adminName} 
+		</if>
+		<if test="password != null and password != ''">
+			 and password = #{password} 
+		</if>
+	</select>
+	<!-- list 查询-->
+	<select id="list" resultMap="Admin">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from admin
+ 		 where 1=1  
+		<if test="adminId != null">
+			 and admin_id = #{adminId} 
+		</if>
+		<if test="adminName != null and adminName != ''">
+			 and admin_name = #{adminName} 
+		</if>
+		<if test="password != null and password != ''">
+			 and password = #{password} 
+		</if>
+	</select>
+</mapper>

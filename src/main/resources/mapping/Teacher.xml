@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanghao.finalHomework.dao.TeacherDao">
+
+	<resultMap id="Teacher" type="com.zhanghao.finalHomework.model.Teacher" >
+		<result column="teacher_id" property="teacherId"/>
+		<result column="teacher_name" property="teacherName"/>
+		<result column="password" property="password"/>
+		<result column="checked" property="checked"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		teacher_id,
+		teacher_name,
+		password,
+		checked
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="Teacher" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM teacher
+		 WHERE teacher_id = #{teacherId}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 DELETE FROM teacher
+		 WHERE teacher_id = #{teacherId}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.Teacher" >
+		 INSERT INTO teacher
+ 		(
+			 teacher_id,
+			 teacher_name,
+			 password,
+			 checked
+		) 
+		 VALUES 
+ 		(
+			 #{teacherId},
+			 #{teacherName},
+			 #{password},
+			 #{checked}
+ 		) 
+		 <selectKey keyProperty="teacherId" resultType="Long" order="AFTER">
+			 select LAST_INSERT_ID()
+		 </selectKey>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Teacher" >
+		 UPDATE teacher
+ 		 <set> 
+			<if test="teacherName != null and teacherName != ''">
+				 teacher_name = #{teacherName},
+			</if>
+			<if test="password != null and password != ''">
+				 password = #{password},
+			</if>
+			<if test="checked != null">
+				 checked = #{checked},
+			</if>
+
+ 		 </set>
+		 WHERE teacher_id = #{teacherId}
+	</update>
+
+	<!-- list4Page 分页查询-->
+	<select id="list4Page" resultMap="Teacher">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from teacher
+ 		 where 1=1  
+		<if test="record.teacherId != null">
+			 and teacher_id = #{record.teacherId} 
+		</if>
+		<if test="record.teacherName != null and record.teacherName != ''">
+			 and teacher_name = #{record.teacherName} 
+		</if>
+		<if test="record.password != null and record.password != ''">
+			 and password = #{record.password} 
+		</if>
+		<if test="record.checked != null">
+			 and checked = #{record.checked} 
+		</if>
+		<if test="commonQueryParam != null">
+			<if test="commonQueryParam.order != null ">
+				 order by #{commonQueryParam.order}			<if test="commonQueryParam.sort != null ">				 #{commonQueryParam.sort}			</if>
+			</if>
+			<if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+				 limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+			</if>
+		</if>
+	</select>
+	<!-- count 总数-->
+	<select id="count" resultType="long">
+		 SELECT 
+		 count(1) 
+		 from teacher
+ 		 where 1=1  
+		<if test="teacherId != null">
+			 and teacher_id = #{teacherId} 
+		</if>
+		<if test="teacherName != null and teacherName != ''">
+			 and teacher_name = #{teacherName} 
+		</if>
+		<if test="password != null and password != ''">
+			 and password = #{password} 
+		</if>
+		<if test="checked != null">
+			 and checked = #{checked} 
+		</if>
+	</select>
+	<!-- list 查询-->
+	<select id="list" resultMap="Teacher">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from teacher
+ 		 where 1=1  
+		<if test="teacherId != null">
+			 and teacher_id = #{teacherId} 
+		</if>
+		<if test="teacherName != null and teacherName != ''">
+			 and teacher_name = #{teacherName} 
+		</if>
+		<if test="password != null and password != ''">
+			 and password = #{password} 
+		</if>
+		<if test="checked != null">
+			 and checked = #{checked} 
+		</if>
+	</select>
+</mapper>
