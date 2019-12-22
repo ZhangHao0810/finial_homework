@@ -13,13 +13,13 @@
     <title>管理员展示界面</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
     <!-- 引入 JQuery -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -46,12 +46,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
-                    <li><a href="#">教师管理 </a></li>
-                    <li><a href="${ctx}/teacher/insert">信息统计与查询 </a></li>
-                    <li><a href="${ctx}/teacher/insert">比赛与比赛类别管理 </a></li>
-                    <li  class="active"><a href="#">管理员管理 </a></li>
+                    <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
+                    <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
+                    <li><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li class="active"><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">

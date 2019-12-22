@@ -14,7 +14,7 @@ public class TeacherCompManagement {
     /** 2019/12/21 11:12
      * 录入比赛信息 点击标题栏进入录入界面
      */
-    @RequestMapping("/teacher/insert")
+    @RequestMapping("/teacher/comp/insert")
     public String teacherInsertCompInfo(){
         return "teacher/Comp/teacher_insertCompInfo";
     }
@@ -22,7 +22,7 @@ public class TeacherCompManagement {
     /** 2019/12/21 11:13
      * 修改比赛信息 状态为未提交时,跳转到这里
      */
-    @RequestMapping("/teacher/update")
+    @RequestMapping("/teacher/comp/update")
     public String teacherUpdateCompInfo(){
         return "teacher/Comp/teacher_updateCompInfo";
     }
@@ -30,7 +30,7 @@ public class TeacherCompManagement {
     /** 2019/12/21 11:13
      * 查看比赛信息 当状态为已提交时,跳转到这里
      */
-    @RequestMapping("/teacher/show")
+    @RequestMapping("/teacher/comp/show")
     public String teacherFindCompInfo(){
         return "teacher/Comp/teacher_showCompInfo";
     }

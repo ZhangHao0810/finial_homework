@@ -26,45 +26,38 @@
 </head>
 <body>
 <br>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${ctx}/index">平台首页(未来可替换成图标) </a>
-        </div>
+<div class="container-fluid">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">管理员登录 <span class="sr-only">(current)</span></a></li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">查询</button>
-            </form>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="${ctx}/index">平台首页</a>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span
+                            class="sr-only">(current)</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
 
 <div class="row">
     <div class="col-md-6" align="center">
         <<img src="../../../img/admin/白色少女.jpg" width="500px" height="500px">
     </div>
     <div class="col-md-6 ">
-
         <br>
         <br>
         <br>
@@ -72,7 +65,6 @@
         <br>
         <br>
         <br>
-
         <form>
             <div class="form-group">
                 <label for="name">管理员姓名</label>
@@ -96,6 +88,5 @@
         <br/>
     </div>
 </div>
-
 </body>
 </html>

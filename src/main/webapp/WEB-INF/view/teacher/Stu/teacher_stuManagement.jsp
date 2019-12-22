@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${ctx}/index">首页(未来可替换成图标) </a>
+                <a class="navbar-brand" href="${ctx}/index">平台首页 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

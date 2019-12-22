@@ -46,12 +46,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
-                    <li><a href="#">教师管理 </a></li>
-                    <li><a href="${ctx}/teacher/insert">信息统计与查询 </a></li>
-                    <li><a href="${ctx}/teacher/insert">比赛与比赛类别管理 </a></li>
-                    <li><a href="${ctx}/teacher/insert">管理员管理 </a></li>
+                    <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
+                    <li class="active"><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
+                    <li ><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">

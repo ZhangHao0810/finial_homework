@@ -39,18 +39,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${ctx}/index">首页(未来可替换成图标) </a>
+                <a class="navbar-brand" href="${ctx}/index">平台首页</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${ctx}/teacher/index">比赛信息展示</a></li>
-                    <li class="active"><a href="#">插入具体比赛的学生信息 <span class="sr-only">(current)</span></a></li>
+                    <ul class="nav navbar-nav">
+                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                    </ul>
+                    <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
+                    <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
+                    <li class="active"><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX老师</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

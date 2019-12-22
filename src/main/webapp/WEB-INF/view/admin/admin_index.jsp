@@ -32,11 +32,7 @@
 
 </head>
 <body>
-包含对各种管理功能的链接.
-包含 教师注册的确认.
-包含 最新比赛信息的展示. 谁,什么时间,什么比赛 等等.
-
-导航栏
+<br/>
 <div class="container-fluid">
 
     <nav class="navbar navbar-inverse">
@@ -57,13 +53,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
-                    <li><a href="#">教师管理 </a></li>
-                    <li><a href="${ctx}/teacher/insert">信息统计与查询 </a></li>
-                    <li><a href="${ctx}/teacher/insert">比赛与比赛类别管理 </a></li>
-                    <li><a href="${ctx}/teacher/insert">管理员管理 </a></li>
-
+                    <li ><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
+                    <li ><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
+                    <li ><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
