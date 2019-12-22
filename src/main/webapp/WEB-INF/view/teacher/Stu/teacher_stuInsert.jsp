@@ -13,13 +13,13 @@
     <title>插入学生信息</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
     <!-- 引入 JQuery -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -61,7 +61,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6" align="center">
-            <img src="../../../img/teacher/橘调灵动少女.jpg" width="533px" height="453px">
+            <img src="../../../../img/teacher/橘调灵动少女.jpg" width="533px" height="453px">
         </div>
         <div class="col-md-6 ">
 

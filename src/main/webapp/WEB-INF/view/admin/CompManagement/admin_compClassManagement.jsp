@@ -67,11 +67,11 @@
 <div class="container">
 
     <form class="navbar-form navbar-left">
-        <h3>全部比赛项目:</h3>
+        <h3>全部比赛类别</h3>
     </form>
 
     <form class="navbar-form navbar-right">
-        <a href="${ctx}/admin/addCompClass" class="btn btn-default" role="button">添加教师</a>
+        <a href="${ctx}/admin/addCompClass" class="btn btn-default" role="button">添加比赛类别</a>
     </form>
 
 
@@ -86,10 +86,10 @@
         </tr>
 
         <tr>
-            <td>院级(B类)</td>
-            <td>通俗唱法(一等奖)</td>
-            <td>5.6</td>
-            <td>2.3</td>
+            <td  onclick="location.href='${ctx}/admin/addComp';"  >院级(B类)</td>
+            <td onclick="location.href='${ctx}/admin/addComp';" >通俗唱法(一等奖)</td>
+            <td onclick="location.href='${ctx}/admin/addComp';" >5.6</td>
+            <td onclick="location.href='${ctx}/admin/addComp';" >2.3</td>
             <td>
 
                 <!-- Button trigger modal -->
@@ -128,7 +128,7 @@
 
             </td>
             <td>
-                <button type="button" class="btn btn-default">删除</button>
+                <button type="button" class="btn btn-danger">删除</button>
             </td>
         <tr>
     </table>

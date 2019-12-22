@@ -16,7 +16,7 @@ public class TeacherCompManagement {
      */
     @RequestMapping("/teacher/insert")
     public String teacherInsertCompInfo(){
-        return "teacher/teacher_insertCompInfo";
+        return "teacher/Comp/teacher_insertCompInfo";
     }
 
     /** 2019/12/21 11:13
@@ -24,7 +24,7 @@ public class TeacherCompManagement {
      */
     @RequestMapping("/teacher/update")
     public String teacherUpdateCompInfo(){
-        return "teacher/teacher_updateCompInfo";
+        return "teacher/Comp/teacher_updateCompInfo";
     }
 
     /** 2019/12/21 11:13
@@ -32,7 +32,7 @@ public class TeacherCompManagement {
      */
     @RequestMapping("/teacher/show")
     public String teacherFindCompInfo(){
-        return "teacher/teacher_showCompInfo";
+        return "teacher/Comp/teacher_showCompInfo";
     }
 
 }

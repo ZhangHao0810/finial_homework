@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ZhangHao
-  Date: 2019/12/21
-  Time: 10:58
+  Date: 2019/12/12
+  Time: 9:22
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/commons/taglibs.jsp" %>
@@ -10,22 +10,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <title>修改比赛信息页面</title>
+    <title>录入比赛信息页面</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
     <!-- 引入 JQuery -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-展示和修改具体比赛信息 信息要能返回到表单上.
-前提是比赛未提交. 若提交了,则跳向展示页面. 这里网页带信息一定要注意了带上比赛信息.插入的时候,隐藏的把教师id插入CompInfo
 <br/>
 <div class="container-fluid">
     <nav class="navbar navbar-default">
@@ -57,7 +56,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6" align="center">
-            <<img src="../../../img/teacher/蓝色发箍女孩.jpg"  width="416px" height="533px">
+            <img src="../../../../img/teacher/可爱睡衣小熊女.jpg">
         </div>
         <div class="col-md-6 ">
 
@@ -81,33 +80,34 @@
                 </div>
                 <br>
 
-                <div class="form-group">
-                    <label for="竞赛证书"> 竞赛证书:</label>
-                    <input type="file" id="竞赛证书">
-                </div>
+                    <div class="form-group">
+                        <label for="竞赛证书"> 竞赛证书:</label>
+                        <input type="file" id="竞赛证书">
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="指导证书">指导证书:</label>
-                    <input type="file" id="指导证书">
-                </div>
+                    <div class="form-group">
+                        <label for="指导证书">指导证书:</label>
+                        <input type="file" id="指导证书">
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="比赛照片">比赛照片:</label>
-                    <input type="file" id="比赛照片">
-                </div>
+                    <div class="form-group">
+                        <label for="比赛照片">比赛照片:</label>
+                        <input type="file" id="比赛照片">
+                    </div>
 
-                <button type="submit" class="btn btn-default">保存</button>
-                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"
-                        title="提交比赛信息之后不可修改!!请慎重">提交
-                </button>
+                    <button type="submit" class="btn btn-default">保存</button>
+                    <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"
+                            title="提交比赛信息之后不可修改!!请慎重">提交
+                    </button>
             </form>
         </div>
     </div>
 
 
 </div>
+
 
 </body>
 </html>

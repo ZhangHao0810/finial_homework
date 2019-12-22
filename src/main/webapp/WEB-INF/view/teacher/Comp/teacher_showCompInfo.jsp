@@ -13,13 +13,13 @@
     <title>具体比赛信息的展示页面,包含学生信息.</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
 
     <!-- 引入 JQuery -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/jquery-1.11.0.js"></script>
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script type="text/javascript" src="../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -91,7 +91,7 @@
                             <h4 class="modal-title" id="myModalLabel">竞赛证书</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="../../../img/teacher/蓝色发箍女孩.jpg"  width="312px" height="400px">
+                            <img src="../../../../img/teacher/蓝色发箍女孩.jpg" width="312px" height="400px">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -117,7 +117,7 @@
                             <h4 class="modal-title" id="myModalLabel1">指导证书</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="../../../img/teacher/马尾可爱女.jpg" width="384px" height="512px">
+                            <img src="../../../../img/teacher/马尾可爱女.jpg" width="384px" height="512px">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -142,7 +142,7 @@
                             <h4 class="modal-title" id="myModalLabel3" >比赛照片</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="../../../img/teacher/双女比基尼.jpg" width="250px" height="357.75px">
+                            <img src="../../../../img/teacher/双女比基尼.jpg" width="250px" height="357.75px">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

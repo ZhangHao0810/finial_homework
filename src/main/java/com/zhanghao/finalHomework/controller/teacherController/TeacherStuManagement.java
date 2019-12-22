@@ -17,7 +17,7 @@ public class TeacherStuManagement {
     */
     @RequestMapping("/teacher/stu/index")
     public String teacherStuIndex(){
-        return "teacher/teacher_stuManagement";
+        return "teacher/Stu/teacher_stuManagement";
     }
 
 
@@ -26,7 +26,7 @@ public class TeacherStuManagement {
      */
     @RequestMapping("/teacher/stu/insert")
     public String teacherStuInsert(){
-        return "teacher/teacher_stuInsert";
+        return "teacher/Stu/teacher_stuInsert";
     }
 
 }

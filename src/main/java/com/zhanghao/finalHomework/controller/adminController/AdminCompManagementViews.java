@@ -47,10 +47,13 @@ public class AdminCompManagementViews {
     }
 
     /** 2019/12/21 22:14
-     * 比赛管理(为类别添加比赛,建立比赛与类别的映射)
+     * 为类别添加比赛,建立比赛与类别的映射
+     * 同时展示该类别下的所有比赛
     */
-    @RequestMapping("/admin/comp")
+    @RequestMapping("/admin/addComp")
     public String adminComp(){
-        return "admin/CompManagement/admin_compManagement";
+        return "admin/CompManagement/admin_addCompInfo";
     }
+
+
 }
