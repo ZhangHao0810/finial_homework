@@ -4,7 +4,7 @@ package com.zhanghao.finalHomework.model;
 
 /**
  * 
- * 学生实体
+ * 
  * 
  **/
 public class Stu{
@@ -25,35 +25,42 @@ public class Stu{
   private Integer stuAge;
 
 
+  /**学生班级**/
+
+  private String stuClass;
 
 
-  public void setStuId(Long stuId) { 
-    this.stuId = stuId;
+
+
+  public void setStuId(Long stuId) {     this.stuId = stuId;
   }
 
 
-  public Long getStuId() { 
-    return this.stuId;
+  public Long getStuId() {     return this.stuId;
   }
 
 
-  public void setStuName(String stuName) { 
-    this.stuName = stuName;
+  public void setStuName(String stuName) {     this.stuName = stuName;
   }
 
 
-  public String getStuName() { 
-    return this.stuName;
+  public String getStuName() {     return this.stuName;
   }
 
 
-  public void setStuAge(Integer stuAge) { 
-    this.stuAge = stuAge;
+  public void setStuAge(Integer stuAge) {     this.stuAge = stuAge;
   }
 
 
-  public Integer getStuAge() { 
-    return this.stuAge;
+  public Integer getStuAge() {     return this.stuAge;
+  }
+
+
+  public void setStuClass(String stuClass) {     this.stuClass = stuClass;
+  }
+
+
+  public String getStuClass() {     return this.stuClass;
   }
 
 }

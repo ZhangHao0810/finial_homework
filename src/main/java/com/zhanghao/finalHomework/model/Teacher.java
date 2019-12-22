@@ -1,8 +1,12 @@
 package com.zhanghao.finalHomework.model;
 
-/** 2019/12/12 19:15
- * 教师实体
-*/
+
+
+/**
+ * 
+ * 
+ * 
+ **/
 public class Teacher{
 
 
@@ -28,43 +32,35 @@ public class Teacher{
 
 
 
-  public void setTeacherId(Long teacherId) { 
-    this.teacherId = teacherId;
+  public void setTeacherId(Long teacherId) {     this.teacherId = teacherId;
   }
 
 
-  public Long getTeacherId() { 
-    return this.teacherId;
+  public Long getTeacherId() {     return this.teacherId;
   }
 
 
-  public void setTeacherName(String teacherName) { 
-    this.teacherName = teacherName;
+  public void setTeacherName(String teacherName) {     this.teacherName = teacherName;
   }
 
 
-  public String getTeacherName() { 
-    return this.teacherName;
+  public String getTeacherName() {     return this.teacherName;
   }
 
 
-  public void setPassword(String password) { 
-    this.password = password;
+  public void setPassword(String password) {     this.password = password;
   }
 
 
-  public String getPassword() { 
-    return this.password;
+  public String getPassword() {     return this.password;
   }
 
 
-  public void setChecked(Integer checked) { 
-    this.checked = checked;
+  public void setChecked(Integer checked) {     this.checked = checked;
   }
 
 
-  public Integer getChecked() { 
-    return this.checked;
+  public Integer getChecked() {     return this.checked;
   }
 
 }

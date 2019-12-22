@@ -6,7 +6,6 @@
 	<resultMap id="CompInfo" type="com.zhanghao.finalHomework.model.CompInfo" >
 		<result column="info_id" property="infoId"/>
 		<result column="teacher_id" property="teacherId"/>
-		<result column="stu_id" property="stuId"/>
 		<result column="comp_id" property="compId"/>
 		<result column="comp_photo" property="compPhoto"/>
 		<result column="comp_cert" property="compCert"/>
@@ -20,7 +19,6 @@
 	<sql id="Base_Column_List">
 		info_id,
 		teacher_id,
-		stu_id,
 		comp_id,
 		comp_photo,
 		comp_cert,
@@ -50,7 +48,6 @@
  		(
 			 info_id,
 			 teacher_id,
-			 stu_id,
 			 comp_id,
 			 comp_photo,
 			 comp_cert,
@@ -63,7 +60,6 @@
  		(
 			 #{infoId},
 			 #{teacherId},
-			 #{stuId},
 			 #{compId},
 			 #{compPhoto},
 			 #{compCert},
@@ -83,9 +79,6 @@
  		 <set> 
 			<if test="teacherId != null">
 				 teacher_id = #{teacherId},
-			</if>
-			<if test="stuId != null">
-				 stu_id = #{stuId},
 			</if>
 			<if test="compId != null">
 				 comp_id = #{compId},
@@ -124,9 +117,6 @@
 		</if>
 		<if test="record.teacherId != null">
 			 and teacher_id = #{record.teacherId} 
-		</if>
-		<if test="record.stuId != null">
-			 and stu_id = #{record.stuId} 
 		</if>
 		<if test="record.compId != null">
 			 and comp_id = #{record.compId} 
@@ -170,9 +160,6 @@
 		<if test="teacherId != null">
 			 and teacher_id = #{teacherId} 
 		</if>
-		<if test="stuId != null">
-			 and stu_id = #{stuId} 
-		</if>
 		<if test="compId != null">
 			 and comp_id = #{compId} 
 		</if>
@@ -206,9 +193,6 @@
 		</if>
 		<if test="teacherId != null">
 			 and teacher_id = #{teacherId} 
-		</if>
-		<if test="stuId != null">
-			 and stu_id = #{stuId} 
 		</if>
 		<if test="compId != null">
 			 and comp_id = #{compId} 

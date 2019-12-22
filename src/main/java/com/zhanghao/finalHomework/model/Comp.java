@@ -4,7 +4,7 @@ package com.zhanghao.finalHomework.model;
 
 /**
  * 
- * 比赛实体
+ * 
  * 
  **/
 public class Comp{
@@ -27,33 +27,27 @@ public class Comp{
 
 
 
-  public void setCompId(Long compId) { 
-    this.compId = compId;
+  public void setCompId(Long compId) {     this.compId = compId;
   }
 
 
-  public Long getCompId() { 
-    return this.compId;
+  public Long getCompId() {     return this.compId;
   }
 
 
-  public void setCompName(String compName) { 
-    this.compName = compName;
+  public void setCompName(String compName) {     this.compName = compName;
   }
 
 
-  public String getCompName() { 
-    return this.compName;
+  public String getCompName() {     return this.compName;
   }
 
 
-  public void setClassId(Long classId) { 
-    this.classId = classId;
+  public void setClassId(Long classId) {     this.classId = classId;
   }
 
 
-  public Long getClassId() { 
-    return this.classId;
+  public Long getClassId() {     return this.classId;
   }
 
 }

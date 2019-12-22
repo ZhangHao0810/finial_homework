@@ -4,7 +4,7 @@ package com.zhanghao.finalHomework.model;
 
 /**
  * 
- * 管理员实体
+ * 
  * 
  **/
 public class Admin{
@@ -27,33 +27,27 @@ public class Admin{
 
 
 
-  public void setAdminId(Long adminId) { 
-    this.adminId = adminId;
+  public void setAdminId(Long adminId) {     this.adminId = adminId;
   }
 
 
-  public Long getAdminId() { 
-    return this.adminId;
+  public Long getAdminId() {     return this.adminId;
   }
 
 
-  public void setAdminName(String adminName) { 
-    this.adminName = adminName;
+  public void setAdminName(String adminName) {     this.adminName = adminName;
   }
 
 
-  public String getAdminName() { 
-    return this.adminName;
+  public String getAdminName() {     return this.adminName;
   }
 
 
-  public void setPassword(String password) { 
-    this.password = password;
+  public void setPassword(String password) {     this.password = password;
   }
 
 
-  public String getPassword() { 
-    return this.password;
+  public String getPassword() {     return this.password;
   }
 
 }

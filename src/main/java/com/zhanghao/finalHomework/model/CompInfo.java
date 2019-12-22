@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 
- * 比赛信息实体
+ * 
  * 
  **/
 public class CompInfo{
@@ -19,11 +19,6 @@ public class CompInfo{
   /**教师id**/
 
   private Long teacherId;
-
-
-  /**学生id**/
-
-  private Long stuId;
 
 
   /**比赛id**/
@@ -63,103 +58,75 @@ public class CompInfo{
 
 
 
-  public void setInfoId(Long infoId) { 
-    this.infoId = infoId;
+  public void setInfoId(Long infoId) {     this.infoId = infoId;
   }
 
 
-  public Long getInfoId() { 
-    return this.infoId;
+  public Long getInfoId() {     return this.infoId;
   }
 
 
-  public void setTeacherId(Long teacherId) { 
-    this.teacherId = teacherId;
+  public void setTeacherId(Long teacherId) {     this.teacherId = teacherId;
   }
 
 
-  public Long getTeacherId() { 
-    return this.teacherId;
+  public Long getTeacherId() {     return this.teacherId;
   }
 
 
-  public void setStuId(Long stuId) { 
-    this.stuId = stuId;
+  public void setCompId(Long compId) {     this.compId = compId;
   }
 
 
-  public Long getStuId() { 
-    return this.stuId;
+  public Long getCompId() {     return this.compId;
   }
 
 
-  public void setCompId(Long compId) { 
-    this.compId = compId;
+  public void setCompPhoto(byte[] compPhoto) {     this.compPhoto = compPhoto;
   }
 
 
-  public Long getCompId() { 
-    return this.compId;
+  public byte[] getCompPhoto() {     return this.compPhoto;
   }
 
 
-  public void setCompPhoto(byte[] compPhoto) { 
-    this.compPhoto = compPhoto;
+  public void setCompCert(byte[] compCert) {     this.compCert = compCert;
   }
 
 
-  public byte[] getCompPhoto() { 
-    return this.compPhoto;
+  public byte[] getCompCert() {     return this.compCert;
   }
 
 
-  public void setCompCert(byte[] compCert) { 
-    this.compCert = compCert;
+  public void setGuideCert(byte[] guideCert) {     this.guideCert = guideCert;
   }
 
 
-  public byte[] getCompCert() { 
-    return this.compCert;
+  public byte[] getGuideCert() {     return this.guideCert;
   }
 
 
-  public void setGuideCert(byte[] guideCert) { 
-    this.guideCert = guideCert;
+  public void setChecked(Integer checked) {     this.checked = checked;
   }
 
 
-  public byte[] getGuideCert() { 
-    return this.guideCert;
+  public Integer getChecked() {     return this.checked;
   }
 
 
-  public void setChecked(Integer checked) { 
-    this.checked = checked;
+  public void setCreateTime(Date createTime) {     this.createTime = createTime;
   }
 
 
-  public Integer getChecked() { 
-    return this.checked;
+  public Date getCreateTime() {     return this.createTime;
   }
 
 
-  public void setCreateTime(Date createTime) { 
-    this.createTime = createTime;
+  public void setUpdateTime(Date updateTime) {     this.updateTime = updateTime;
   }
 
 
-  public Date getCreateTime() { 
-    return this.createTime;
-  }
-
-
-  public void setUpdateTime(Date updateTime) { 
-    this.updateTime = updateTime;
-  }
-
-
-  public Date getUpdateTime() { 
-    return this.updateTime;
+  public Date getUpdateTime() {     return this.updateTime;
   }
 
 }

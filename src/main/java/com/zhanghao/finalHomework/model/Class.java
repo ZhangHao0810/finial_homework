@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 /**
  * 
- * 比赛类别的实体
+ * 
  * 
  **/
 public class Class{
@@ -38,53 +38,43 @@ public class Class{
 
 
 
-  public void setClassId(Long classId) { 
-    this.classId = classId;
+  public void setClassId(Long classId) {     this.classId = classId;
   }
 
 
-  public Long getClassId() { 
-    return this.classId;
+  public Long getClassId() {     return this.classId;
   }
 
 
-  public void setCategory(String category) { 
-    this.category = category;
+  public void setCategory(String category) {     this.category = category;
   }
 
 
-  public String getCategory() { 
-    return this.category;
+  public String getCategory() {     return this.category;
   }
 
 
-  public void setGrade(String grade) { 
-    this.grade = grade;
+  public void setGrade(String grade) {     this.grade = grade;
   }
 
 
-  public String getGrade() { 
-    return this.grade;
+  public String getGrade() {     return this.grade;
   }
 
 
-  public void setBase(BigDecimal base) { 
-    this.base = base;
+  public void setBase(BigDecimal base) {     this.base = base;
   }
 
 
-  public BigDecimal getBase() { 
-    return this.base;
+  public BigDecimal getBase() {     return this.base;
   }
 
 
-  public void setFactor(BigDecimal factor) { 
-    this.factor = factor;
+  public void setFactor(BigDecimal factor) {     this.factor = factor;
   }
 
 
-  public BigDecimal getFactor() { 
-    return this.factor;
+  public BigDecimal getFactor() {     return this.factor;
   }
 
 }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhanghao.finalHomework.dao.CompInfoStuDao">
+
+	<resultMap id="CompInfoStu" type="com.zhanghao.finalHomework.model.CompInfoStu" >
+		<result column="id" property="id"/>
+		<result column="stu_id" property="stuId"/>
+		<result column="info_id" property="infoId"/>
+	</resultMap>
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id,
+		stu_id,
+		info_id
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultMap="CompInfoStu" parameterType="java.lang.Integer">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM comp_info_stu
+		 WHERE id = #{id}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		 DELETE FROM comp_info_stu
+		 WHERE id = #{id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.CompInfoStu" >
+		 INSERT INTO comp_info_stu
+ 		(
+			 id,
+			 stu_id,
+			 info_id
+		) 
+		 VALUES 
+ 		(
+			 #{id},
+			 #{stuId},
+			 #{infoId}
+ 		) 
+		 <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			 select LAST_INSERT_ID()
+		 </selectKey>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.CompInfoStu" >
+		 UPDATE comp_info_stu
+ 		 <set> 
+			<if test="stuId != null">
+				 stu_id = #{stuId},
+			</if>
+			<if test="infoId != null">
+				 info_id = #{infoId},
+			</if>
+
+ 		 </set>
+		 WHERE id = #{id}
+	</update>
+
+	<!-- list4Page 分页查询-->
+	<select id="list4Page" resultMap="CompInfoStu">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from comp_info_stu
+ 		 where 1=1  
+		<if test="record.id != null">
+			 and id = #{record.id} 
+		</if>
+		<if test="record.stuId != null">
+			 and stu_id = #{record.stuId} 
+		</if>
+		<if test="record.infoId != null">
+			 and info_id = #{record.infoId} 
+		</if>
+		<if test="commonQueryParam != null">
+			<if test="commonQueryParam.order != null ">
+				 order by #{commonQueryParam.order}			<if test="commonQueryParam.sort != null ">				 #{commonQueryParam.sort}			</if>
+			</if>
+			<if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+				 limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+			</if>
+		</if>
+	</select>
+	<!-- count 总数-->
+	<select id="count" resultType="long">
+		 SELECT 
+		 count(1) 
+		 from comp_info_stu
+ 		 where 1=1  
+		<if test="id != null">
+			 and id = #{id} 
+		</if>
+		<if test="stuId != null">
+			 and stu_id = #{stuId} 
+		</if>
+		<if test="infoId != null">
+			 and info_id = #{infoId} 
+		</if>
+	</select>
+	<!-- list 查询-->
+	<select id="list" resultMap="CompInfoStu">
+		 SELECT 
+		 <include refid="Base_Column_List" />
+		 from comp_info_stu
+ 		 where 1=1  
+		<if test="id != null">
+			 and id = #{id} 
+		</if>
+		<if test="stuId != null">
+			 and stu_id = #{stuId} 
+		</if>
+		<if test="infoId != null">
+			 and info_id = #{infoId} 
+		</if>
+	</select>
+</mapper>
