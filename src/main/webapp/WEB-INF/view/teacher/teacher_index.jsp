@@ -86,11 +86,11 @@
         </tr>
 
         <tr>
-            <td onclick="location.href='${ctx}/teacher/update';">北信科舞蹈大赛</td>
-            <td onclick="location.href='${ctx}/teacher/update';">校级(A类)</td>
-            <td onclick="location.href='${ctx}/teacher/update';">民族舞(一等奖)</td>
-            <td onclick="location.href='${ctx}/teacher/update';">2019年12月21日10:18:02</td>
-            <td onclick="location.href='${ctx}/teacher/update';">未提交</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">北信科舞蹈大赛</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">校级(A类)</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">民族舞(一等奖)</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">2019年12月21日10:18:02</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">未提交</td>
             <td>
 
                 <!-- 弹出模态框 -->
@@ -135,11 +135,11 @@
             <%--</td>--%>
         <tr>
         <tr>
-            <td>北信科歌唱大赛</td>
-            <td>院级(B类)</td>
-            <td>通俗唱法(一等奖)</td>
-            <td>2019年12月21日10:18:02</td>
-            <td onclick="location.href='${ctx}/teacher/show';">已提交</td>
+            <td onclick="location.href='${ctx}/teacher/comp/show';">北信科歌唱大赛</td>
+            <td onclick="location.href='${ctx}/teacher/comp/show';">院级(B类)</td>
+            <td onclick="location.href='${ctx}/teacher/comp/show';">通俗唱法(一等奖)</td>
+            <td onclick="location.href='${ctx}/teacher/comp/show';">2019年12月21日10:18:02</td>
+            <td onclick="location.href='${ctx}/teacher/comp/show';">已提交</td>
             <td>
                 <!-- 弹出模态框 -->
                 <button type="button" class="btn btn-default  btn-sm" data-toggle="modal" data-target="#myModal">

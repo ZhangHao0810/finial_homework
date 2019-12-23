@@ -81,7 +81,7 @@
                 <div class="form-group">
                     <label for="adminname" class="col-sm-2 control-label">管理员<br/>账号</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="adminname" placeholder="PassWord">
+                        <input type="password" class="form-control" id="adminname" placeholder="TeacherName">
                     </div>
                 </div>
                 <div class="form-group">
