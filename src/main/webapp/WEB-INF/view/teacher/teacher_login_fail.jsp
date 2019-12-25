@@ -77,31 +77,31 @@
                 <div/>
             </div>
             <br>
-            <form>
+            <form action="${ctx}/teacher/login1" method="post">
                 <div class="form-group">
                     <label for="name">教师姓名</label>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" id="name">
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
                         </div>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="exampleInputPassword1">密码</label>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                   placeholder="Password">
+                        <div class="col-xs-4">
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-default">登录</button>
-                <a href="${ctx}/teacher/register">
-                    <button class="btn btn-default">注册</button>
-                </a>
             </form>
-
-
+            <br/>
+            <br/>
+            未注册??
+            <a href="${ctx}/teacher/register">
+                <button class="btn btn-default">注册</button>
+            </a>
         </div>
     </div>
 </div>
