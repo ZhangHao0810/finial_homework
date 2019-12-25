@@ -39,12 +39,24 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public int teacherRegister() {
+    public int teacherRegister(Teacher teacher) {
+        /** 2019/12/25 12:49
+         * 1.检查老师的姓名,没有重复,进行教师数据插入,注意sql中要标记checked为0  返回1
+         * 教师姓名有重复,返回0 跳转到注册失败界面
+        */
+        Teacher result=teacherDao.selectByName(teacher.getTeacherName());
+        if(result==null){
+            teacherDao.insert(teacher);
+            return 1;
+        }
         return 0;
     }
 
     @Override
     public List<Teacher> listNotCheckedTeacher() {
+        /** 2019/12/25 13:01
+         * 查询所有教师的
+        */
         return null;
     }
 

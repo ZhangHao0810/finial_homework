@@ -4,8 +4,6 @@ import com.zhanghao.finalHomework.model.Teacher;
 import com.zhanghao.finalHomework.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -23,16 +21,17 @@ public class TeacherLoginRegister {
     /**
      * 2019/12/21 9:01
      * 教师首页 默认页面
-     *  注意了,跳到这个页面的时候,要带上: 带队老师参与的所有比赛信息,以及同比赛信息相对应的所有的学生信息.
+     * 注意了,跳到这个页面的时候,要带上: 带队老师参与的所有比赛信息,以及同比赛信息相对应的所有的学生信息.
      */
     @RequestMapping("/teacher/index")
     public String teacherIndex() {
         return "teacher/teacher_index";
     }
 
-    /** 2019/12/25 11:52
+    /**
+     * 2019/12/25 11:52
      * 教师登录页面
-    */
+     */
     @RequestMapping("/teacher/login")
     public String teacherLogin() {
         return "teacher/teacher_login";
@@ -43,19 +42,18 @@ public class TeacherLoginRegister {
      * 教师登录的具体逻辑
      */
     @RequestMapping("/teacher/login1")
-    public String teacherLogin( Teacher teacher, BindingResult bindingResult, Model model) {
+    public String teacherLogin(Teacher teacher) {
         System.out.println(teacher.getTeacherName());
         System.out.println(teacher.getPassword());
-       int result= teacherService.teacherLogin(teacher);
-       if (result==1){
-           return "teacher/index";
-       }else if (result==2){
-           return "teacher/teacher_login_NotActive";
-       }else {
-           return "teacher/teacher_login_fail";
-       }
+        int result = teacherService.teacherLogin(teacher);
+        if (result == 1) {
+            return "teacher/index";
+        } else if (result == 2) {
+            return "teacher/teacher_login_NotActive";
+        } else {
+            return "teacher/teacher_login_fail";
+        }
     }
-
 
     /**
      * 2019/12/21 9:01
@@ -73,6 +71,19 @@ public class TeacherLoginRegister {
     @RequestMapping("/teacher/register")
     public String teacherRegister() {
         return "teacher/teacher_register";
+    }
+
+    /**
+     * 2019/12/25 12:55
+     * 教师注册功能的具体实现
+     */
+    @RequestMapping("/teacher/register1")
+    public String teacherRegister(Teacher teacher) {
+        int result = teacherService.teacherRegister(teacher);
+        if (result == 1) {
+            return "teacher/teacher_register_success";
+        }
+        return "teacher/teacher_register_fail";
     }
 
     /**

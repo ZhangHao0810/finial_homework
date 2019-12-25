@@ -72,12 +72,12 @@
         <br>
         <br>
         <br>
-        <form>
+        <form  action="${ctx}/teacher/register1" method="post">
             <div class="form-group">
                 <label for="name">教师姓名</label>
                 <div class="row">
                     <div class="col-xs-4">
-                        <input type="text" class="form-control" id="name" placeholder="TeacherName">
+                        <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                 <label for="exampleInputPassword1">密码</label>
                 <div class="row">
                     <div class="col-xs-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                     </div>
                 </div>
             </div>

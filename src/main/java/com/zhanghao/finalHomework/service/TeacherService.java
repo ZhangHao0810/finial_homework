@@ -23,7 +23,7 @@ public interface TeacherService {
      * 2019/12/23 15:45
      * 教师的注册
      */
-    int teacherRegister();
+    int teacherRegister(Teacher teacher);
 
     /**
      * 2019/12/23 18:34

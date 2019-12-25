@@ -26,6 +26,11 @@ public interface TeacherDao{
 	*/
 	int selectChecked(@Param("teacherName") String teacherName);
 
+	/** 2019/12/25 12:51
+	 * 查询(根据教师姓名)
+	*/
+	Teacher selectByName(String teacherName);
+
 
 	/**
 	 * 

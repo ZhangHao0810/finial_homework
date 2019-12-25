@@ -98,7 +98,7 @@
             </form>
             <br/>
             <br/>
-            未注册??
+            未注册?
             <a href="${ctx}/teacher/register">
                 <button class="btn btn-default">注册</button>
             </a>

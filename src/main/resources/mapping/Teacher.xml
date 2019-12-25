@@ -52,17 +52,15 @@
     <insert id="insert" parameterType="com.zhanghao.finalHomework.model.Teacher">
         INSERT INTO teacher
         (
-        teacher_id,
         teacher_name,
         password,
         checked
         )
         VALUES
         (
-        #{teacherId},
         #{teacherName},
         #{password},
-        #{checked}
+        0
         )
         <selectKey keyProperty="teacherId" resultType="Long" order="AFTER">
             select LAST_INSERT_ID()
