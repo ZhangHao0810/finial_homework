@@ -84,7 +84,7 @@
                 <label for="exampleInputPassword1">密码</label>
                 <div class="row">
                     <div class="col-xs-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="passWord" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                     </div>
                 </div>
             </div>

@@ -26,7 +26,6 @@ public class TeacherServiceImpl implements TeacherService {
          * 如果查出来checke是0 就返回2 进入提示未激活的页面
          * 老师姓名和密码查不出来,就算失败, 进入提示检查用户名和面的页面
          */
-
         Teacher result = teacherDao.selectByNamePassWord(teacher.getTeacherName(), teacher.getPassword());
         System.out.println(result);
         if (result != null) {

@@ -45,6 +45,7 @@ public class TeacherLoginRegister {
     @RequestMapping("/teacher/login1")
     public String teacherLogin( Teacher teacher, BindingResult bindingResult, Model model) {
         System.out.println(teacher.getTeacherName());
+        System.out.println(teacher.getPassword());
        int result= teacherService.teacherLogin(teacher);
        if (result==1){
            return "teacher/index";
