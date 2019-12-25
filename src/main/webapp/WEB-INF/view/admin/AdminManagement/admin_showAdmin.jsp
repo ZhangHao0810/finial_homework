@@ -73,13 +73,6 @@
         <a href="${ctx}/admin/addAdmin" class="btn btn-default" role="button">增加管理员</a>
     </form>
 
-    <form class="navbar-form navbar-right">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">管理员查询</button>
-    </form>
-
     <table class="table table-hover">
         <tr>
             <th>管理员账号</th>

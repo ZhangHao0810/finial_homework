@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ZhangHao
-  Date: 2019/12/12
-  Time: 9:16
+  Date: 2019/12/25
+  Time: 10:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/commons/taglibs.jsp" %>
@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">教师登录 <span class="sr-only">(current)</span></a></li>
-                <li><a href="${ctx}/teacher/register">教师注册 </a></li>
+                <li><a href="#">教师注册 </a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
@@ -62,36 +62,47 @@
         <<img src="../../../img/teacher/双女比基尼.jpg" width="500px" height="715.5px">
     </div>
     <div class="col-md-6 ">
-
         <br>
         <br>
         <br>
         <br>
         <br>
-        <br>
-        <br>
-
-        <form action="${ctx}/teacher/login1" method="post">
-            <div class="form-group">
-                <label for="name">教师姓名</label>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <strong>登录失败!</strong> 您的账号尚未激活~请等待或者联系管理员激活账号.
+                </div>
+                <div/>
+            </div>
+            <br>
+            <form>
+                <div class="form-group">
+                    <label for="name">教师姓名</label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control" id="name">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group ">
-                <label for="exampleInputPassword1">密码</label>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="passWord" placeholder="Password">
+                <div class="form-group ">
+                    <label for="exampleInputPassword1">密码</label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-default">登录</button>
-        </form>
-        <br/>
-        <br/>
+                <button type="submit" class="btn btn-default">登录</button>
+                <a href="${ctx}/teacher/register">
+                    <button class="btn btn-default">注册</button>
+                </a>
+            </form>
+
+
+        </div>
     </div>
 </div>
 

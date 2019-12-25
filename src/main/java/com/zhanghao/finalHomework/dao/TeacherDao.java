@@ -16,6 +16,16 @@ import java.util.List;
 @Repository
 public interface TeacherDao{
 
+	/** 2019/12/25 10:23
+	 * 查询(根据教师名称和密码)
+	*/
+	Teacher selectByNamePassWord(@Param("teacherName") String teacherName,@Param("password") String password);
+
+	/** 2019/12/25 10:33
+	 * 查询是否激活 (根据教师名称)
+	*/
+	int selectChecked(@Param("teacherName") String teacherName);
+
 
 	/**
 	 * 
