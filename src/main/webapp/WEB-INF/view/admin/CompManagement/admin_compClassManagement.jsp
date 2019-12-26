@@ -51,12 +51,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
                     <li class="active"><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
-                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
+                    <li><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">
@@ -89,12 +89,12 @@
             <th>修改参数</th>
             <th>删除类别</th>
         </tr>
-
+        <c:forEach items="${list}" var="item" varStatus="status">
         <tr>
-            <td  onclick="location.href='${ctx}/admin/addComp';"  >院级(B类)</td>
-            <td onclick="location.href='${ctx}/admin/addComp';" >通俗唱法(一等奖)</td>
-            <td onclick="location.href='${ctx}/admin/addComp';" >5.6</td>
-            <td onclick="location.href='${ctx}/admin/addComp';" >2.3</td>
+            <td onclick="location.href='${ctx}/admin/addComp';">${item.category}</td>
+            <td onclick="location.href='${ctx}/admin/addComp';">${item.grade }</td>
+            <td onclick="location.href='${ctx}/admin/addComp';">${item.base}</td>
+            <td onclick="location.href='${ctx}/admin/addComp';">${item.factor}</td>
             <td>
 
                 <!-- Button trigger modal -->
@@ -132,10 +132,11 @@
                 </div>
 
             </td>
-            <td>
+            <td onclick="location.href='${ctx}/admin/deletClass?classId=${item.classId}';">
                 <button type="button" class="btn btn-danger">删除</button>
             </td>
         <tr>
+            </c:forEach>
     </table>
 
 

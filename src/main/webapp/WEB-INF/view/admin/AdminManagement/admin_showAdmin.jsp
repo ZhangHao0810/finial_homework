@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
@@ -79,38 +79,45 @@
             <th>管理员密码</th>
             <th colspan="2" align="center">管理员操作</th>
         </tr>
-
-        <tr>
-            <td >张三丰</td>
-            <td onclick="location.href='${ctx}/admin/updateAdmin';">
-                <button type="button" class="btn btn-default" data-dismiss="modal">修改密码</button>
-            </td>
-            <td >
-                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
-            </td>
-        <tr>
-        <tr>
-            <td >刘德华</td>
-            <td onclick="location.href='${ctx}/admin/updateAdmin';">
-                <button type="button" class="btn btn-default" data-dismiss="modal">修改密码</button>
-            </td>
-            <td >
-                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
-            </td>
-        <tr>
-        <tr>
-            <td >郭德纲</td>
-            <td onclick="location.href='${ctx}/admin/updateAdmin';">
-                <button type="button" class="btn btn-default" data-dismiss="modal">修改密码</button>
-            </td>
-            <td >
-                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
-            </td>
-        <tr>
-
-
-
+        <c:forEach items="${admins}" var="item" varStatus="status">
+            <tr>
+                <td>${item.adminName}</td>
+                <td onclick="location.href='${ctx}/admin/updateAdmin?adminId=${item.adminId}';">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">修改密码</button>
+                </td>
+                <td onclick="location.href='${ctx}/admin/deletAdmin?adminId=${item.adminId}';">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
+
+    <nav aria-label="Page navigation" class="navbar-right">
+        <ul class="pagination">
+
+
+                <li><a href="${ctx}/admin/showAdmin?pageNum=1">首页</a></li>
+
+            <c:if test="${pageNum > 1}">
+                <li>
+                    <a href="${ctx}/admin/showAdmin?pageNum=${pageNum-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:if>
+                <li><a href="#">${pageNum}</a></li>
+            <c:if test="${totalPage > pageNum}">
+                <li>
+                    <a href="${ctx}/admin/showAdmin?pageNum=${pageNum+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:if>
+
+                <li><a href="${ctx}/admin/showAdmin?pageNum=${totalPage}">末页</a></li>
+            <li><a href=""> 共${total}位管理员，当前第${pageNum}页/共${totalPage}页</a></li>
+        </ul>
+    </nav>
 
 
 </div>

@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
@@ -73,7 +73,7 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/addAdmin1" method="post">
 
                 <div class="alert alert-info" role="alert">
                     请添加具体管理员信息
@@ -82,13 +82,13 @@
                 <div class="form-group">
                     <label for="adminname" class="col-sm-2 control-label">管理员<br/>账号</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="adminname" placeholder="PassWord">
+                        <input type="text" class="form-control" id="adminname" name="adminName" placeholder="AdminName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuid" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="stuid" placeholder="PassWord">
+                        <input type="password" class="form-control" id="stuid"  name="password" placeholder="PassWord">
                     </div>
                 </div>
 

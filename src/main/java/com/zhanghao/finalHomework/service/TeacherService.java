@@ -39,16 +39,14 @@ public interface TeacherService {
      */
     List<Teacher> listCheckedTeacher();
 
+
     /**
      * 2019/12/23 18:35
      * 授权教师的注册信息
      */
     int checkTeacher(Long teacherId);
 
-    /** 2019/12/23 18:36
-     * 拒绝教师的注册请求(删除教师的信息)
-    */
-    int notCheckTeacher(Long teacherId);
+
 
     /**
      * 2019/12/23 18:52
@@ -68,7 +66,7 @@ public interface TeacherService {
      * 添加教师信息
      * 管理员的教师管理
     */
-    int insertTeacher(String teacherName,String password);
+    int insertTeacher(Teacher teacher);
 
     /** 2019/12/23 19:23
      * 删除教师信息

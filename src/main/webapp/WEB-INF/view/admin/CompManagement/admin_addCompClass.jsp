@@ -44,7 +44,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
@@ -72,32 +72,32 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/addCompClass1" method="post">
                 <div class="alert alert-info" role="alert">
                     请添加比赛相关属性
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">类别</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="如:A类">
+                        <input type="text" class="form-control" name="category"  placeholder="如:A类">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">等级</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  placeholder="如:一等奖">
+                        <input type="text" class="form-control" name="grade" placeholder="如:一等奖">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">基数</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  placeholder="Base">
+                        <input type="text" class="form-control"  name="base" placeholder="Base">
                     </div>
                 </div>
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">系数</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  placeholder="Factor">
+                        <input type="text" class="form-control" name="factor"  placeholder="Factor">
                     </div>
                 </div>
                 <div class="form-group">

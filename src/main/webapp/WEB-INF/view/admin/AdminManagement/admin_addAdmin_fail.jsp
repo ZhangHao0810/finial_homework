@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ZhangHao
-  Date: 2019/12/22
-  Time: 9:14
+  Date: 2019/12/25
+  Time: 18:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/commons/taglibs.jsp" %>
@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <title>插入学生信息</title>
+    <title>添加管理员</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
@@ -24,10 +24,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
-
 <div class="container-fluid">
-<br/>
+
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,8 +48,8 @@
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
-                    <li class="active"><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
-                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
+                    <li><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li class="active"><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">
@@ -60,36 +58,23 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-
 </div>
 
 <div class="container">
-
-
     <div class="row">
-
-        <div class="col-md-6" >
-            <br/>
-            <h3>该类别的全部比赛</h3>
-            <table class="table table-bordered  table-condensed">
-                <tr>
-                    <th>比赛名称</th>
-                    <th>比赛类别</th>
-                    <th>比赛等级</th>
-                    <th>成果基数</th>
-                    <th>成果系数</th>
-
-                </tr>
-                <tr >
-                    <td>北信科沙雕大比拼</td>
-                    <td>校级B类</td>
-                    <td>宿舍比拼二等奖</td>
-                    <td>3.5</td>
-                    <td>2.8</td>
-                </tr>
-            </table>
+        <div class="col-md-6" align="center">
+            <img src="../../../../img/teacher/橘调灵动少女.jpg" width="533px" height="453px">
         </div>
-
+        <br/>
+        <br/>
+        <div class="col-md-3" align="left">
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4>Oh,添加失败了!</h4>
+                <p>您的管理员账号重复,请换用其他字段试一下吧</p>
+            </div>
+        </div>
         <div class="col-md-6 ">
 
             <br>
@@ -97,59 +82,42 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/addAdmin1" method="post">
 
                 <div class="alert alert-info" role="alert">
-                    请为类别添加具体比赛
+                    请添加具体管理员信息
+                </div>
+
+                <div class="form-group">
+                    <label for="adminname" class="col-sm-2 control-label">管理员<br/>账号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="adminname" name="adminName" placeholder="AdminName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="stuid" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="stuid"  name="password" placeholder="PassWord">
+                    </div>
                 </div>
 
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">比赛类别</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static">北信科舞蹈大赛</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">比赛等级</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static">校级</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">基数</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static">5.5</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">系数</label>
-                    <div class="col-sm-10">
-                        <p class="form-control-static">6.8</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="stuid" class="col-sm-2 control-label">比赛名称</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuid" placeholder="CompName">
-                    </div>
-                </div>
-                <div class="form-group">
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp;
                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     <button type="submit" class="btn btn-default  ">保存</button>
                 </div>
+
             </form>
         </div>
     </div>
 
-
-    <div  align="left">
-        <img src="../../../../img/teacher/橘调灵动少女.jpg" width="800px" height="680px" >
-    </div>
 
 </div>
 

@@ -53,12 +53,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span
+                                class="sr-only">(current)</span></a></li>
                     </ul>
-                    <li ><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
-                    <li ><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
-                    <li ><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
-                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
+                    <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
+                    <li><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
+                    <li><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
@@ -79,20 +80,22 @@
                     <th colspan="2" align="center">操作</th>
                 </tr>
 
-                <tr>
-                    <td>张三</td>
-                    <td onclick="location.href='${ctx}/teacher/login';">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">授权</button>
-                    </td>
-                    <td onclick="location.href='${ctx}/teacher/login';">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
-                    </td>
-                </tr>
+                <c:forEach items="${teachers}" var="item" varStatus="status">
+                    <tr>
+                        <td>${item.teacherName}</td>
+                        <td onclick="location.href='${ctx}/teacher/login';">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">授权</button>
+                        </td>
+                        <td onclick="location.href='${ctx}/teacher/login';">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
         <div class="col-md-7" align="right">
             <h3>最新比赛信息</h3>
-            <table class="table table-bordered  table-condensed">
+            <table class="table table-bordered table-condensed">
                 <tr>
                     <th>比赛名称</th>
                     <th>比赛类别</th>

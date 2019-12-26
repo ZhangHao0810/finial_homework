@@ -63,24 +63,22 @@
         <img src="../../../img/teacher/马尾可爱女.jpg" width="500px" height="715.5px">
     </div>
     <br> <br> <br>
-    <div class="col-md-3" align="left">
+
+    <div class="col-md-6 ">
+        <br>
         <div class="alert alert-danger alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">×</span></button>
             <h4>Oh,注册失败了!</h4>
             <p>您的用户名重复,请换用其他名字试一下吧</p>
         </div>
-    </div>
-
-    <div class="col-md-6 ">
         <br>
-        <br>
-        <form>
+        <form  action="${ctx}/teacher/register1" method="post">
             <div class="form-group">
                 <label for="name">教师姓名</label>
                 <div class="row">
                     <div class="col-xs-4">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
                     </div>
                 </div>
             </div>
@@ -88,7 +86,7 @@
                 <label for="exampleInputPassword1">密码</label>
                 <div class="row">
                     <div class="col-xs-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                     </div>
                 </div>
             </div>

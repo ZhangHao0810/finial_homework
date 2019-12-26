@@ -1,8 +1,8 @@
 package com.zhanghao.finalHomework.service;
 
+import com.zhanghao.finalHomework.model.Class;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public interface ClassService {
      * 2019/12/23 21:45
      * 添加比赛类别
      */
-    int insertClass(String category, String grade, BigDecimal base, BigDecimal factor);
+    int insertClass(Class record);
 
     /** 2019/12/23 21:47
      * 删除比赛类别
@@ -34,4 +34,9 @@ public interface ClassService {
      * 修改类别参数
     */
     int updateClassCanshu(Long classId);
+
+    /** 2019/12/25 20:29
+     * 获得全部的比赛类别
+    */
+    List<Class> getAllClass();
 }

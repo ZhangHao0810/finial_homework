@@ -16,7 +16,7 @@ public interface CompService {
 
     /**
      * 2019/12/23 15:30
-     * 单个教师参与的全部比赛 分页查询. 返回Comp的List集合 其中没有比赛类别,需要在Controller中添加.
+     * 查询单个教师参与的全部比赛
      * 用途:
      * 教师端首页
      */

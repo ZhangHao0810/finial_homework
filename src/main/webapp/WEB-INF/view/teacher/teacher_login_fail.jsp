@@ -61,21 +61,16 @@
     <div class="col-md-6" align="center">
         <<img src="../../../img/teacher/双女比基尼.jpg" width="500px" height="715.5px">
     </div>
+    <br/>
+    <br/>
+    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">×</span></button>
+        <strong>登录失败!</strong> 请重新检查用户名和密码
+    </div>
     <div class="col-md-6 ">
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-xs-8">
-                <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                    <strong>登录失败!</strong> 请重新检查用户名和密码
-                </div>
-                <div/>
-            </div>
             <br>
             <form action="${ctx}/teacher/login1" method="post">
                 <div class="form-group">

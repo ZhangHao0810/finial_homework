@@ -38,7 +38,6 @@
 	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.Class" >
 		 INSERT INTO class
  		(
-			 class_id,
 			 category,
 			 grade,
 			 base,
@@ -46,7 +45,6 @@
 		) 
 		 VALUES 
  		(
-			 #{classId},
 			 #{category},
 			 #{grade},
 			 #{base},
@@ -135,21 +133,5 @@
 		 SELECT 
 		 <include refid="Base_Column_List" />
 		 from class
- 		 where 1=1  
-		<if test="classId != null">
-			 and class_id = #{classId} 
-		</if>
-		<if test="category != null and category != ''">
-			 and category = #{category} 
-		</if>
-		<if test="grade != null and grade != ''">
-			 and grade = #{grade} 
-		</if>
-		<if test="base != null">
-			 and base = #{base} 
-		</if>
-		<if test="factor != null">
-			 and factor = #{factor} 
-		</if>
 	</select>
 </mapper>

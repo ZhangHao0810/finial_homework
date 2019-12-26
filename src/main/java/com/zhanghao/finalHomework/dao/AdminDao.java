@@ -17,6 +17,24 @@ import java.util.List;
 public interface AdminDao{
 
 
+	/** 2019/12/25 14:04
+	 * 查询(根据用户名和密码)
+	*/
+	Admin selectByAdminNamePassword(@Param("adminName") String adminrName,@Param("password") String password);
+
+
+
+	/** 2019/12/25 15:31
+	 * 分页查询全部的管理员信息.每页5条
+	*/
+	List<Admin> list4Page(@Param("record") Admin record, @Param("commonQueryParam") CommonQueryBean query);
+
+	/** 2019/12/25 18:08
+	 * 查询-根据用户名
+	*/
+	Admin selectByName(@Param("adminName")String adminName);
+
+
 	/**
 	 * 
 	 * 查询（根据主键ID查询）
@@ -45,12 +63,11 @@ public interface AdminDao{
 	 **/
 	int updateByPrimaryKeySelective(Admin record);
 
-	/**
-	 * 
-	 * list分页查询
-	 * 
-	 **/
-	List<Admin> list4Page(@Param("record") Admin record, @Param("commonQueryParam") CommonQueryBean query);
+
+	/** 2019/12/25 19:53
+	 * 获得管理员姓名
+	*/
+	String getNameById(Long adminId);
 
 	/**
 	 * 

@@ -16,6 +16,10 @@ import java.util.List;
 @Repository
 public interface ClassDao{
 
+	/** 2019/12/25 14:58
+	 * 添加比赛类别
+	*/
+	int insert(Class record);
 
 	/**
 	 * 
@@ -24,6 +28,11 @@ public interface ClassDao{
 	 **/
 	Class  selectByPrimaryKey(@Param("classId") Long classId);
 
+	/** 2019/12/25 20:31
+	 * 查-全查
+	*/
+	List<Class> list();
+
 	/**
 	 * 
 	 * 删除（根据主键ID删除）
@@ -31,12 +40,7 @@ public interface ClassDao{
 	 **/
 	int deleteByPrimaryKey(@Param("classId") Long classId);
 
-	/**
-	 * 
-	 * 添加
-	 * 
-	 **/
-	int insert(Class record);
+
 
 	/**
 	 * 
@@ -59,11 +63,6 @@ public interface ClassDao{
 	 **/
 	long count(Class record);
 
-	/**
-	 * 
-	 * list查询
-	 * 
-	 **/
-	List<Class> list(Class record);
+
 
 }

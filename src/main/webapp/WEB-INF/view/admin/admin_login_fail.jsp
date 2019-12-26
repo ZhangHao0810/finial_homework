@@ -46,7 +46,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span
+                    <li class="active"><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span
                             class="sr-only">(current)</span></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -75,21 +75,20 @@
                 <div/>
             </div>
             <br>
-            <form>
+            <form action="${ctx}/admin/login1" method="post">
                 <div class="form-group">
                     <label for="name">管理员姓名</label>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" id="name">
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" id="name"  name="adminName" placeholder="AdminName">
                         </div>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="exampleInputPassword1">密码</label>
                     <div class="row">
-                        <div class="col-xs-6">
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                   placeholder="Password">
+                        <div class="col-xs-4">
+                            <input type="password" class="form-control" id="exampleInputPassword1"  name="password" placeholder="Password">
                         </div>
                     </div>
                 </div>

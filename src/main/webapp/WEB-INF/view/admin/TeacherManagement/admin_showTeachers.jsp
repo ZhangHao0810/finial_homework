@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li class="active"><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li ><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
@@ -75,15 +75,17 @@
                     <th colspan="2" align="center">操作</th>
                 </tr>
 
-                <tr>
-                    <td>张三</td>
-                    <td onclick="location.href='';">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">授权</button>
-                    </td>
-                    <td onclick="location.href='';">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
-                    </td>
-                </tr>
+                <c:forEach items="${notChecked}" var="item" varStatus="status">
+                    <tr>
+                        <td>${item.teacherName}</td>
+                        <td onclick="location.href='${ctx}/admin/activeTachers?teacherId=${item.teacherId}';">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">授权</button>
+                        </td>
+                        <td onclick="location.href='${ctx}/admin/deletTeacher?teacherId=${item.teacherId}';">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
     </div>
@@ -99,16 +101,20 @@
             <th>教师姓名</th>
             <th colspan="2">操作</th>
         </tr>
+
+        <c:forEach items="${checked}" var="item" varStatus="status">
+
+
         <tr>
-            <td>王二麻子</td>
+            <td>${item.teacherName}</td>
             <td >
                 <a href="${ctx}/admin/updateTeacher" class="btn btn-default" role="button">修改</a>
             </td>
-            <td >
+            <td onclick="location.href='${ctx}/admin/deletTeacher?teacherId=${item.teacherId}';">
                 <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
             </td>
-
         </tr>
+        </c:forEach>
     </table>
 </div>
 

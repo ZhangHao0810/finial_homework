@@ -55,25 +55,29 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Teacher> listNotCheckedTeacher() {
         /** 2019/12/25 13:01
-         * 查询所有教师的
+         * 展示所有的未确认教师信息
+         * 查询教师表中checked的值为0的数据.list查询.
         */
-        return null;
+        return teacherDao.listByNotChecked();
     }
 
     @Override
     public List<Teacher> listCheckedTeacher() {
-        return null;
+        /** 2019/12/25 20:55
+         * 展示所有确认了的教师信息
+        */
+        return teacherDao.listByChecked();
     }
 
     @Override
     public int checkTeacher(Long teacherId) {
-        return 0;
+        /** 2019/12/25 21:04
+         * 授权教师信息
+        */
+        return teacherDao.activeTeacher(teacherId);
     }
 
-    @Override
-    public int notCheckTeacher(Long teacherId) {
-        return 0;
-    }
+
 
     @Override
     public String getTeacherName(Long stuId) {
@@ -86,13 +90,22 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public int insertTeacher(String teacherName, String password) {
+    public int insertTeacher(Teacher teacher) {
+        Teacher result=teacherDao.selectByName(teacher.getTeacherName());
+        if(result==null){
+            teacherDao.insert(teacher);
+            return 1;
+        }
         return 0;
+
     }
 
     @Override
     public int deletTeacher(Long teacherId) {
-        return 0;
+        /** 2019/12/25 21:23
+         * 直接删除
+        */
+        return teacherDao.deleteByPrimaryKey(teacherId);
     }
 
     @Override

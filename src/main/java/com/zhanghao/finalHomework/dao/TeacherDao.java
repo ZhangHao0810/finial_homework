@@ -31,6 +31,23 @@ public interface TeacherDao{
 	*/
 	Teacher selectByName(String teacherName);
 
+	/** 2019/12/25 14:24
+	 * 查询(所有未确认的教师信息)
+	*/
+	List<Teacher> listByNotChecked();
+
+	/** 2019/12/25 20:56
+	 * 查询(所有确认了的教师信息)
+	*/
+	List<Teacher> listByChecked();
+
+	/** 2019/12/25 21:05
+	 * 授权教师信息
+	*/
+	int activeTeacher(@Param("teacherId")Long teacherId);
+
+
+
 
 	/**
 	 * 

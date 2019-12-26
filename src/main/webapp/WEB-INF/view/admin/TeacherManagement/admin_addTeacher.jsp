@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <title>添加管理员</title>
+    <title>添加教师</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
@@ -44,7 +44,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li ><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li class="active"><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
                     <li ><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
@@ -72,22 +72,22 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/addTeacher1">
 
                 <div class="alert alert-info" role="alert">
-                    请添加具体管理员信息
+                    请添加具体教师信息
                 </div>
 
                 <div class="form-group">
-                    <label for="adminname" class="col-sm-2 control-label">管理员<br/>账号</label>
+                    <label for="adminname" class="col-sm-2 control-label">教师<br/>姓名</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="adminname" placeholder="TeacherName">
+                        <input type="text" class="form-control" id="adminname" name="teacherName" placeholder="TeacherName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuid" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="stuid" placeholder="PassWord">
+                        <input type="password" class="form-control" id="stuid"  name="password" placeholder="PassWord">
                     </div>
                 </div>
 

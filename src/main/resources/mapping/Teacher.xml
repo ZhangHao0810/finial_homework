@@ -19,7 +19,7 @@
 	</sql>
 
     <!--查询-根据姓名和密码查询-->
-    <select id="selectByNamePassWord" resultMap="Teacher" >
+    <select id="selectByNamePassWord" resultMap="Teacher">
         SELECT
         *
         From teacher
@@ -28,12 +28,21 @@
     </select>
 
     <!--查询是否激活-->
-    <select id="selectChecked">
+    <select id="selectChecked" resultType="java.lang.Integer">
         SELECT
         checked
         From teacher
         where teacher_name=#{teacherName}
     </select>
+
+    <!--查询-根据姓名查询-->
+    <select id="selectByName" resultMap="Teacher">
+        SELECT
+        *
+        From teacher
+        where teacher_name=#{teacherName}
+    </select>
+
     <!-- 查询（根据主键ID查询） -->
     <select id="selectByPrimaryKey" resultMap="Teacher" parameterType="java.lang.Long">
         SELECT
@@ -151,4 +160,33 @@
             and checked = #{checked}
         </if>
     </select>
+
+
+    <!--list查询 未确认的教师信息-->
+    <select id="listByNotChecked" resultMap="Teacher">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from teacher
+        where
+        checked = 0
+    </select>
+
+    <!--list查询 确认了的教师信息-->
+    <select id="listByChecked" resultMap="Teacher">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from teacher
+        where
+        checked = 1
+    </select>
+
+    <!--授权教师信息-->
+    <update id="activeTeacher">
+        update teacher
+        <set>
+            checked=1
+        </set>
+        where
+        teacher_id=#{teacherId}
+    </update>
 </mapper>

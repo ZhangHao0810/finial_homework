@@ -19,16 +19,6 @@ public class TeacherLoginRegister {
     private TeacherService teacherService;
 
     /**
-     * 2019/12/21 9:01
-     * 教师首页 默认页面
-     * 注意了,跳到这个页面的时候,要带上: 带队老师参与的所有比赛信息,以及同比赛信息相对应的所有的学生信息.
-     */
-    @RequestMapping("/teacher/index")
-    public String teacherIndex() {
-        return "teacher/teacher_index";
-    }
-
-    /**
      * 2019/12/25 11:52
      * 教师登录页面
      */
@@ -43,11 +33,10 @@ public class TeacherLoginRegister {
      */
     @RequestMapping("/teacher/login1")
     public String teacherLogin(Teacher teacher) {
-        System.out.println(teacher.getTeacherName());
-        System.out.println(teacher.getPassword());
         int result = teacherService.teacherLogin(teacher);
         if (result == 1) {
-            return "teacher/index";
+
+            return "teacher/teacher_index";
         } else if (result == 2) {
             return "teacher/teacher_login_NotActive";
         } else {

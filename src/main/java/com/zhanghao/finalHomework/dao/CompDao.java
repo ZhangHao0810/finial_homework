@@ -16,6 +16,12 @@ import java.util.List;
 @Repository
 public interface CompDao{
 
+	/** 2019/12/25 13:43
+	 * 查询出所有的比赛名称
+	 * 用途:录入比赛信息界面之前需要查
+	*/
+	List<Comp> selectAllComp();
+
 
 	/**
 	 * 

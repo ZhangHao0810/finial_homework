@@ -74,29 +74,6 @@
             </a>
         </div>
     </div>
-
-    <div class="col-md-6 ">
-        <br>
-        <form>
-            <div class="form-group">
-                <label for="name">教师姓名</label>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group ">
-                <label for="exampleInputPassword1">密码</label>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-default" data-target="modal">注册</button>
-        </form>
-    </div>
 </div>
 </body>
 </html>

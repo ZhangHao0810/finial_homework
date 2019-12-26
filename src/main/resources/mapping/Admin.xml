@@ -16,13 +16,23 @@
 		password
 	</sql>
 
-	<!-- 查询（根据主键ID查询） -->
-	<select id="selectByPrimaryKey" resultMap="Admin" parameterType="java.lang.Long">
-		 SELECT
-		 <include refid="Base_Column_List" />
-		 FROM admin
-		 WHERE admin_id = #{adminId}
-	</select>
+
+	<!--查询-根据姓名-->
+	<select id="selectByName" resultMap="Admin" >
+        SELECT
+        *
+        From Admin
+        where admin_name=#{adminName}
+    </select>
+
+	<!--查询-根据姓名和密码-->
+	<select id="selectByAdminNamePassword" resultMap="Admin" >
+        SELECT
+        *
+        From Admin
+        where admin_name=#{adminName}
+        and password=#{password}
+    </select>
 
 	<!--删除：根据主键ID删除-->
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -34,13 +44,11 @@
 	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.Admin" >
 		 INSERT INTO admin
  		(
-			 admin_id,
 			 admin_name,
 			 password
 		) 
 		 VALUES 
  		(
-			 #{adminId},
 			 #{adminName},
 			 #{password}
  		) 
@@ -52,17 +60,21 @@
 	<!-- 修 改-->
 	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Admin" >
 		 UPDATE admin
- 		 <set> 
-			<if test="adminName != null and adminName != ''">
-				 admin_name = #{adminName},
-			</if>
+ 		 <set>
 			<if test="password != null and password != ''">
-				 password = #{password},
+				 password = #{password}
 			</if>
-
  		 </set>
-		 WHERE admin_id = #{adminId}
+		 WHERE admin_name = #{adminName}
 	</update>
+
+	<!--查询-根据id得姓名-->
+	<select id="getNameById" resultType="String" >
+        SELECT
+        admin_name
+        From Admin
+        where admin_id=#{adminId}
+    </select>
 
 	<!-- list4Page 分页查询-->
 	<select id="list4Page" resultMap="Admin">
