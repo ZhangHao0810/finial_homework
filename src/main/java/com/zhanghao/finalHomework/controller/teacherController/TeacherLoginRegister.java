@@ -35,22 +35,12 @@ public class TeacherLoginRegister {
     public String teacherLogin(Teacher teacher) {
         int result = teacherService.teacherLogin(teacher);
         if (result == 1) {
-
-            return "teacher/teacher_index";
+            return "forward:/teacher/index";
         } else if (result == 2) {
             return "teacher/teacher_login_NotActive";
         } else {
             return "teacher/teacher_login_fail";
         }
-    }
-
-    /**
-     * 2019/12/21 9:01
-     * 教师登录失败页面
-     */
-    @RequestMapping("/teacher/fail_login")
-    public String teacherFailLogin() {
-        return "teacher/teacher_login_fail";
     }
 
     /**
@@ -75,22 +65,5 @@ public class TeacherLoginRegister {
         return "teacher/teacher_register_fail";
     }
 
-    /**
-     * 2019/12/21 9:02
-     * 教师注册失败页面
-     */
-    @RequestMapping("/teacher/fail_register")
-    public String teacherFailRegister() {
-        return "teacher/teacher_register_fail";
-    }
-
-    /**
-     * 2019/12/21 9:02
-     * 教师注册成功页面
-     */
-    @RequestMapping("/teacher/success_register")
-    public String teacherSuccessRegister() {
-        return "teacher/teacher_register_success";
-    }
 
 }

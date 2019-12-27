@@ -70,7 +70,7 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/teacher/stu/insert1?infoId=${infoId}" method="post">
 
                 <div class="alert alert-info" role="alert">
                     请添加具体学生信息
@@ -80,33 +80,29 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">比赛名称</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">北信科舞蹈大赛</p>
+                        <p class="form-control-static">${compName}</p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="stuid" class="col-sm-2 control-label">学号</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuid" placeholder="StuId">
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label for="stuname" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuname" placeholder="StuName">
+                        <input type="text" class="form-control" id="stuname" name="stuName" placeholder="StuName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuage" class="col-sm-2 control-label">年龄</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuage" placeholder="StuAge">
+                        <input type="text" class="form-control" id="stuage"  name="stuAge" placeholder="StuAge">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuclass" class="col-sm-2 control-label">班级</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuclass" placeholder="StuClass">
+                        <input type="text" class="form-control" id="stuclass" name="stuClass" placeholder="StuClass">
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

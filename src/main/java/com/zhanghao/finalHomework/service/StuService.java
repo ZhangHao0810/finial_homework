@@ -20,7 +20,7 @@ public interface StuService {
      *  教师的学生管理首页
      *  管理员的信息统计页面
     */
-    List<Stu> listSingleCompAllStu(Long compId);
+    List<Stu> listSingleCompAllStu(Long infoId);
 
     /** 2019/12/23 15:58
      * 插入学生信息,同时添加具体比赛与学生的映射.
@@ -28,7 +28,7 @@ public interface StuService {
      *  教师的学生管理之增加学生
      *
     */
-    int insertStu(Long infoId,Long stuId,String stuName,Long stuAge,String stuClass);
+    int insertStu(Stu stu,Long infoId);
 
     /** 2019/12/23 16:13
      * 删除学生信息,同时删除具体比赛与学生的映射.

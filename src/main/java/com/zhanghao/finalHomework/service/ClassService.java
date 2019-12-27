@@ -17,7 +17,7 @@ public interface ClassService {
      * 2019/12/23 19:07
      * 根据比赛Id 获得比赛的类别信息.
      */
-    List<Class> getCompClass(Long compId);
+    Class getCompClass(Long compId);
 
     /**
      * 2019/12/23 21:45

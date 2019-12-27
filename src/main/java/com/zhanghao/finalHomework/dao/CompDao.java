@@ -72,4 +72,9 @@ public interface CompDao{
 	 **/
 	List<Comp> list(Comp record);
 
+    List<Comp> getCompByTeacherId(Long teacherId);
+
+    Comp getCompBycompName(String compName);
+
+    List<Comp> selectInversByPrimaryKey(Long compId);
 }

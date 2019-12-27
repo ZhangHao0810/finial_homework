@@ -23,6 +23,18 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
+    <script>
+        function save(){
+            document.form1.action="#";
+            document.form1.submit();
+        }
+        function send(){
+            document.form1.action="${ctx}/teacher/comp/insert1";
+            document.form1.submit();
+        }
+    </script>
 </head>
 <body>
 <br/>
@@ -47,7 +59,7 @@
                     <li class="active"><a href="#">录入比赛信息 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX老师</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 ${teacherName}老师</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -67,15 +79,14 @@
             <br>
             <br>
             <br>
-            <form>
+            <form name="form1">
 
                 <div class="form-group">
                     <label>比赛名称</label>
-                    <select class="form-control">
-                        <option>北信科跳舞大赛</option>
-                        <option>3</option>
-                        <option>北信科沙雕大赛</option>
-                        <option>5</option>
+                    <select class="form-control" name="compName">
+                        <c:forEach items="${comps}" var="item" varStatus="status">
+                        <option>${item.compName}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <br>
@@ -97,9 +108,11 @@
                         <input type="file" id="比赛照片">
                     </div>
 
-                    <button type="submit" class="btn btn-default">保存</button>
+                <input type="hidden" name="teacherName" value="${teacherName}"/>
+
+                    <button type="submit" class="btn btn-default" onclick="save()">保存</button>
                     <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"
-                            title="提交比赛信息之后不可修改!!请慎重">提交
+                            title="提交比赛信息之后不可修改!!请慎重" onclick="send()">提交
                     </button>
             </form>
         </div>

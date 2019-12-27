@@ -16,6 +16,11 @@ import java.util.List;
 @Repository
 public interface TeacherDao{
 
+	/** 2019/12/26 20:01
+	 * getTeacherIdByinfoId
+	*/
+	Long getTeacherIdByinfoId(@Param("infoId") Long infoId);
+
 	/** 2019/12/25 10:23
 	 * 查询(根据教师名称和密码)
 	*/

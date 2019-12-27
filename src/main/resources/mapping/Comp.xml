@@ -16,6 +16,40 @@
 		class_id
 	</sql>
 
+	<!--selectAllComp-->
+	<select id="selectAllComp" resultMap="Comp">
+		SELECT
+		*
+		FROM comp
+	</select>
+
+
+	<!--getCompBycompName-->
+	<select id="getCompBycompName" resultMap="Comp" parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp
+		WHERE comp_name = #{compName}
+	</select>
+
+
+
+	<!--getCompByTeacherId-->
+	<select id="getCompByTeacherId" resultMap="Comp" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp
+		WHERE comp_id = #{teacherId}
+	</select>
+
+	<!--selectInversByPrimaryKey-->
+	<select id="selectInversByPrimaryKey" resultMap="Comp" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp
+		WHERE comp_id != #{compId}
+	</select>
+
 	<!-- 查询（根据主键ID查询） -->
 	<select id="selectByPrimaryKey" resultMap="Comp" parameterType="java.lang.Long">
 		 SELECT

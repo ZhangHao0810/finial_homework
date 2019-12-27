@@ -17,6 +17,14 @@ import java.util.List;
 public interface CompInfoStuDao{
 
 
+
+	/** 2019/12/26 12:02
+	 * 根据infoid 查 sid
+	*/
+
+	List<CompInfoStu> getStuIdByInfoId(@Param("infoId")Long infoId);
+
+
 	/**
 	 * 
 	 * 查询（根据主键ID查询）
@@ -66,4 +74,6 @@ public interface CompInfoStuDao{
 	 **/
 	List<CompInfoStu> list(CompInfoStu record);
 
+
+    void deletBystuId(@Param("stuId")Long stuId);
 }

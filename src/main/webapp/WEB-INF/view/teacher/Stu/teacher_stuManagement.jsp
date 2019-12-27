@@ -50,7 +50,7 @@
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX老师</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 ${name}老师</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -62,11 +62,11 @@
 <div class="container">
 
     <form class="navbar-form navbar-left">
-        <h3>XXX老师--北信科XXX大赛</h3>
+        <h3>${name}老师--${infoName}</h3>
     </form>
 
     <form class="navbar-form navbar-right">
-        <a href="${ctx}/teacher/stu/insert" class="btn btn-default" role="button">增加学生</a>
+        <a href="${ctx}/teacher/stu/insert?compName=${infoName}&infoId=${infoId}" class="btn btn-default" role="button">增加学生</a>
     </form>
 
     <form class="navbar-form navbar-right">
@@ -85,47 +85,28 @@
             <th>删除学生</th>
 
         </tr>
-
+        <c:forEach items="${stus}" var="item" varStatus="status">
         <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-            <td onclick="location.href='${ctx}/teacher/login';">
-            <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
+            <td>${item.stuId}</td>
+            <td>${item.stuName}</td>
+            <td>${item.stuAge}</td>
+            <td>${item.stuClass}</td>
+            <td onclick="location.href='${ctx}/teacher/stu/delet?stuId=${item.stuId}&infoId=${infoId}';">
+                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
             </td>
         <tr>
-
+            </c:forEach>
 
         <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-            <td onclick="location.href='${ctx}/teacher/login';">
+            <td>写死在页面上的</td>
+            <td>张华</td>
+            <td>13</td>
+            <td>1903</td>
+            <td onclick="location.href='#';">
                 <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
             </td>
         <tr>
 
-        <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-            <td onclick="location.href='${ctx}/teacher/login';">
-                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
-            </td>
-        <tr>
-
-        <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-            <td onclick="location.href='${ctx}/teacher/login';">
-                <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>
-            </td>
-        <tr>
 
     </table>
 

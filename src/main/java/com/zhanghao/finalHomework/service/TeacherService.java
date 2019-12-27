@@ -54,7 +54,7 @@ public interface TeacherService {
      * 用途:
      * 管理员首页,右侧展示最新比赛信息.
      */
-    String getTeacherName(Long stuId);
+    String getTeacherName(Long teacherId);
 
     /**
      * 2019/12/23 21:34

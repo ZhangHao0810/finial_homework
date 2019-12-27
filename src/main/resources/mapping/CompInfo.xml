@@ -28,6 +28,32 @@
 		update_time
 	</sql>
 
+	<!--selectInversAllByteacherId-->
+	<select id="selectInversAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
+		SELECT
+		*
+		FROM comp_info
+		WHERE teacher_id != #{teacherId}
+	</select>
+
+	<!--getInfoByInfoid-->
+	<select id="getInfoByInfoid" resultMap="CompInfo" parameterType="java.lang.Long">
+		SELECT
+		*
+		FROM comp_info
+		WHERE info_id = #{infoId}
+	</select>
+
+
+
+	<!--查询,根据教师id-->
+	<select id="selectAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
+		SELECT
+		*
+		FROM comp_info
+		WHERE teacher_id = #{teacherId}
+	</select>
+
 	<!-- 查询（根据主键ID查询） -->
 	<select id="selectByPrimaryKey" resultMap="CompInfo" parameterType="java.lang.Long">
 		 SELECT

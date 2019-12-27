@@ -80,13 +80,16 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public String getTeacherName(Long stuId) {
-        return null;
+    public String getTeacherName(Long teacherId) {
+
+        Teacher teacher = teacherDao.selectByPrimaryKey(teacherId);
+        return teacher.getTeacherName();
     }
 
     @Override
-    public Long getTeacherId(String stuName) {
-        return null;
+    public Long getTeacherId(String teacherName) {
+        Teacher teacher = teacherDao.selectByName(teacherName);
+        return teacher.getTeacherId();
     }
 
     @Override

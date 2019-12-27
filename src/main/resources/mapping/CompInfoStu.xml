@@ -16,6 +16,21 @@
 		info_id
 	</sql>
 
+
+	<!--deletBystuId-->
+	<delete id="deletBystuId" parameterType="java.lang.Long">
+		 DELETE FROM comp_info_stu
+		 WHERE stu_id = #{stuId}
+	</delete>
+
+	<!--根据infoid查stuid-->
+	<select id="getStuIdByInfoId" resultMap="CompInfoStu" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp_info_stu
+		WHERE info_id = #{infoId}
+	</select>
+
 	<!-- 查询（根据主键ID查询） -->
 	<select id="selectByPrimaryKey" resultMap="CompInfoStu" parameterType="java.lang.Integer">
 		 SELECT

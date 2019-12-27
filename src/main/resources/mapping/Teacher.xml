@@ -18,6 +18,15 @@
 		checked
 	</sql>
 
+    <!--getTeacherIdByinfoId-->
+    <select id="getTeacherIdByinfoId" resultType="Long">
+        SELECT
+        teacher_id
+        From comp_info
+        where info_id=#{infoId}
+    </select>
+
+
     <!--查询-根据姓名和密码查询-->
     <select id="selectByNamePassWord" resultMap="Teacher">
         SELECT

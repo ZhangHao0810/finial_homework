@@ -45,12 +45,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${ctx}/teacher/index">教师端首页 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="${ctx}/teacher/comp/insert">录入比赛信息 </a></li>
+                    <li class="active"><a href="${ctx}/teacher/index">教师端首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li><a href="${ctx}/teacher/comp/insert?teacherName=${teacher.teacherName}">录入比赛信息 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX老师</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 ${teacher.teacherName}
+                        老师</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -84,36 +86,46 @@
             <%--<th>删除该比赛</th>--%>
 
         </tr>
-
+        <c:forEach items="${result}" var="item" varStatus="status">
         <tr>
-            <td onclick="location.href='${ctx}/teacher/comp/update';">北信科舞蹈大赛</td>
-            <td onclick="location.href='${ctx}/teacher/comp/update';">校级(A类)</td>
-            <td onclick="location.href='${ctx}/teacher/comp/update';">民族舞(一等奖)</td>
-            <td onclick="location.href='${ctx}/teacher/comp/update';">2019年12月21日10:18:02</td>
-            <td onclick="location.href='${ctx}/teacher/comp/update';">未提交</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">${item.compName}</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">${item.leibie}</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">${item.xiangmu}</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">${item.createTime}</td>
+            <td onclick="location.href='${ctx}/teacher/comp/update';">${item.checked}</td>
             <td>
 
                 <!-- 弹出模态框 -->
-                <button type="button" class="btn btn-default  btn-sm" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-default  btn-sm" data-toggle="modal" data-target="#${item.compName}">
                     查看参赛学生
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="${item.compName}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">XX老师-北信科舞蹈大赛</h4>
+                                <h4 class="modal-title"
+                                    id="myModalLabel"> ${teacher.teacherName}老师-${item.compName}</h4>
                             </div>
                             <div class="modal-body">
                                 <table class="table table-hover">
                                     <tr>
-                                        <th>学生学号</th>
+                                        <th>学生id</th>
                                         <th>学生姓名</th>
+                                        <th>学生年龄</th>
                                         <th>学生班级</th>
                                     </tr>
+                                    <c:forEach items="${item.stus}" var="stu" varStatus="status">
+                                        <tr>
+                                            <td>${stu.stuId}</td>
+                                            <td>${stu.stuName}</td>
+                                            <td>${stu.stuAge}</td>
+                                            <td>${stu.stuClass}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </table>
                             </div>
                             <div class="modal-footer">
@@ -125,68 +137,25 @@
 
             </td>
             <td>
-                <a href="${ctx}/teacher/stu/index">
+                <a href="${ctx}/teacher/stu/index1?infoId=${item.infoId}">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息管理</button>
                 </a>
             </td>
 
+                <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
+                <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
+                <%--</td>--%>
+        <tr>
+
+            </c:forEach>
+
+
             <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
-                <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
+            <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
             <%--</td>--%>
         <tr>
         <tr>
-            <td onclick="location.href='${ctx}/teacher/comp/show';">北信科歌唱大赛</td>
-            <td onclick="location.href='${ctx}/teacher/comp/show';">院级(B类)</td>
-            <td onclick="location.href='${ctx}/teacher/comp/show';">通俗唱法(一等奖)</td>
-            <td onclick="location.href='${ctx}/teacher/comp/show';">2019年12月21日10:18:02</td>
-            <td onclick="location.href='${ctx}/teacher/comp/show';">已提交</td>
-            <td>
-                <!-- 弹出模态框 -->
-                <button type="button" class="btn btn-default  btn-sm" data-toggle="modal" data-target="#myModal">
-                    查看参赛学生
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel1">XX老师-北信科舞蹈大赛</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th>学生学号</th>
-                                        <th>学生姓名</th>
-                                        <th>学生班级</th>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息修改</button>
-                                </a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-
-        <td>
-            <a href="${ctx}/teacher/stu/index">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息管理</button>
-            </a>
-        </td>
-
-    <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
-                <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
-            <%--</td>--%>
-        <tr>
-        <tr>
-            <td>北信科沙雕大赛</td>
+            <td>这是写死的一行</td>
             <td>宿舍级(C类)</td>
             <td>极品沙雕(一等奖)</td>
             <td>2019年12月21日10:18:02</td>
@@ -226,14 +195,14 @@
                 </div>
             </td>
 
-        <td>
-            <a href="${ctx}/teacher/stu/index">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息管理</button>
-            </a>
-        </td>
+            <td>
+                <a href="${ctx}/teacher/stu/index">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息管理</button>
+                </a>
+            </td>
 
-    <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
-                <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
+            <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
+            <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
             <%--</td>--%>
         <tr>
     </table>

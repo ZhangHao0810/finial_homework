@@ -2,6 +2,7 @@ package com.zhanghao.finalHomework.service;
 
 import com.zhanghao.finalHomework.model.Comp;
 import com.zhanghao.finalHomework.model.CompInfo;
+import com.zhanghao.finalHomework.model.SingleTeacherAllCompInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,13 @@ public interface CompService {
 
     /**
      * 2019/12/23 15:30
-     * 查询单个教师参与的全部比赛
+     * 查询单个教师参与的全部比赛名称
      * 用途:
      * 教师端首页
      */
-    List<CompInfo> listSingleTeacherAllCompInfo(Long teacherId);
+    List<SingleTeacherAllCompInfo> listSingleTeacherAllComp(String teacherName);
+
+    List<CompInfo> listSingleTeacherAllCompInfo(String teacherName);
 
     /**
      * 2019/12/23 16:26
@@ -84,4 +87,24 @@ public interface CompService {
      * 为某一类别添加比赛
     */
     int insertComp(Long classId,String compName);
+
+    /** 2019/12/26 19:59
+     * 知道infoid 查 教师id
+    */
+    Long getTeacherIdByinfoId(Long infoId);
+
+    /** 2019/12/26 20:04
+     * 知道infoid 查 info
+    */
+    String getInfoByInfoid(Long infoId);
+
+    /** 2019/12/26 20:37
+     * 根据stuid 删除学生比赛关系表中的学生
+    */
+    void deletCompStuInfoBystuId(Long stuId);
+
+    List<Comp> getallCompByTeacherId(Long teacherId);
+
+
+    List<Comp> getTeacherNotInCompByTeacherId(Long teacherId);
 }

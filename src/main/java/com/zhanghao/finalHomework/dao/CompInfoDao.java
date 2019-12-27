@@ -16,6 +16,16 @@ import java.util.List;
 @Repository
 public interface CompInfoDao{
 
+	/** 2019/12/26 20:05
+	 * getInfoByInfoid
+	*/
+	CompInfo getInfoByInfoid(@Param("infoId") Long infoId);
+
+	/** 2019/12/26 9:22
+	 * 查询-根据教师id
+	*/
+	List<CompInfo> selectAllByteacherId(@Param("teacherId") Long teacherId);
+
 
 	/**
 	 * 
@@ -66,4 +76,5 @@ public interface CompInfoDao{
 	 **/
 	List<CompInfo> list(CompInfo record);
 
+    List<CompInfo> selectInversAllByteacherId(Long teacherId);
 }
