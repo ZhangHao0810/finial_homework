@@ -80,4 +80,10 @@ public interface CompInfoDao{
     CompInfo getinfoByteacherIdCompId(@Param("teacherId")Long teacherId, @Param("compId")Long compId);
 
 	List<CompInfo> getInfoByNewestTime();
+
+    void deleteByCompId(Long compId);
+
+	List<CompInfo> getAllInfo();
+
+    void deletByteacherIdCompId(@Param("teacherId")Long teacherId,@Param("compId") Long compId);
 }

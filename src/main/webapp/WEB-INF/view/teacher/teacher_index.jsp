@@ -98,6 +98,8 @@
             <th>比赛信息状态</th>
             <th>查看参赛学生信息</th>
             <th>学生信息管理</th>
+            <th>操作</th>
+
             <%--<th>删除该比赛</th>--%>
 
         </tr>
@@ -160,6 +162,13 @@
                     </a>
                 </td>
 
+                <td>
+                    <a href="${ctx}/teacher/comp/delet?teacherId=${teacher.teacherId}&compName=${item.compName}">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">删除比赛</button>
+                    </a>
+
+                </td>
+
                     <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
                     <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
                     <%--</td>--%>
@@ -170,53 +179,7 @@
         <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
         <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>
         <%--</td>--%>
-        <tr>
-        <tr>
-            <td>这是写死的一行</td>
-            <td>宿舍级(C类)</td>
-            <td>极品沙雕(一等奖)</td>
-            <td>2019年12月21日10:18:02</td>
-            <td>已提交</td>
-            <td>
-                <!-- 弹出模态框 -->
-                <button type="button" class="btn btn-default  btn-sm" data-toggle="modal" data-target="#myModal">
-                    查看参赛学生
-                </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel2">XX老师-北信科舞蹈大赛</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <th>学生学号</th>
-                                        <th>学生姓名</th>
-                                        <th>学生班级</th>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="#">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息修改</button>
-                                </a>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-
-            <td>
-                <a href="#">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">学生信息管理</button>
-                </a>
-            </td>
 
             <%--<td onclick="location.href='${ctx}/teacher/login';">--%>
             <%--<button type="button" class="btn btn-default" data-dismiss="modal">删除</button>--%>

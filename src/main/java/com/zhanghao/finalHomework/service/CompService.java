@@ -15,6 +15,12 @@ import java.util.List;
 @Service
 public interface CompService {
 
+    /** 2019/12/27 19:57
+     * 删除唯一教师的单一比赛的逻辑
+    */
+    void deletSingleTeacherSingleCompInfo(Long teacherId,String compName);
+
+
     /**
      * 2019/12/23 15:30
      * 查询单个教师参与的全部比赛名称
@@ -131,4 +137,8 @@ public interface CompService {
     Long countCompInfoNum(CompInfo compInfo);
 
     void updateclass(Long classId,BigDecimal base, BigDecimal factor);
+
+    List<AllCompMessage> getAllMessage();
+
+    Long getteacheridByteacherName(String teacherName);
 }

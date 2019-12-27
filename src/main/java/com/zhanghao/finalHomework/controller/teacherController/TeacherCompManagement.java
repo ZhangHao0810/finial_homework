@@ -1,7 +1,7 @@
 package com.zhanghao.finalHomework.controller.teacherController;
 
-import com.zhanghao.finalHomework.model.*;
 import com.zhanghao.finalHomework.model.Class;
+import com.zhanghao.finalHomework.model.*;
 import com.zhanghao.finalHomework.service.ClassService;
 import com.zhanghao.finalHomework.service.CompService;
 import com.zhanghao.finalHomework.service.StuService;
@@ -33,6 +33,7 @@ public class TeacherCompManagement {
     @Autowired
     private TeacherService teacherService;
 
+
     @RequestMapping("/teacher/index1")
     public String teacherIndex(String teacherName, Model model) {
 
@@ -41,6 +42,20 @@ public class TeacherCompManagement {
         model.addAttribute("teacher", teacher);
         return "forward:index";
     }
+
+    @RequestMapping("/teacher/comp/delet")
+    public String teach(String compName, Long teacherId, Model model) {
+        /** 2019/12/27 20:12
+         * 1.直接调服务
+         * 2.跳到教师首页
+         */
+        compService.deletInfoByteacherIdCompName(compName, teacherId);
+
+        Teacher teacher = teacherService.getTeacherByTeacherId(teacherId);
+        model.addAttribute("teacher", teacher);
+        return "forward:/teacher/index";
+    }
+
 
     /**
      * 2019/12/21 9:01

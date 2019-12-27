@@ -41,13 +41,19 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     @Autowired
     private CompInfoStuDao compInfoStuDao;
 
-
     /** 2019/12/27 16:29
      * 管理员删除比赛的逻辑
-    */
+     */
 
-
-
+    @Override
+    public void deletSingleTeacherSingleCompInfo(Long teacherId, String compName) {
+        /** 2019/12/27 19:59
+         *  1.先根据compName 查compId
+         *  2.根据compid 和teacherid 删除compinfo
+        */
+        Comp compBycompName = compDao.getCompBycompName(compName);
+        compInfoDao.deletByteacherIdCompId(teacherId, compBycompName.getCompId());
+    }
 
     /**
      * 2019/12/25 13:50
@@ -241,7 +247,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
 
     @Override
     public int insertComp(Long classId, String compName) {
-        Comp comp=new Comp();
+        Comp comp = new Comp();
         comp.setCompName(compName);
         comp.setClassId(classId);
         compDao.insert(comp);
@@ -263,9 +269,15 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
         return comp.getCompName();
     }
 
+    /**
+     * 2019/12/27 18:04
+     * 根据比赛名称删除比赛,一定要记住,当比赛删除之后,一定要连同比赛info一起删除了.
+     */
     @Override
     public void deletCompBycompId(Long compId) {
         compDao.deleteByPrimaryKey(compId);
+
+        compInfoDao.deleteByCompId(compId);
     }
 
     @Override
@@ -371,12 +383,65 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     }
 
     @Override
-    public void updateclass(Long classId,BigDecimal base, BigDecimal factor) {
-        Class clazz=new Class();
+    public void updateclass(Long classId, BigDecimal base, BigDecimal factor) {
+        Class clazz = new Class();
         clazz.setClassId(classId);
         clazz.setBase(base);
         clazz.setFactor(factor);
         classDao.updateByPrimaryKeySelective(clazz);
+    }
+
+    @Override
+    public List<AllCompMessage> getAllMessage() {
+        /** 2019/12/27 18:13
+         * 根据info表来展示,因为一个info表代表一个实际的比赛.
+         * 先获得全部的info表,(根据比赛id)
+         *  根据compId获得CompName,
+         *  根据teacherid 获得teacherName.
+         *  根据comp获得类别的四大信息,
+         *  直接获得 createTime
+         *  根据infoid 获得 List<stu> 进而获得学生人数.
+         *  积分直接算出来,基数X系数x学生数
+         *
+         */
+        List<CompInfo> allInfo = compInfoDao.getAllInfo();
+        List<AllCompMessage> results = new ArrayList<>();
+
+        for (CompInfo compInfo : allInfo) {
+
+            AllCompMessage allCompMessage = new AllCompMessage();
+
+//            比赛名称
+            Comp comp = compDao.selectByPrimaryKey(compInfo.getCompId());
+            allCompMessage.setCompName(comp.getCompName());
+//            带队老师
+            Teacher teacher = teacherDao.selectByPrimaryKey(compInfo.getTeacherId());
+            allCompMessage.setTeacherName(teacher.getTeacherName());
+//            比赛类别四件套
+            Class aClass = classDao.selectByPrimaryKey(comp.getClassId());
+            allCompMessage.setLeibie(aClass.getCategory());
+            allCompMessage.setXiangmu(aClass.getGrade());
+            allCompMessage.setBase(aClass.getBase());
+            allCompMessage.setFactor(aClass.getFactor());
+//            比赛时间
+            allCompMessage.setTime(compInfo.getCreateTime());
+//            参赛学生数
+            List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(compInfo.getInfoId());
+            allCompMessage.setCount(stuIdByInfoId.size());
+            BigDecimal multiply = aClass.getBase().multiply(aClass.getFactor());
+            double v = multiply.doubleValue();
+            allCompMessage.setFenshu(stuIdByInfoId.size()*v);
+
+            results.add(allCompMessage);
+        }
+
+        return results;
+    }
+
+    @Override
+    public Long getteacheridByteacherName(String teacherName) {
+        Teacher teacher = teacherDao.selectByName(teacherName);
+        return teacher.getTeacherId();
     }
 
     @Override

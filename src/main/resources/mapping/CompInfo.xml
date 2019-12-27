@@ -28,6 +28,26 @@
 		update_time
 	</sql>
 
+    <!--deletByteacherIdCompId-->
+    <delete id="deletByteacherIdCompId" >
+		 DELETE FROM comp_info
+		 WHERE teacher_id=#{teacherId}
+		 and comp_id=#{compId}
+	</delete>
+
+    <!--getAllInfo-->
+    <select id="getAllInfo" resultMap="CompInfo">
+		SELECT
+		*
+		FROM comp_info
+	</select>
+
+    <!--deleteByCompId-->
+    <delete id="deleteByCompId" parameterType="java.lang.Long">
+		 DELETE FROM comp_info
+		 WHERE comp_id = #{compId}
+	</delete>
+
     <!--getInfoByNewestTime-->
     <select id="getInfoByNewestTime" resultMap="CompInfo">
 		SELECT

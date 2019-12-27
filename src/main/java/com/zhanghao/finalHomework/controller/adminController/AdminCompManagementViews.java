@@ -1,7 +1,7 @@
 package com.zhanghao.finalHomework.controller.adminController;
 
+import com.zhanghao.finalHomework.model.*;
 import com.zhanghao.finalHomework.model.Class;
-import com.zhanghao.finalHomework.model.Comp;
 import com.zhanghao.finalHomework.service.ClassService;
 import com.zhanghao.finalHomework.service.CompService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +28,36 @@ public class AdminCompManagementViews {
 
 
     /** 2019/12/21 16:04
-     * 展示具体的比赛信息
+     * 点击一条比赛的时候,展示具体的比赛信息
+     *
+     *
      */
     @RequestMapping("/showCompInfo")
-    public String adminShowCompInfo(){
+    public String adminShowCompInfo(String compName, String teacherName, Model model) {
+        /** 2019/12/27 13:29
+         * 获得 比赛名称,比赛类别,比赛info的证书,以及参赛学生.
+         */
+        Long teacherId=compService.getteacheridByteacherName(teacherName);
+        model.addAttribute("compName", compName);
+        Class clazz = compService.getClassByCompName(compName);
+        model.addAttribute("clazz", clazz);
+        CompInfo compInfo = compService.getInfoByteacherIdcompName(teacherId, compName);
+        model.addAttribute("compInfo", compInfo);
+        List<Stu> stus = compService.getStuByinfoid(compInfo.getInfoId());
+        model.addAttribute("stus", stus);
         return "admin/CompManagement/admin_showCompInfo";
     }
+
+
 
     /** 2019/12/21 22:19
      * 展示全部的比赛信息
     */
     @RequestMapping("/showAllCompInfo")
-    public String adminShowAllCompInfo(){
+    public String adminShowAllCompInfo(Model model){
+
+        List<AllCompMessage> allMessage = compService.getAllMessage();
+        model.addAttribute("allcomps", allMessage);
         return "admin/CompManagement/admin_showAllCompInfos";
     }
 
@@ -126,12 +144,16 @@ public class AdminCompManagementViews {
 
     /** 2019/12/27 16:31
      * 删除比赛
+     *
+     *  一定要记住,同时把跟这个比赛有关的info也都删除了.
     */
     @RequestMapping("/deletComp")
     public String adminDeletComp(Long compId,Long classId,Model model){
 
         compService.deletCompBycompId(compId);
         model.addAttribute("classId", classId);
+
+
 
         return "forward:addComp";
     }

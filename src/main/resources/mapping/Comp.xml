@@ -61,7 +61,7 @@
 	<!-- 查询（根据主键ID查询） -->
 	<select id="selectByPrimaryKey" resultMap="Comp" parameterType="java.lang.Long">
 		 SELECT
-		 <include refid="Base_Column_List" />
+		 *
 		 FROM comp
 		 WHERE comp_id = #{compId}
 	</select>

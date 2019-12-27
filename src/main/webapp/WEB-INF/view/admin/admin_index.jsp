@@ -106,7 +106,7 @@
                 </tr>
 
                 <c:forEach items="${infos}" var="item" varStatus="status">
-                    <tr onclick="location.href='${ctx}/admin/showCompInfo';">
+                    <tr >
                         <td>${item.compName}</td>
                         <td>${item.leibie}</td>
                         <td>${item.xiangmu}</td>

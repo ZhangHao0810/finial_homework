@@ -55,7 +55,7 @@
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -71,7 +71,6 @@
         <h5>比赛信息:</h5>
         <tr>
             <th>比赛名称</th>
-            <th>带队老师</th>
             <th>比赛类别</th>
             <th>比赛等级</th>
             <th>竞赛证书</th>
@@ -80,10 +79,9 @@
         </tr>
 
         <tr>
-            <td>北信科沙雕大赛</td>
-            <td>王二麻子</td>
-            <td>宿舍级(C类)</td>
-            <td>极品沙雕(一等奖)</td>
+            <td>${compName}</td>
+            <td>${clazz.category}</td>
+            <td>${clazz.grade}</td>
             <td>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
@@ -99,6 +97,8 @@
                                 <h4 class="modal-title" id="myModalLabel">竞赛证书</h4>
                             </div>
                             <div class="modal-body">
+
+                                ${compInfo.compCert}
                                 <img src="../../../../img/teacher/蓝色发箍女孩.jpg" width="312px" height="400px">
                             </div>
                             <div class="modal-footer">
@@ -173,28 +173,15 @@
             <th>学生班级</th>
         </tr>
 
-
+        <c:forEach items="${stus}" var="item" varStatus="status">
         <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
+            <td >${item.stuId}</td>
+            <td >${item.stuName}</td>
+            <td >${item.stuAge}</td>
+            <td >${item.stuClass}</td>
         </tr>
 
-        <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-        </tr>
-
-        <tr>
-            <td >123</td>
-            <td >张华</td>
-            <td >13</td>
-            <td >1903</td>
-        </tr>
-    </table>
+        </c:forEach>
 
 
 </div>

@@ -54,12 +54,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <ul class="nav navbar-nav">
-                        <li ><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="${ctx}/admin/index1">学生竞赛管理平台 后台 <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <li><a href="${ctx}/admin/showTeachers">教师管理 </a></li>
-                    <li class="active"><a href="${ctx}/admin/showAllCompInfo">信息统计与查询 </a></li>
-                    <li ><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
-                    <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
+                    <li class="active"><a href="${ctx}/admin/showAllCompInfo">信息统计与导出 </a></li>
+                    <li><a href="${ctx}/admin/compClass">比赛与比赛类别管理 </a></li>
+                    <li><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
 
                 </ul>
                 <form class="navbar-form navbar-right">
@@ -72,40 +72,38 @@
 
 <div class="container">
 
-        <div >
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">条件查询</button>
+    <div>
 
-            <br/>
-            <h3>全部比赛信息</h3>
-            <table class="table table-bordered  table-condensed">
-                <tr>
-                    <th>比赛名称</th>
-                    <th>带队老师</th>
-                    <th>比赛类别</th>
-                    <th>比赛项目</th>
-                    <th>成果基数</th>
-                    <th>成果系数</th>
-                    <th>比赛时间</th>
-                    <th>参赛学生数</th>
-                    <th>积分(基数X系数x学生数)</th>
+        <br/>
+        <h3>全部比赛信息</h3>
+        <table class="table table-bordered  table-condensed">
+            <tr>
+                <th>比赛名称</th>
+                <th>带队老师</th>
+                <th>比赛类别</th>
+                <th>比赛项目</th>
+                <th>成果基数</th>
+                <th>成果系数</th>
+                <th>比赛时间</th>
+                <th>参赛学生数</th>
+                <th>积分(基数X系数x学生数)</th>
 
+            </tr>
+            <c:forEach items="${allcomps}" var="item" varStatus="status">
+                <tr onclick="location.href='${ctx}/admin/showCompInfo?compName=${item.compName}&teacherName=${item.teacherName}'">
+                    <td>${item.compName}</td>
+                    <td>${item.teacherName}</td>
+                    <td>${item.leibie}</td>
+                    <td>${item.xiangmu}</td>
+                    <td>${item.base}</td>
+                    <td>${item.factor}</td>
+                    <td>${item.time}</td>
+                    <td>${item.count}</td>
+                    <td>${item.fenshu}</td>
                 </tr>
-                <tr onclick="location.href='${ctx}/admin/showCompInfo';">
-                    <td>北信科沙雕大比拼</td>
-                    <td>王二麻子</td>
-                    <td>校级B类</td>
-                    <td>宿舍比拼二等奖</td>
-                    <td>3.5</td>
-                    <td>2.8</td>
-                    <td>2019年12月21日15:58:08</td>
-                    <td>8</td>
-                    <td>38.8分</td>
-                </tr>
-            </table>
-        </div>
+            </c:forEach>
+        </table>
+    </div>
 
     <button class="btn-default">
         导出到Excel
