@@ -1,6 +1,7 @@
 package com.zhanghao.finalHomework.controller.teacherController;
 
 import com.zhanghao.finalHomework.model.Stu;
+import com.zhanghao.finalHomework.model.Teacher;
 import com.zhanghao.finalHomework.service.CompService;
 import com.zhanghao.finalHomework.service.StuService;
 import com.zhanghao.finalHomework.service.TeacherService;
@@ -40,9 +41,10 @@ public class TeacherStuManagement {
         */
         Long teacherId = compService.getTeacherIdByinfoId(infoId);
         System.out.println(teacherId);
-        String teacherName = teacherService.getTeacherName(teacherId);
-        System.out.println(teacherName);
-        model.addAttribute("name", teacherName);
+        Teacher teacher = teacherService.getTeacherByTeacherId(teacherId);
+
+        model.addAttribute("name", teacher.getTeacherName());
+        model.addAttribute("teacher", teacher);
 
         /** 2019/12/26 20:04
          * 根据infoid获得比赛名称
@@ -56,6 +58,8 @@ public class TeacherStuManagement {
         model.addAttribute("stus", stus);
 
         model.addAttribute("infoId",infoId);
+
+
         return "teacher/Stu/teacher_stuManagement";
     }
 

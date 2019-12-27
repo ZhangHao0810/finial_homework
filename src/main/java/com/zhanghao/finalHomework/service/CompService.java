@@ -1,10 +1,10 @@
 package com.zhanghao.finalHomework.service;
 
-import com.zhanghao.finalHomework.model.Comp;
-import com.zhanghao.finalHomework.model.CompInfo;
-import com.zhanghao.finalHomework.model.SingleTeacherAllCompInfo;
+import com.zhanghao.finalHomework.model.Class;
+import com.zhanghao.finalHomework.model.*;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -41,10 +41,10 @@ public interface CompService {
     /**
      * 2019/12/23 18:46
      * 按照时间排序,展示最新比赛信息
-     * 用途:
+     * 用途: String compName, Long teacherId, Model model
      * 管理员首页右侧 注意,这个最新的比赛信息里面,没有带队老师名字,要在Controller中转换.
      */
-    List<Comp> listNewestCompInfos();
+    List<NewestCompInfo> listNewestCompInfos();
 
     /**
      * 2019/12/23 21:27
@@ -98,6 +98,12 @@ public interface CompService {
     */
     String getInfoByInfoid(Long infoId);
 
+
+    /** 2019/12/27 16:29
+     * 管理员 删除比赛
+    */
+    void deletCompBycompId(Long compId);
+
     /** 2019/12/26 20:37
      * 根据stuid 删除学生比赛关系表中的学生
     */
@@ -107,4 +113,22 @@ public interface CompService {
 
 
     List<Comp> getTeacherNotInCompByTeacherId(Long teacherId);
+
+    void deletInfoByteacherIdCompName(String compName, Long teacherId);
+
+    void saveSingleCompInfo(Long teacherId, String compName, Object o, Object o1, Object o2);
+
+    Class getClassByCompName(String compName);
+
+    CompInfo getInfoByteacherIdcompName(Long teacherId, String compName);
+
+    List<Stu> getStuByinfoid(Long infoId);
+
+    /**
+     * 2019/12/27 14:42
+     * 查询比赛信息的数量
+     */
+    Long countCompInfoNum(CompInfo compInfo);
+
+    void updateclass(Long classId,BigDecimal base, BigDecimal factor);
 }

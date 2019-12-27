@@ -43,9 +43,9 @@ public class TeacherServiceImpl implements TeacherService {
         /** 2019/12/25 12:49
          * 1.检查老师的姓名,没有重复,进行教师数据插入,注意sql中要标记checked为0  返回1
          * 教师姓名有重复,返回0 跳转到注册失败界面
-        */
-        Teacher result=teacherDao.selectByName(teacher.getTeacherName());
-        if(result==null){
+         */
+        Teacher result = teacherDao.selectByName(teacher.getTeacherName());
+        if (result == null) {
             teacherDao.insert(teacher);
             return 1;
         }
@@ -57,7 +57,7 @@ public class TeacherServiceImpl implements TeacherService {
         /** 2019/12/25 13:01
          * 展示所有的未确认教师信息
          * 查询教师表中checked的值为0的数据.list查询.
-        */
+         */
         return teacherDao.listByNotChecked();
     }
 
@@ -65,7 +65,7 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> listCheckedTeacher() {
         /** 2019/12/25 20:55
          * 展示所有确认了的教师信息
-        */
+         */
         return teacherDao.listByChecked();
     }
 
@@ -73,11 +73,9 @@ public class TeacherServiceImpl implements TeacherService {
     public int checkTeacher(Long teacherId) {
         /** 2019/12/25 21:04
          * 授权教师信息
-        */
+         */
         return teacherDao.activeTeacher(teacherId);
     }
-
-
 
     @Override
     public String getTeacherName(Long teacherId) {
@@ -94,8 +92,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public int insertTeacher(Teacher teacher) {
-        Teacher result=teacherDao.selectByName(teacher.getTeacherName());
-        if(result==null){
+        Teacher result = teacherDao.selectByName(teacher.getTeacherName());
+        if (result == null) {
             teacherDao.insert(teacher);
             return 1;
         }
@@ -107,12 +105,17 @@ public class TeacherServiceImpl implements TeacherService {
     public int deletTeacher(Long teacherId) {
         /** 2019/12/25 21:23
          * 直接删除
-        */
+         */
         return teacherDao.deleteByPrimaryKey(teacherId);
     }
 
     @Override
     public int updateTeacher(Long teacherId) {
         return 0;
+    }
+
+    @Override
+    public Teacher getTeacherByTeacherId(Long teacherId) {
+        return teacherDao.selectByPrimaryKey(teacherId);
     }
 }

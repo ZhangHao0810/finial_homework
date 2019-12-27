@@ -78,7 +78,5 @@ public interface TeacherService {
     */
     int updateTeacher(Long teacherId);
 
-
-
-
+    Teacher getTeacherByTeacherId(Long teacherId);
 }

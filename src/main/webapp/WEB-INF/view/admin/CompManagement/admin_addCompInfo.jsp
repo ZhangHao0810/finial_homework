@@ -78,15 +78,21 @@
                     <th>比赛等级</th>
                     <th>成果基数</th>
                     <th>成果系数</th>
+                    <th>操作</th>
 
                 </tr>
+                <c:forEach items="${comps}" var="item" varStatus="status">
                 <tr >
-                    <td>北信科沙雕大比拼</td>
-                    <td>校级B类</td>
-                    <td>宿舍比拼二等奖</td>
-                    <td>3.5</td>
-                    <td>2.8</td>
+                    <td>${item.compName}</td>
+                    <td>${clazz.category}</td>
+                    <td>${clazz.grade}</td>
+                    <td>${clazz.base}</td>
+                    <td>${clazz.factor}</td>
+                    <td onclick="location.href='${ctx}/admin/deletComp?compId=${item.compId}&classId=${clazz.classId}';">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">删除该比赛</button>
+                    </td>
                 </tr>
+                </c:forEach>
             </table>
         </div>
 
@@ -97,7 +103,7 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/addComp1">
 
                 <div class="alert alert-info" role="alert">
                     请为类别添加具体比赛
@@ -107,31 +113,32 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">比赛类别</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">北信科舞蹈大赛</p>
+                        <p class="form-control-static">${clazz.category}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">比赛等级</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">校级</p>
+                        <p class="form-control-static">${clazz.grade}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">基数</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">5.5</p>
+                        <p class="form-control-static">${clazz.base}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">系数</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">6.8</p>
+                        <p class="form-control-static">${clazz.factor}</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuid" class="col-sm-2 control-label">比赛名称</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="stuid" placeholder="CompName">
+                        <input type="text" class="form-control" id="stuid" name="compName" placeholder="CompName">
+                        <input type="hidden" name="classId" value="${clazz.classId}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -141,6 +148,7 @@
                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     <button type="submit" class="btn btn-default  ">保存</button>
+
                 </div>
             </form>
         </div>

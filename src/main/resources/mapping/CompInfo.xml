@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhanghao.finalHomework.dao.CompInfoDao">
 
-	<resultMap id="CompInfo" type="com.zhanghao.finalHomework.model.CompInfo" >
-		<result column="info_id" property="infoId"/>
-		<result column="teacher_id" property="teacherId"/>
-		<result column="comp_id" property="compId"/>
-		<result column="comp_photo" property="compPhoto"/>
-		<result column="comp_cert" property="compCert"/>
-		<result column="guide_cert" property="guideCert"/>
-		<result column="checked" property="checked"/>
-		<result column="create_time" property="createTime"/>
-		<result column="update_time" property="updateTime"/>
-	</resultMap>
+    <resultMap id="CompInfo" type="com.zhanghao.finalHomework.model.CompInfo">
+        <result column="info_id" property="infoId"/>
+        <result column="teacher_id" property="teacherId"/>
+        <result column="comp_id" property="compId"/>
+        <result column="comp_photo" property="compPhoto"/>
+        <result column="comp_cert" property="compCert"/>
+        <result column="guide_cert" property="guideCert"/>
+        <result column="checked" property="checked"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
 		info_id,
 		teacher_id,
 		comp_id,
@@ -28,16 +28,33 @@
 		update_time
 	</sql>
 
-	<!--selectInversAllByteacherId-->
-	<select id="selectInversAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
+    <!--getInfoByNewestTime-->
+    <select id="getInfoByNewestTime" resultMap="CompInfo">
+		SELECT
+		*
+		FROM comp_info
+		group by create_time desc
+	</select>
+
+    <!--getinfoByteacherIdCompId-->
+    <select id="getinfoByteacherIdCompId" resultMap="CompInfo" parameterType="java.lang.Long">
+		SELECT
+		*
+		FROM comp_info
+		WHERE teacher_id = #{teacherId}
+		and  comp_id=#{compId}
+	</select>
+
+    <!--selectInversAllByteacherId-->
+    <select id="selectInversAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
 		SELECT
 		*
 		FROM comp_info
 		WHERE teacher_id != #{teacherId}
 	</select>
 
-	<!--getInfoByInfoid-->
-	<select id="getInfoByInfoid" resultMap="CompInfo" parameterType="java.lang.Long">
+    <!--getInfoByInfoid-->
+    <select id="getInfoByInfoid" resultMap="CompInfo" parameterType="java.lang.Long">
 		SELECT
 		*
 		FROM comp_info
@@ -45,201 +62,201 @@
 	</select>
 
 
-
-	<!--查询,根据教师id-->
-	<select id="selectAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
+    <!--查询,根据教师id-->
+    <select id="selectAllByteacherId" resultMap="CompInfo" parameterType="java.lang.Long">
 		SELECT
 		*
 		FROM comp_info
 		WHERE teacher_id = #{teacherId}
 	</select>
 
-	<!-- 查询（根据主键ID查询） -->
-	<select id="selectByPrimaryKey" resultMap="CompInfo" parameterType="java.lang.Long">
-		 SELECT
-		 <include refid="Base_Column_List" />
-		 FROM comp_info
-		 WHERE info_id = #{infoId}
-	</select>
+    <!-- 查询（根据主键ID查询） -->
+    <select id="selectByPrimaryKey" resultMap="CompInfo" parameterType="java.lang.Long">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM comp_info
+        WHERE info_id = #{infoId}
+    </select>
 
-	<!--删除：根据主键ID删除-->
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--删除：根据主键ID删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		 DELETE FROM comp_info
 		 WHERE info_id = #{infoId}
 	</delete>
 
-	<!-- 添加 -->
-	<insert id="insert" parameterType="com.zhanghao.finalHomework.model.CompInfo" >
-		 INSERT INTO comp_info
- 		(
-			 info_id,
-			 teacher_id,
-			 comp_id,
-			 comp_photo,
-			 comp_cert,
-			 guide_cert,
-			 checked,
-			 create_time,
-			 update_time
-		) 
-		 VALUES 
- 		(
-			 #{infoId},
-			 #{teacherId},
-			 #{compId},
-			 #{compPhoto},
-			 #{compCert},
-			 #{guideCert},
-			 #{checked},
-			 #{createTime},
-			 #{updateTime}
- 		) 
-		 <selectKey keyProperty="infoId" resultType="Long" order="AFTER">
-			 select LAST_INSERT_ID()
-		 </selectKey>
-	</insert>
+    <!-- 添加 -->
+    <insert id="insert" parameterType="com.zhanghao.finalHomework.model.CompInfo">
+        INSERT INTO comp_info
+        (
+        info_id,
+        teacher_id,
+        comp_id,
+        comp_photo,
+        comp_cert,
+        guide_cert,
+        checked,
+        create_time,
+        update_time
+        )
+        VALUES
+        (
+        #{infoId},
+        #{teacherId},
+        #{compId},
+        #{compPhoto},
+        #{compCert},
+        #{guideCert},
+        #{checked},
+        #{createTime},
+        #{updateTime}
+        )
+        <selectKey keyProperty="infoId" resultType="Long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
-	<!-- 修 改-->
-	<update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.CompInfo" >
-		 UPDATE comp_info
- 		 <set> 
-			<if test="teacherId != null">
-				 teacher_id = #{teacherId},
-			</if>
-			<if test="compId != null">
-				 comp_id = #{compId},
-			</if>
-			<if test="compPhoto != null">
-				 comp_photo = #{compPhoto},
-			</if>
-			<if test="compCert != null">
-				 comp_cert = #{compCert},
-			</if>
-			<if test="guideCert != null">
-				 guide_cert = #{guideCert},
-			</if>
-			<if test="checked != null">
-				 checked = #{checked},
-			</if>
-			<if test="createTime != null">
-				 create_time = #{createTime},
-			</if>
-			<if test="updateTime != null">
-				 update_time = #{updateTime},
-			</if>
+    <!-- 修 改-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.CompInfo">
+        UPDATE comp_info
+        <set>
+            <if test="teacherId != null">
+                teacher_id = #{teacherId},
+            </if>
+            <if test="compId != null">
+                comp_id = #{compId},
+            </if>
+            <if test="compPhoto != null">
+                comp_photo = #{compPhoto},
+            </if>
+            <if test="compCert != null">
+                comp_cert = #{compCert},
+            </if>
+            <if test="guideCert != null">
+                guide_cert = #{guideCert},
+            </if>
+            <if test="checked != null">
+                checked = #{checked},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
 
- 		 </set>
-		 WHERE info_id = #{infoId}
-	</update>
+        </set>
+        WHERE info_id = #{infoId}
+    </update>
 
-	<!-- list4Page 分页查询-->
-	<select id="list4Page" resultMap="CompInfo">
-		 SELECT 
-		 <include refid="Base_Column_List" />
-		 from comp_info
- 		 where 1=1  
-		<if test="record.infoId != null">
-			 and info_id = #{record.infoId} 
-		</if>
-		<if test="record.teacherId != null">
-			 and teacher_id = #{record.teacherId} 
-		</if>
-		<if test="record.compId != null">
-			 and comp_id = #{record.compId} 
-		</if>
-		<if test="record.compPhoto != null">
-			 and comp_photo = #{record.compPhoto} 
-		</if>
-		<if test="record.compCert != null">
-			 and comp_cert = #{record.compCert} 
-		</if>
-		<if test="record.guideCert != null">
-			 and guide_cert = #{record.guideCert} 
-		</if>
-		<if test="record.checked != null">
-			 and checked = #{record.checked} 
-		</if>
-		<if test="record.createTime != null">
-			 and create_time = #{record.createTime} 
-		</if>
-		<if test="record.updateTime != null">
-			 and update_time = #{record.updateTime} 
-		</if>
-		<if test="commonQueryParam != null">
-			<if test="commonQueryParam.order != null ">
-				 order by #{commonQueryParam.order}			<if test="commonQueryParam.sort != null ">				 #{commonQueryParam.sort}			</if>
-			</if>
-			<if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
-				 limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
-			</if>
-		</if>
-	</select>
-	<!-- count 总数-->
-	<select id="count" resultType="long">
-		 SELECT 
-		 count(1) 
-		 from comp_info
- 		 where 1=1  
-		<if test="infoId != null">
-			 and info_id = #{infoId} 
-		</if>
-		<if test="teacherId != null">
-			 and teacher_id = #{teacherId} 
-		</if>
-		<if test="compId != null">
-			 and comp_id = #{compId} 
-		</if>
-		<if test="compPhoto != null">
-			 and comp_photo = #{compPhoto} 
-		</if>
-		<if test="compCert != null">
-			 and comp_cert = #{compCert} 
-		</if>
-		<if test="guideCert != null">
-			 and guide_cert = #{guideCert} 
-		</if>
-		<if test="checked != null">
-			 and checked = #{checked} 
-		</if>
-		<if test="createTime != null">
-			 and create_time = #{createTime} 
-		</if>
-		<if test="updateTime != null">
-			 and update_time = #{updateTime} 
-		</if>
-	</select>
-	<!-- list 查询-->
-	<select id="list" resultMap="CompInfo">
-		 SELECT 
-		 <include refid="Base_Column_List" />
-		 from comp_info
- 		 where 1=1  
-		<if test="infoId != null">
-			 and info_id = #{infoId} 
-		</if>
-		<if test="teacherId != null">
-			 and teacher_id = #{teacherId} 
-		</if>
-		<if test="compId != null">
-			 and comp_id = #{compId} 
-		</if>
-		<if test="compPhoto != null">
-			 and comp_photo = #{compPhoto} 
-		</if>
-		<if test="compCert != null">
-			 and comp_cert = #{compCert} 
-		</if>
-		<if test="guideCert != null">
-			 and guide_cert = #{guideCert} 
-		</if>
-		<if test="checked != null">
-			 and checked = #{checked} 
-		</if>
-		<if test="createTime != null">
-			 and create_time = #{createTime} 
-		</if>
-		<if test="updateTime != null">
-			 and update_time = #{updateTime} 
-		</if>
-	</select>
+    <!-- list4Page 分页查询-->
+    <select id="list4Page" resultMap="CompInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from comp_info
+        where 1=1
+        <if test="record.infoId != null">
+            and info_id = #{record.infoId}
+        </if>
+        <if test="record.teacherId != null">
+            and teacher_id = #{record.teacherId}
+        </if>
+        <if test="record.compId != null">
+            and comp_id = #{record.compId}
+        </if>
+        <if test="record.compPhoto != null">
+            and comp_photo = #{record.compPhoto}
+        </if>
+        <if test="record.compCert != null">
+            and comp_cert = #{record.compCert}
+        </if>
+        <if test="record.guideCert != null">
+            and guide_cert = #{record.guideCert}
+        </if>
+        <if test="record.checked != null">
+            and checked = #{record.checked}
+        </if>
+        <if test="record.createTime != null">
+            and create_time = #{record.createTime}
+        </if>
+        <if test="record.updateTime != null">
+            and update_time = #{record.updateTime}
+        </if>
+        <if test="commonQueryParam != null">
+            <if test="commonQueryParam.order != null ">
+                order by #{commonQueryParam.order}
+                <if test="commonQueryParam.sort != null ">#{commonQueryParam.sort}</if>
+            </if>
+            <if test="commonQueryParam.start != null  and commonQueryParam.pageSize != null">
+                limit #{commonQueryParam.start}, #{commonQueryParam.pageSize}
+            </if>
+        </if>
+    </select>
+    <!-- count 总数-->
+    <select id="count" resultType="long">
+        SELECT
+        count(1)
+        from comp_info
+        where 1=1
+        <if test="infoId != null">
+            and info_id = #{infoId}
+        </if>
+        <if test="teacherId != null">
+            and teacher_id = #{teacherId}
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId}
+        </if>
+        <if test="compPhoto != null">
+            and comp_photo = #{compPhoto}
+        </if>
+        <if test="compCert != null">
+            and comp_cert = #{compCert}
+        </if>
+        <if test="guideCert != null">
+            and guide_cert = #{guideCert}
+        </if>
+        <if test="checked != null">
+            and checked = #{checked}
+        </if>
+        <if test="createTime != null">
+            and create_time = #{createTime}
+        </if>
+        <if test="updateTime != null">
+            and update_time = #{updateTime}
+        </if>
+    </select>
+    <!-- list 查询-->
+    <select id="list" resultMap="CompInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from comp_info
+        where 1=1
+        <if test="infoId != null">
+            and info_id = #{infoId}
+        </if>
+        <if test="teacherId != null">
+            and teacher_id = #{teacherId}
+        </if>
+        <if test="compId != null">
+            and comp_id = #{compId}
+        </if>
+        <if test="compPhoto != null">
+            and comp_photo = #{compPhoto}
+        </if>
+        <if test="compCert != null">
+            and comp_cert = #{compCert}
+        </if>
+        <if test="guideCert != null">
+            and guide_cert = #{guideCert}
+        </if>
+        <if test="checked != null">
+            and checked = #{checked}
+        </if>
+        <if test="createTime != null">
+            and create_time = #{createTime}
+        </if>
+        <if test="updateTime != null">
+            and update_time = #{updateTime}
+        </if>
+    </select>
 </mapper>

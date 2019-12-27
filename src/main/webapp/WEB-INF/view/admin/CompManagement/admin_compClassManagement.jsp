@@ -91,10 +91,10 @@
         </tr>
         <c:forEach items="${list}" var="item" varStatus="status">
         <tr>
-            <td onclick="location.href='${ctx}/admin/addComp';">${item.category}</td>
-            <td onclick="location.href='${ctx}/admin/addComp';">${item.grade }</td>
-            <td onclick="location.href='${ctx}/admin/addComp';">${item.base}</td>
-            <td onclick="location.href='${ctx}/admin/addComp';">${item.factor}</td>
+            <td onclick="location.href='${ctx}/admin/addComp?classId=${item.classId}';">${item.category}</td>
+            <td onclick="location.href='${ctx}/admin/addComp?classId=${item.classId}';">${item.grade }</td>
+            <td onclick="location.href='${ctx}/admin/addComp?classId=${item.classId}';">${item.base}</td>
+            <td onclick="location.href='${ctx}/admin/addComp?classId=${item.classId}';">${item.factor}</td>
             <td>
 
                 <!-- Button trigger modal -->
@@ -109,17 +109,18 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">院级(B类)--通俗唱法(一等奖)</h4>
+                                <h4 class="modal-title" id="myModalLabel">比赛类别:${item.category}--比赛等级:${item.grade}</h4>
                             </div>
-                            <form class="form-inline">
+                            <form class="form-inline" action="${ctx}/admin/update">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label class="sr-only">类别基数</label>
-                                        <input type="text" class="form-control" placeholder="Base">
+                                        <input type="text" class="form-control" name="base" value="${item.base}">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">类别系数</label>
-                                        <input type="text" class="form-control" placeholder="Factor">
+                                        <input type="text" class="form-control" name="factor" value="${item.factor}">
+                                        <input type="hidden" class="form-control" name="classId" value="${item.classId}" >
                                     </div>
                                 </div>
                                 <div class="modal-footer">

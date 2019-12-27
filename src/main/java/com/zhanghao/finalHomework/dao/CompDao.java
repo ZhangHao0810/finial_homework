@@ -77,4 +77,6 @@ public interface CompDao{
     Comp getCompBycompName(String compName);
 
     List<Comp> selectInversByPrimaryKey(Long compId);
+
+    List<Comp> getCompByclassId(Long classId);
 }

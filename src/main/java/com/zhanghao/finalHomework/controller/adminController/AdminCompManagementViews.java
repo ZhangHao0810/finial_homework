@@ -1,12 +1,15 @@
 package com.zhanghao.finalHomework.controller.adminController;
 
 import com.zhanghao.finalHomework.model.Class;
+import com.zhanghao.finalHomework.model.Comp;
 import com.zhanghao.finalHomework.service.ClassService;
+import com.zhanghao.finalHomework.service.CompService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -19,6 +22,9 @@ import java.util.List;
 public class AdminCompManagementViews {
     @Autowired
     private ClassService classService;
+
+    @Autowired
+    private  CompService compService;
 
 
     /** 2019/12/21 16:04
@@ -81,12 +87,53 @@ public class AdminCompManagementViews {
     }
 
     /** 2019/12/21 22:14
-     * 为类别添加比赛,建立比赛与类别的映射
-     * 同时展示该类别下的所有比赛
+     *
+     * 展示该类别下的所有比赛,跳转到类别添加比赛页面
     */
     @RequestMapping("/addComp")
-    public String adminComp(){
+    public String adminComp(Long classId,Model model){
+        /** 2019/12/27 15:49
+         * 根据classid找到所有的compname
+        */
+        List<Comp> comps = compService.listAllComp(classId);
+        model.addAttribute("comps", comps);
+        Class compClass = classService.getClassByClassId(classId);
+        model.addAttribute("clazz", compClass);
         return "admin/CompManagement/admin_addCompInfo";
+    }
+
+    /** 2019/12/27 15:59
+     * 为具体类别添加比赛的具体逻辑
+    */
+    @RequestMapping("/addComp1")
+    public String adminComp1(Long classId,String compName,Model model){
+
+        compService.insertComp(classId, compName);
+        model.addAttribute("classId", classId);
+        return "forward:addComp";
+    }
+
+    /** 2019/12/27 16:53
+     * 修改比赛类别
+    */
+    @RequestMapping("/update")
+    public String adminComp1(Long classId,BigDecimal base, BigDecimal factor, Model model){
+
+        compService.updateclass(classId,base,factor);
+        model.addAttribute("classId", classId);
+        return "forward:compClass";
+    }
+
+    /** 2019/12/27 16:31
+     * 删除比赛
+    */
+    @RequestMapping("/deletComp")
+    public String adminDeletComp(Long compId,Long classId,Model model){
+
+        compService.deletCompBycompId(compId);
+        model.addAttribute("classId", classId);
+
+        return "forward:addComp";
     }
 
 

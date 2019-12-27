@@ -83,16 +83,17 @@
                 <c:forEach items="${teachers}" var="item" varStatus="status">
                     <tr>
                         <td>${item.teacherName}</td>
-                        <td onclick="location.href='${ctx}/teacher/login';">
+                        <td onclick="location.href='${ctx}/admin/activeTachers?teacherId=${item.teacherId}';">
                             <button type="button" class="btn btn-default" data-dismiss="modal">授权</button>
                         </td>
-                        <td onclick="location.href='${ctx}/teacher/login';">
+                        <td onclick="location.href='${ctx}/admin/deletTeacher?teacherId=${item.teacherId}';">
                             <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
+
         <div class="col-md-7" align="right">
             <h3>最新比赛信息</h3>
             <table class="table table-bordered table-condensed">
@@ -103,13 +104,16 @@
                     <th>带队老师</th>
                     <th>比赛时间</th>
                 </tr>
-                <tr onclick="location.href='${ctx}/admin/showCompInfo';">
-                    <td>北信科沙雕大比拼</td>
-                    <td>校级B类</td>
-                    <td>宿舍比拼二等奖</td>
-                    <td>王二麻子</td>
-                    <td>2019年12月21日15:58:08</td>
-                </tr>
+
+                <c:forEach items="${infos}" var="item" varStatus="status">
+                    <tr onclick="location.href='${ctx}/admin/showCompInfo';">
+                        <td>${item.compName}</td>
+                        <td>${item.leibie}</td>
+                        <td>${item.xiangmu}</td>
+                        <td>${item.teacherName}</td>
+                        <td>${item.time}</td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
     </div>

@@ -82,8 +82,8 @@
         <c:forEach items="${admins}" var="item" varStatus="status">
             <tr>
                 <td>${item.adminName}</td>
-                <td onclick="location.href='${ctx}/admin/updateAdmin?adminId=${item.adminId}';">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">修改密码</button>
+                <td>
+                    ${item.password}
                 </td>
                 <td onclick="location.href='${ctx}/admin/deletAdmin?adminId=${item.adminId}';">
                     <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>

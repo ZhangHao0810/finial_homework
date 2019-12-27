@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <title>管理员登录之后的首页</title>
+    <title>信息统计页面</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>

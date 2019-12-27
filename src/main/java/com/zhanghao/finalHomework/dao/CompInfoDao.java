@@ -76,5 +76,8 @@ public interface CompInfoDao{
 	 **/
 	List<CompInfo> list(CompInfo record);
 
-    List<CompInfo> selectInversAllByteacherId(Long teacherId);
+
+    CompInfo getinfoByteacherIdCompId(@Param("teacherId")Long teacherId, @Param("compId")Long compId);
+
+	List<CompInfo> getInfoByNewestTime();
 }

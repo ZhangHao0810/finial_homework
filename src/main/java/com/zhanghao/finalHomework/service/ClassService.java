@@ -39,4 +39,6 @@ public interface ClassService {
      * 获得全部的比赛类别
     */
     List<Class> getAllClass();
+
+    Class getClassByClassId(Long classId);
 }

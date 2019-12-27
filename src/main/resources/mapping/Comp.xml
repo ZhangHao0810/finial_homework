@@ -16,6 +16,14 @@
 		class_id
 	</sql>
 
+	<!--getCompByclassId-->
+	<select id="getCompByclassId" resultMap="Comp" parameterType="java.lang.Long">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp
+		WHERE class_id = #{classId}
+	</select>
+
 	<!--selectAllComp-->
 	<select id="selectAllComp" resultMap="Comp">
 		SELECT

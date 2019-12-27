@@ -1,8 +1,7 @@
 package com.zhanghao.finalHomework.controller.teacherController;
 
-import com.zhanghao.finalHomework.model.Comp;
-import com.zhanghao.finalHomework.model.SingleTeacherAllCompInfo;
-import com.zhanghao.finalHomework.model.Teacher;
+import com.zhanghao.finalHomework.model.*;
+import com.zhanghao.finalHomework.model.Class;
 import com.zhanghao.finalHomework.service.ClassService;
 import com.zhanghao.finalHomework.service.CompService;
 import com.zhanghao.finalHomework.service.StuService;
@@ -32,9 +31,16 @@ public class TeacherCompManagement {
     private StuService stuService;
 
     @Autowired
-    private  TeacherService teacherService;
+    private TeacherService teacherService;
 
+    @RequestMapping("/teacher/index1")
+    public String teacherIndex(String teacherName, Model model) {
 
+        Teacher teacher = new Teacher();
+        teacher.setTeacherName(teacherName);
+        model.addAttribute("teacher", teacher);
+        return "forward:index";
+    }
 
     /**
      * 2019/12/21 9:01
@@ -43,11 +49,16 @@ public class TeacherCompManagement {
      */
     @RequestMapping("/teacher/index")
     public String teacherIndex(Teacher teacher, Model model) {
-        model.addAttribute("teacher", teacher);
-//        System.out.println(teacher.getTeacherName() );
+        Long teacherId = teacherService.getTeacherId(teacher.getTeacherName());
+        Teacher teacher1=new Teacher();
+        teacher1.setTeacherName(teacher.getTeacherName());
+        teacher1.setTeacherId(teacherId);
+        model.addAttribute("teacher", teacher1);
+        System.out.println(teacher.getTeacherName());
         List<SingleTeacherAllCompInfo> result = compService.listSingleTeacherAllComp(teacher.getTeacherName());
         model.addAttribute("result", result);
         for (SingleTeacherAllCompInfo info : result) {
+            System.out.println(teacher.getTeacherName());
             System.out.println(info.getCompName());
         }
         return "teacher/teacher_index";
@@ -58,10 +69,10 @@ public class TeacherCompManagement {
      * 录入比赛信息 点击标题栏进入录入界面
      */
     @RequestMapping("/teacher/comp/insert")
-    public String teacherInsertCompInfo(String teacherName,Model model) {
+    public String teacherInsertCompInfo(String teacherName, Model model) {
         /** 2019/12/26 22:07
          * 要能查询出他没有参与的所有的比赛信息
-        */
+         */
         Long teacherId = teacherService.getTeacherId(teacherName);
 
         List<Comp> comps = compService.getTeacherNotInCompByTeacherId(teacherId);
@@ -70,29 +81,61 @@ public class TeacherCompManagement {
         return "teacher/Comp/teacher_insertCompInfo";
     }
 
-    /** 2019/12/27 8:09
-     * 录入比赛信息的具体逻辑
-    */
+    /**
+     * 2019/12/27 8:09
+     * 提交比赛信息的具体逻辑
+     */
     @RequestMapping("/teacher/comp/insert1")
-    public String teacherInsertCompInfo(String teacherName, String compName,Model model) {
+    public String teacherInsertCompInfo(String teacherName, String compName, Model model) {
         Long teacherId = teacherService.getTeacherId(teacherName);
-        Teacher teacher=new Teacher();
+        Teacher teacher = new Teacher();
         teacher.setTeacherName(teacherName);
         teacher.setTeacherId(teacherId);
 
-        compService.insertSingleCompInfo(teacherId,compName,null,null,null);
+        compService.insertSingleCompInfo(teacherId, compName, null, null, null);
         model.addAttribute("teacher", teacher);
-        return "forward:index";
+        return "forward:/teacher/index";
     }
 
+    /**
+     * 2019/12/27 13:19
+     * 保存比赛信息的逻辑
+     */
+    @RequestMapping("/teacher/comp/insert2")
+    public String teacherInsertCompInfo2(String teacherName, String compName, Model model) {
+        Long teacherId = teacherService.getTeacherId(teacherName);
+        Teacher teacher = new Teacher();
+        teacher.setTeacherName(teacherName);
+        teacher.setTeacherId(teacherId);
+
+        compService.saveSingleCompInfo(teacherId, compName, null, null, null);
+        model.addAttribute("teacher", teacher);
+        return "forward:/teacher/index";
+    }
 
     /**
      * 2019/12/21 11:13
      * 修改比赛信息 状态为未提交时,跳转到这里
      */
     @RequestMapping("/teacher/comp/update")
-    public String teacherUpdateCompInfo() {
+    public String teacherUpdateCompInfo(String compName, Long teacherId, Model model) {
+        model.addAttribute("compName", compName);
+        model.addAttribute("teacherId", teacherId);
         return "teacher/Comp/teacher_updateCompInfo";
+    }
+
+    /**
+     * 2019/12/27 12:51
+     * 更新比赛信息的具体逻辑
+     * 先根据比赛id和教师id删除info,然后再跳转到添加比赛页面进行添加.
+     */
+    @RequestMapping("/teacher/comp/update1")
+    public String teacherUpdateCompInfo1(String compName, Long teacherId, Model model) {
+        compService.deletInfoByteacherIdCompName(compName, teacherId);
+        String teacherName = teacherService.getTeacherName(teacherId);
+        model.addAttribute("compName", compName);
+        model.addAttribute("teacherName", teacherName);
+        return "forward:teacher/comp/insert1";
     }
 
     /**
@@ -100,7 +143,17 @@ public class TeacherCompManagement {
      * 查看比赛信息 当状态为已提交时,跳转到这里
      */
     @RequestMapping("/teacher/comp/showSingleComp")
-    public String teacherFindCompInfo() {
+    public String teacherFindCompInfo(String compName, Long teacherId, Model model) {
+        /** 2019/12/27 13:29
+         * 获得 比赛名称,比赛类别,比赛info的证书,以及参赛学生.
+         */
+        model.addAttribute("compName", compName);
+        Class clazz = compService.getClassByCompName(compName);
+        model.addAttribute("clazz", clazz);
+        CompInfo compInfo = compService.getInfoByteacherIdcompName(teacherId, compName);
+        model.addAttribute("compInfo", compInfo);
+        List<Stu> stus = compService.getStuByinfoid(compInfo.getInfoId());
+        model.addAttribute("stus", stus);
         return "teacher/Comp/teacher_showCompInfo";
     }
 

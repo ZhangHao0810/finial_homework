@@ -9,9 +9,11 @@ import com.zhanghao.finalHomework.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author ZhangHao
@@ -38,6 +40,14 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
 
     @Autowired
     private CompInfoStuDao compInfoStuDao;
+
+
+    /** 2019/12/27 16:29
+     * 管理员删除比赛的逻辑
+    */
+
+
+
 
     /**
      * 2019/12/25 13:50
@@ -157,8 +167,37 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     }
 
     @Override
-    public List<Comp> listNewestCompInfos() {
-        return null;
+    public List<NewestCompInfo> listNewestCompInfos() {
+        /** 2019/12/27 14:18
+         * 先根据时间排序查出来所有的info,得到比赛时间,然后查比赛老师,类别,名称,set给封装类.
+         */
+        List<NewestCompInfo> infos = new ArrayList<>();
+
+        List<CompInfo> infoByNewestTime = compInfoDao.getInfoByNewestTime();
+
+//        List<NewestCompInfo> infosCopy = new CopyOnWriteArrayList<NewestCompInfo>() {{
+//            for (NewestCompInfo info  : infos) {
+//                add(info);
+//            }
+//        }};
+        for (CompInfo compInfo : infoByNewestTime) {
+            NewestCompInfo infoSingle = new NewestCompInfo();
+            Teacher teacher = teacherDao.selectByPrimaryKey(compInfo.getTeacherId());
+//              老师
+            infoSingle.setTeacherName(teacher.getTeacherName());
+            Comp comp = compDao.selectByPrimaryKey(compInfo.getCompId());
+//                比赛名称
+            infoSingle.setCompName(comp.getCompName());
+            Class aClass = classDao.selectByPrimaryKey(comp.getClassId());
+//                比赛类别和项目
+            infoSingle.setLeibie(aClass.getCategory());
+            infoSingle.setXiangmu(aClass.getGrade());
+//                比赛时间
+            infoSingle.setTime(compInfo.getCreateTime());
+            infos.add(infoSingle);
+        }
+
+        return infos;
     }
 
     @Override
@@ -197,11 +236,15 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
 
     @Override
     public List<Comp> listAllComp(Long classId) {
-        return null;
+        return compDao.getCompByclassId(classId);
     }
 
     @Override
     public int insertComp(Long classId, String compName) {
+        Comp comp=new Comp();
+        comp.setCompName(compName);
+        comp.setClassId(classId);
+        compDao.insert(comp);
         return 0;
     }
 
@@ -218,6 +261,11 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
         Comp comp = compDao.selectByPrimaryKey(infoByInfoid.getCompId());
 
         return comp.getCompName();
+    }
+
+    @Override
+    public void deletCompBycompId(Long compId) {
+        compDao.deleteByPrimaryKey(compId);
     }
 
     @Override
@@ -248,18 +296,87 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
          * 要先从ifno中的到时这个老师的compid(有很多个) 然后去comp中把不是这个compid的内容找出来.
          */
         List<CompInfo> compInfos = compInfoDao.selectAllByteacherId(teacherId);
-        List<Comp> allComp = new ArrayList<>();
-        allComp = compDao.selectAllComp();
+        List<Comp> allComp = compDao.selectAllComp();
+
+        List<Comp> allCompCopy = new CopyOnWriteArrayList<Comp>() {{
+            for (Comp comp : allComp) {
+                add(comp);
+            }
+        }};
 
         for (CompInfo compInfo : compInfos) {
-            for (Comp comp : allComp) {
+            for (Comp comp : allCompCopy) {
                 if (comp.getCompId().equals(compInfo.getCompId())) {
-                    allComp.remove(comp);
+                    allCompCopy.remove(comp);
                 }
             }
         }
 
-        return allComp;
+        return allCompCopy;
+    }
+
+    @Override
+    public void deletInfoByteacherIdCompName(String compName, Long teacherId) {
+        /** 2019/12/27 13:06
+         * 先根据compName获得compid 再根据COmpid和teacherId 获得Info
+         */
+        Comp comp = compDao.getCompBycompName(compName);
+        CompInfo compInfo = compInfoDao.getinfoByteacherIdCompId(teacherId, comp.getCompId());
+        compInfoDao.deleteByPrimaryKey(compInfo.getInfoId());
+
+    }
+
+    @Override
+    public void saveSingleCompInfo(Long teacherId, String compName, Object o, Object o1, Object o2) {
+        CompInfo compInfo = new CompInfo();
+        compInfo.setChecked(0);
+        compInfo.setTeacherId(teacherId);
+
+        Comp compBycompName = compDao.getCompBycompName(compName);
+        compInfo.setCompId(compBycompName.getCompId());
+        Date date = new Date();
+        compInfo.setCreateTime(date);
+        compInfoDao.insert(compInfo);
+    }
+
+    @Override
+    public Class getClassByCompName(String compName) {
+
+        Comp comp = compDao.getCompBycompName(compName);
+
+        return classDao.selectByPrimaryKey(comp.getClassId());
+    }
+
+    @Override
+    public CompInfo getInfoByteacherIdcompName(Long teacherId, String compName) {
+        Comp comp = compDao.getCompBycompName(compName);
+
+        return compInfoDao.getinfoByteacherIdCompId(teacherId, comp.getCompId());
+    }
+
+    @Override
+    public List<Stu> getStuByinfoid(Long infoId) {
+        List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(infoId);
+        List<Stu> stus = new ArrayList<>();
+        for (CompInfoStu infoStu : stuIdByInfoId) {
+            Stu stu = stuDao.selectByPrimaryKey(infoStu.getStuId());
+            stus.add(stu);
+        }
+        return stus;
+    }
+
+    @Override
+    public Long countCompInfoNum(CompInfo compInfo) {
+        return compInfoDao.count(compInfo);
+    }
+
+    @Override
+    public void updateclass(Long classId,BigDecimal base, BigDecimal factor) {
+        Class clazz=new Class();
+        clazz.setClassId(classId);
+        clazz.setBase(base);
+        clazz.setFactor(factor);
+        classDao.updateByPrimaryKeySelective(clazz);
     }
 
     @Override
@@ -299,6 +416,12 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
          * 直接查!
          */
         return classDao.list();
+    }
+
+    @Override
+    public Class getClassByClassId(Long classId) {
+        Class aClass = classDao.selectByPrimaryKey(classId);
+        return aClass;
     }
 
     @Override

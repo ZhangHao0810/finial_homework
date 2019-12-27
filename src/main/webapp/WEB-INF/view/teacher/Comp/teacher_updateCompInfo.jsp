@@ -22,6 +22,18 @@
     <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+        function save() {
+            document.form1.action = "#";
+            document.form1.submit();
+        }
+
+        function send(compName,teacherId) {
+            <%--window.location.href="${ctx}/teacher/comp/update1?compName="+compName+"&teacherId="+teacherId;--%>
+            document.form1.submit();
+        }
+    </script>
 </head>
 <body>
 展示和修改具体比赛信息 信息要能返回到表单上.
@@ -68,15 +80,12 @@
             <br>
             <br>
             <br>
-            <form>
+            <form name="form1">
 
                 <div class="form-group">
                     <label>比赛名称</label>
-                    <select class="form-control">
-                        <option>北信科跳舞大赛</option>
-                        <option>3</option>
-                        <option>北信科沙雕大赛</option>
-                        <option>5</option>
+                    <select class="form-control" name="compName">
+                        <option>${compName}</option>
                     </select>
                 </div>
                 <br>
@@ -98,9 +107,9 @@
                     <input type="file" id="比赛照片">
                 </div>
 
-                <button type="submit" class="btn btn-default">保存</button>
+                <button type="submit" class="btn btn-default" onclick="save()">保存</button>
                 <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"
-                        title="提交比赛信息之后不可修改!!请慎重">提交
+                        title="提交比赛信息之后不可修改!!请慎重" onclick="send(${compName},${teacherId})">提交
                 </button>
             </form>
         </div>
