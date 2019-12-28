@@ -163,7 +163,7 @@
                 </td>
 
                 <td>
-                    <a href="${ctx}/teacher/comp/delet?teacherId=${teacher.teacherId}&compName=${item.compName}">
+                    <a href="${ctx}/teacher/comp/delet?teacherId=${teacher.teacherId}&teacherName=${teacher.teacherName}&compName=${item.compName}">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">删除比赛</button>
                     </a>
 

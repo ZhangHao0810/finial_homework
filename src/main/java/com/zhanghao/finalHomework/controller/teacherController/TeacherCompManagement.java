@@ -33,7 +33,6 @@ public class TeacherCompManagement {
     @Autowired
     private TeacherService teacherService;
 
-
     @RequestMapping("/teacher/index1")
     public String teacherIndex(String teacherName, Model model) {
 
@@ -43,19 +42,19 @@ public class TeacherCompManagement {
         return "forward:index";
     }
 
-    @RequestMapping("/teacher/comp/delet")
-    public String teach(String compName, Long teacherId, Model model) {
+    @RequestMapping(value = "/teacher/comp/delet")
+    public String teach(String compName, Long teacherId,String teacherName, Model model)  {
         /** 2019/12/27 20:12
          * 1.直接调服务
          * 2.跳到教师首页
          */
         compService.deletInfoByteacherIdCompName(compName, teacherId);
 
-        Teacher teacher = teacherService.getTeacherByTeacherId(teacherId);
-        model.addAttribute("teacher", teacher);
+//        Teacher teacher = teacherService.getTeacherByTeacherId(teacherId);
+        model.addAttribute("teacherId", teacherId);
+        model.addAttribute("teacherName", teacherName);
         return "forward:/teacher/index";
     }
-
 
     /**
      * 2019/12/21 9:01
@@ -64,8 +63,13 @@ public class TeacherCompManagement {
      */
     @RequestMapping("/teacher/index")
     public String teacherIndex(Teacher teacher, Model model) {
-        Long teacherId = teacherService.getTeacherId(teacher.getTeacherName());
-        Teacher teacher1=new Teacher();
+        Long teacherId;
+        if (teacher.getTeacherId() == null) {
+            teacherId = teacherService.getTeacherId(teacher.getTeacherName());
+        } else {
+            teacherId = teacher.getTeacherId();
+        }
+        Teacher teacher1 = new Teacher();
         teacher1.setTeacherName(teacher.getTeacherName());
         teacher1.setTeacherId(teacherId);
         model.addAttribute("teacher", teacher1);
