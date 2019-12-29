@@ -33,6 +33,9 @@ public class TeacherCompManagement {
     @Autowired
     private TeacherService teacherService;
 
+
+
+
     @RequestMapping("/teacher/index1")
     public String teacherIndex(String teacherName, Model model) {
 

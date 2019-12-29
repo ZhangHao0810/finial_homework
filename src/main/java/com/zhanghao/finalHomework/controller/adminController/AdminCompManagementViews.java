@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,6 +27,59 @@ public class AdminCompManagementViews {
 
     @Autowired
     private  CompService compService;
+
+
+    /** 2019/12/28 10:39
+     * 导出excel
+     * 1.生成excel
+     * 2.返回到界面上让用户下载
+     */
+    @RequestMapping("/excel")
+    public String excel(HttpServletResponse response) throws Exception {
+        List<AllCompMessage> allMessage = compService.getAllMessage();
+        compService.outExcel(allMessage);
+
+
+        String filename="testXSSF.xlsx";
+        String filePath = "" ;
+        File file = new File(filePath + "/" + filename);
+        if(file.exists()){ //判断文件父目录是否存在
+            response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + filename);
+
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null; //文件输入流
+            BufferedInputStream bis = null;
+
+            OutputStream os ; //输出流
+            try {
+                os = response.getOutputStream();
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                int i = bis.read(buffer);
+                while(i != -1){
+                    os.write(buffer);
+                    i = bis.read(buffer);
+                }
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            System.out.println("----------file download" + filename);
+            try {
+                if (bis != null) {
+                    bis.close();
+                    fis.close();
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return "forward:/admin/showAllCompInfo";
+    }
 
 
     /** 2019/12/21 16:04

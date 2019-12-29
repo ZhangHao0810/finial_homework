@@ -1,7 +1,7 @@
 package com.zhanghao.finalHomework.service;
 
-import com.zhanghao.finalHomework.model.Class;
 import com.zhanghao.finalHomework.model.*;
+import com.zhanghao.finalHomework.model.Class;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -141,4 +141,6 @@ public interface CompService {
     List<AllCompMessage> getAllMessage();
 
     Long getteacheridByteacherName(String teacherName);
+
+    void outExcel(List<AllCompMessage> allMessage) throws Exception;
 }

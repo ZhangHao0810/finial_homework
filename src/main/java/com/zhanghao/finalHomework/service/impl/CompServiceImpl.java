@@ -1,14 +1,16 @@
 package com.zhanghao.finalHomework.service.impl;
 
 import com.zhanghao.finalHomework.dao.*;
-import com.zhanghao.finalHomework.model.Class;
 import com.zhanghao.finalHomework.model.*;
+import com.zhanghao.finalHomework.model.Class;
 import com.zhanghao.finalHomework.service.ClassService;
 import com.zhanghao.finalHomework.service.CompService;
 import com.zhanghao.finalHomework.service.StuService;
+import com.zhanghao.finalHomework.utils.ExcelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -407,10 +409,10 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
         List<CompInfo> allInfo = compInfoDao.getAllInfo();
         List<AllCompMessage> results = new ArrayList<>();
 
+
         for (CompInfo compInfo : allInfo) {
 
             AllCompMessage allCompMessage = new AllCompMessage();
-
 //            比赛名称
             Comp comp = compDao.selectByPrimaryKey(compInfo.getCompId());
             allCompMessage.setCompName(comp.getCompName());
@@ -442,6 +444,15 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     public Long getteacheridByteacherName(String teacherName) {
         Teacher teacher = teacherDao.selectByName(teacherName);
         return teacher.getTeacherId();
+    }
+
+    @Override
+    public void outExcel(List<AllCompMessage> allMessage) throws Exception {
+
+        FileOutputStream out = new FileOutputStream("testXSSF.xlsx");
+        ExcelFactory.createExcel(allMessage,"org.apache.poi.xssf.usermodel.XSSFWorkbook").write(out);
+        out.close();
+
     }
 
     @Override

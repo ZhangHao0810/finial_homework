@@ -17,8 +17,8 @@ public class AllCompMessage {
     private BigDecimal base;
     private BigDecimal factor;
     private Date time;
-    private int count;
-    private double fenshu;
+    private Integer count;
+    private Double fenshu;
 
     public String getCompName() {
         return compName;
@@ -76,19 +76,19 @@ public class AllCompMessage {
         this.time = time;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 
-    public double getFenshu() {
+    public Double getFenshu() {
         return fenshu;
     }
 
-    public void setFenshu(double fenshu) {
+    public void setFenshu(Double fenshu) {
         this.fenshu = fenshu;
     }
 }

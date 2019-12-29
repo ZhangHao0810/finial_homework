@@ -105,9 +105,12 @@
         </table>
     </div>
 
-    <button class="btn-default">
-        导出到Excel
-    </button>
+    <a href="${ctx}/admin/excel">
+        <button class="btn-default">
+            导出到Excel
+        </button>
+
+    </a>
 
 
     <br/>
