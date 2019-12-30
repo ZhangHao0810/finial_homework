@@ -108,6 +108,7 @@
                 </div>
 
                 <input type="hidden" name="teacherName" value="${teacherName}"/>
+                <input type="hidden" name="teacherName" value="${compName}"/>
 
                 <button type="submit" class="btn btn-default" onclick="save()">保存</button>
                 <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"

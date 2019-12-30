@@ -1,7 +1,5 @@
 package com.zhanghao.finalHomework.model;
 
-import java.util.Date;
-
 /**
  * @author ZhangHao
  * @date 2019/12/27 14:07
@@ -17,7 +15,7 @@ public class NewestCompInfo {
 
     private  String teacherName;
 
-    private Date time;
+    private String time;
 
     public String getCompName() {
         return compName;
@@ -51,11 +49,11 @@ public class NewestCompInfo {
         this.teacherName = teacherName;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

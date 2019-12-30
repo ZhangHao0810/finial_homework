@@ -68,6 +68,7 @@
 
     <table class="table table-hover  table-striped">
 
+
         <h5>比赛信息:</h5>
         <tr>
             <th>比赛名称</th>
@@ -84,22 +85,22 @@
             <td>${clazz.grade}</td>
             <td>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">
                     竞赛证书
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">竞赛证书</h4>
                             </div>
                             <div class="modal-body">
-
-                                ${compInfo.compCert}
-                                <img src="../../../../img/teacher/蓝色发箍女孩.jpg" width="312px" height="400px">
+                                <img src="../../../../upload/${teacherName}/${compName}/compCert/${compCert}"
+                                     width="580px" height="380px">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -112,20 +113,22 @@
 
             <td>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal12">
                     指导证书
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+                <div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel1">指导证书</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="../../../../img/teacher/马尾可爱女.jpg" width="384px" height="512px">
+                                <img src="../../../../upload/${teacherName}/${compName}/guideCert/${guidecert}"
+                                     width="580px" height="380px">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -137,20 +140,22 @@
 
             <td>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal23">
                     比赛照片
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade"  id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+                <div class="modal fade" id="myModal23" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel3" >比赛照片</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel3">比赛照片</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="../../../../img/teacher/双女比基尼.jpg" width="250px" height="357.75px">
+                                <img src="../../../../upload/${teacherName}/${compName}/compPhoto/${compPhoto}"
+                                     width="580px" height="380px">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -182,6 +187,7 @@
         </tr>
 
         </c:forEach>
+    </table>
 
 
 </div>

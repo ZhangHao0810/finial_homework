@@ -68,10 +68,11 @@ public class TeacherStuManagement {
      * 增添具体比赛的学生信息页面,要带上比赛名称
      */
     @RequestMapping("/teacher/stu/insert")
-    public String teacherStuInsert(String compName,Long infoId,Model model){
+    public String teacherStuInsert(String teacherName,String compName,Long infoId,Model model){
         model.addAttribute("compName", compName);
         System.out.println(compName);
         model.addAttribute("infoId", infoId);
+        model.addAttribute("teacherName", teacherName);
         return "teacher/Stu/teacher_stuInsert";
     }
 

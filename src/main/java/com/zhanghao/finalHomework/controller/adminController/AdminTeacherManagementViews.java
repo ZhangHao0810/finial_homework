@@ -99,6 +99,7 @@ public class AdminTeacherManagementViews {
     @RequestMapping("/admin/updateTeacher1")
     public String adminUpdate1(String teacherName, String password ) {
 
+
         teacherService.updateTeacher(teacherName, password);
 
         return "forward:/admin/showTeachers";

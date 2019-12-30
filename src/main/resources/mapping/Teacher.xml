@@ -70,12 +70,11 @@
     <insert id="insert" parameterType="com.zhanghao.finalHomework.model.Teacher">
         INSERT INTO teacher
         (
-        teacher_name,
-        password,
-        checked
+        <include refid="Base_Column_List"/>
         )
         VALUES
         (
+        #{teacherId},
         #{teacherName},
         #{password},
         0
@@ -200,4 +199,24 @@
         where
         teacher_id=#{teacherId}
     </update>
+
+    <!-- 修 改-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Teacher" >
+        UPDATE teacher
+        <set>
+            <if test="teacherName != null and teacherName != ''">
+                teacher_name = #{teacherName},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="checked != null">
+                checked = #{checked},
+            </if>
+
+        </set>
+        WHERE teacher_id = #{teacherId}
+    </update>
+
+
 </mapper>

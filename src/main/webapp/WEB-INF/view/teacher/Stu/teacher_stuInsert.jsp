@@ -45,7 +45,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${ctx}/teacher/index">比赛信息展示</a></li>
+                    <li><a href="${ctx}/teacher/index?teacherName=${teacherName}">比赛信息展示</a></li>
                     <li class="active"><a href="#">插入具体比赛的学生信息 <span class="sr-only">(current)</span></a></li>
 
                 </ul>

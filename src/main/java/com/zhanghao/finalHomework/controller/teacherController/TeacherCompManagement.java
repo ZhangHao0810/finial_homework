@@ -114,13 +114,13 @@ public class TeacherCompManagement {
     public String teacherInsertCompInfo(@RequestParam("compCert") MultipartFile compCert, @RequestParam("guideCert") MultipartFile guideCert, @RequestParam("compPhoto") MultipartFile compPhoto, String teacherName, String compName, Model model) throws Exception {
 
 //        如果有任何一个文件没有上传
-        if (("".equals(compCert.getOriginalFilename())) && ("".equals(guideCert.getOriginalFilename())) && ("".equals(compPhoto.getOriginalFilename()))) {
+        if (("".equals(compCert.getOriginalFilename())) || ("".equals(guideCert.getOriginalFilename())) || ("".equals(compPhoto.getOriginalFilename()))) {
 
             Long teacherId = teacherService.getTeacherId(teacherName);
             List<Comp> comps = compService.getTeacherNotInCompByTeacherId(teacherId);
             model.addAttribute("comps", comps);
             model.addAttribute("teacherName", teacherName);
-            return "teacher/Comp/teacher_insertCompInrfo_fail";
+            return "teacher/Comp/teacher_insertCompInfo_fail";
         }
 
 //        没有设置路径,会保存在项目的根路径下.  "//"+compCert.getOriginalFilename(); teacherName+"//"+compName+"//"

@@ -66,7 +66,7 @@
     </form>
 
     <form class="navbar-form navbar-right">
-        <a href="${ctx}/teacher/stu/insert?compName=${infoName}&infoId=${infoId}" class="btn btn-default" role="button">增加学生</a>
+        <a href="${ctx}/teacher/stu/insert?compName=${infoName}&infoId=${infoId}&teacherName=${name}" class="btn btn-default" role="button">增加学生</a>
     </form>
 
 

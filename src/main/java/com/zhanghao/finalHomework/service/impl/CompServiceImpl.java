@@ -206,7 +206,9 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
             infoSingle.setLeibie(aClass.getCategory());
             infoSingle.setXiangmu(aClass.getGrade());
 //                比赛时间
-            infoSingle.setTime(compInfo.getCreateTime());
+            DateFormat df2 = DateFormat.getDateTimeInstance();
+            String format = df2.format(compInfo.getCreateTime());
+            infoSingle.setTime(format);
             infos.add(infoSingle);
         }
 

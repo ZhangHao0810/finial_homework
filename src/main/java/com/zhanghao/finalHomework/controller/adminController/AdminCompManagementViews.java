@@ -78,8 +78,12 @@ public class AdminCompManagementViews {
         model.addAttribute("clazz", clazz);
         CompInfo compInfo = compService.getInfoByteacherIdcompName(teacherId, compName);
         model.addAttribute("compInfo", compInfo);
+        model.addAttribute("compCert", compInfo.getCompCert());
+        model.addAttribute("guidecert", compInfo.getGuideCert());
+        model.addAttribute("compPhoto", compInfo.getCompPhoto());
         List<Stu> stus = compService.getStuByinfoid(compInfo.getInfoId());
         model.addAttribute("stus", stus);
+        model.addAttribute("teacherName", teacherName);
         return "admin/CompManagement/admin_showCompInfo";
     }
 
