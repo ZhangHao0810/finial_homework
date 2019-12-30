@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
 
 /**
@@ -33,11 +36,8 @@ public class TeacherCompManagement {
     @Autowired
     private TeacherService teacherService;
 
-
-
-
     @RequestMapping("/teacher/index1")
-    public String teacherIndex(String teacherName, Model model) {
+    public String teacherIndex( String teacherName, Model model) {
 
         Teacher teacher = new Teacher();
         teacher.setTeacherName(teacherName);
@@ -46,7 +46,7 @@ public class TeacherCompManagement {
     }
 
     @RequestMapping(value = "/teacher/comp/delet")
-    public String teach(String compName, Long teacherId,String teacherName, Model model)  {
+    public String teach(String compName, Long teacherId, String teacherName, Model model) {
         /** 2019/12/27 20:12
          * 1.直接调服务
          * 2.跳到教师首页
@@ -106,15 +106,57 @@ public class TeacherCompManagement {
     /**
      * 2019/12/27 8:09
      * 提交比赛信息的具体逻辑
+     *
      */
     @RequestMapping("/teacher/comp/insert1")
-    public String teacherInsertCompInfo(String teacherName, String compName, Model model) {
+    public String teacherInsertCompInfo(@RequestParam("compCert") MultipartFile compCert,@RequestParam("guideCert") MultipartFile guideCert, @RequestParam("compPhoto") MultipartFile compPhoto,String teacherName, String compName, Model model) throws Exception {
+
+//        没有设置路径,会保存在项目的根路径下.  "//"+compCert.getOriginalFilename(); teacherName+"//"+compName+"//"
+        String compCertfilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/compCert/";
+        File fp = new File(compCertfilePath);
+        // 创建目录
+        if (!fp.exists()) {
+            fp.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file = new File(compCertfilePath+compCert.getOriginalFilename());
+        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
+        outputStream.write(compCert.getBytes());
+        outputStream.flush();
+        outputStream.close();
+
+
+        String guideCertfilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/guideCert/";
+        File fp2 = new File(guideCertfilePath);
+        // 创建目录
+        if (!fp2.exists()) {
+            fp2.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file2 = new File(guideCertfilePath+guideCert.getOriginalFilename());
+        BufferedOutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(file2));
+        outputStream2.write(compCert.getBytes());
+        outputStream2.flush();
+        outputStream2.close();
+
+
+        String compPhotofilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/compPhoto/";
+        File fp3 = new File(compPhotofilePath);
+        // 创建目录
+        if (!fp3.exists()) {
+            fp3.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file3 = new File(compPhotofilePath+compPhoto.getOriginalFilename());
+        BufferedOutputStream outputStream3 = new BufferedOutputStream(new FileOutputStream(file3));
+        outputStream3.write(compCert.getBytes());
+        outputStream3.flush();
+        outputStream3.close();
+
+
         Long teacherId = teacherService.getTeacherId(teacherName);
         Teacher teacher = new Teacher();
         teacher.setTeacherName(teacherName);
         teacher.setTeacherId(teacherId);
 
-        compService.insertSingleCompInfo(teacherId, compName, null, null, null);
+        compService.insertSingleCompInfo(teacherId, compName, compPhoto.getOriginalFilename(), compCert.getOriginalFilename(), guideCert.getOriginalFilename());
         model.addAttribute("teacher", teacher);
         return "forward:/teacher/index";
     }
@@ -124,40 +166,71 @@ public class TeacherCompManagement {
      * 保存比赛信息的逻辑
      */
     @RequestMapping("/teacher/comp/insert2")
-    public String teacherInsertCompInfo2(String teacherName, String compName, Model model) {
+    public String teacherInsertCompInfo2(@RequestParam("compCert") MultipartFile compCert,@RequestParam("guideCert") MultipartFile guideCert, @RequestParam("compPhoto") MultipartFile compPhoto,String teacherName, String compName, Model model) throws IOException {
+
+        //        没有设置路径,会保存在项目的根路径下.  "//"+compCert.getOriginalFilename(); teacherName+"//"+compName+"//"
+        String compCertfilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/compCert/";
+        File fp = new File(compCertfilePath);
+        // 创建目录
+        if (!fp.exists()) {
+            fp.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file = new File(compCertfilePath+compCert.getOriginalFilename());
+        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file));
+        outputStream.write(compCert.getBytes());
+        outputStream.flush();
+        outputStream.close();
+
+
+        String guideCertfilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/guideCert/";
+        File fp2 = new File(guideCertfilePath);
+        // 创建目录
+        if (!fp2.exists()) {
+            fp2.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file2 = new File(guideCertfilePath+guideCert.getOriginalFilename());
+        BufferedOutputStream outputStream2 = new BufferedOutputStream(new FileOutputStream(file2));
+        outputStream2.write(compCert.getBytes());
+        outputStream2.flush();
+        outputStream2.close();
+
+
+        String compPhotofilePath="src/main/webapp/upload/"+teacherName+"/"+compName+"/compPhoto/";
+        File fp3 = new File(compPhotofilePath);
+        // 创建目录
+        if (!fp3.exists()) {
+            fp3.mkdirs();// 目录不存在的情况下，创建目录。
+        }
+        File file3 = new File(compPhotofilePath+compPhoto.getOriginalFilename());
+        BufferedOutputStream outputStream3 = new BufferedOutputStream(new FileOutputStream(file3));
+        outputStream3.write(compCert.getBytes());
+        outputStream3.flush();
+        outputStream3.close();
+
+
+
         Long teacherId = teacherService.getTeacherId(teacherName);
         Teacher teacher = new Teacher();
         teacher.setTeacherName(teacherName);
         teacher.setTeacherId(teacherId);
 
-        compService.saveSingleCompInfo(teacherId, compName, null, null, null);
+        compService.saveSingleCompInfo(teacherId, compName, compPhoto.getOriginalFilename(), compCert.getOriginalFilename(), guideCert.getOriginalFilename());
         model.addAttribute("teacher", teacher);
         return "forward:/teacher/index";
     }
 
     /**
-     * 2019/12/21 11:13
-     * 修改比赛信息 状态为未提交时,跳转到这里
+     * 2019/12/27 12:51
+     * 更新比赛信息的具体逻辑 当教师参与的比赛状态未提交,跳转到这里.
+     * 先根据比赛id和教师id删除info,然后再跳转到更新比赛页面进行添加.
      */
     @RequestMapping("/teacher/comp/update")
     public String teacherUpdateCompInfo(String compName, Long teacherId, Model model) {
-        model.addAttribute("compName", compName);
-        model.addAttribute("teacherId", teacherId);
-        return "teacher/Comp/teacher_updateCompInfo";
-    }
-
-    /**
-     * 2019/12/27 12:51
-     * 更新比赛信息的具体逻辑
-     * 先根据比赛id和教师id删除info,然后再跳转到添加比赛页面进行添加.
-     */
-    @RequestMapping("/teacher/comp/update1")
-    public String teacherUpdateCompInfo1(String compName, Long teacherId, Model model) {
         compService.deletInfoByteacherIdCompName(compName, teacherId);
         String teacherName = teacherService.getTeacherName(teacherId);
         model.addAttribute("compName", compName);
         model.addAttribute("teacherName", teacherName);
-        return "forward:teacher/comp/insert1";
+        return "teacher/Comp/teacher_updateCompInfo";
     }
 
     /**
@@ -173,9 +246,18 @@ public class TeacherCompManagement {
         Class clazz = compService.getClassByCompName(compName);
         model.addAttribute("clazz", clazz);
         CompInfo compInfo = compService.getInfoByteacherIdcompName(teacherId, compName);
+
+
         model.addAttribute("compInfo", compInfo);
         List<Stu> stus = compService.getStuByinfoid(compInfo.getInfoId());
         model.addAttribute("stus", stus);
+        Teacher teacher = teacherService.getTeacherByTeacherId(teacherId);
+        model.addAttribute("teacherName", teacher.getTeacherName());
+        model.addAttribute("compCert", compInfo.getCompCert());
+        model.addAttribute("compPhoto", compInfo.getCompPhoto());
+        model.addAttribute("guidecert", compInfo.getGuideCert());
+
+
         return "teacher/Comp/teacher_showCompInfo";
     }
 

@@ -69,12 +69,7 @@
         <a href="${ctx}/teacher/stu/insert?compName=${infoName}&infoId=${infoId}" class="btn btn-default" role="button">增加学生</a>
     </form>
 
-    <form class="navbar-form navbar-right">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">学生查询</button>
-    </form>
+
 
     <table class="table table-hover">
         <tr>
@@ -113,6 +108,8 @@
 
 </div>
 
-
+<div style="text-align: center;">
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+</div>
 </body>
 </html>

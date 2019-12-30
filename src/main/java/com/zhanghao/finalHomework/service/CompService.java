@@ -64,7 +64,7 @@ public interface CompService {
      * 用途:
      * 教师端 录入比赛信息
      */
-    int insertSingleCompInfo(Long teacherId, String compName, byte[] compPhoto, byte[] compCert, byte[] guideCert);
+    int insertSingleCompInfo(Long teacherId, String compName, String compPhoto, String compCert, String guideCert);
 
     /**
      * 2019/12/23 18:26
@@ -72,7 +72,7 @@ public interface CompService {
      * 用途:
      * 教师端 未提交的比赛,可以修改.更新数据库中的字段信息.
      */
-    int updateSingleCompInfo(Long teacherId, String compName, byte[] compPhoto, byte[] compCert, byte[] guideCert);
+    int updateSingleCompInfo(Long teacherId, String compName, String compPhoto, String compCert, String guideCert);
 
     /** 2019/12/23 21:31
      * 在全部比赛信息中按照比赛名称查询.
@@ -122,7 +122,7 @@ public interface CompService {
 
     void deletInfoByteacherIdCompName(String compName, Long teacherId);
 
-    void saveSingleCompInfo(Long teacherId, String compName, Object o, Object o1, Object o2);
+    void saveSingleCompInfo(Long teacherId, String compName, String o, String o1, String o2);
 
     Class getClassByCompName(String compName);
 
@@ -143,4 +143,6 @@ public interface CompService {
     Long getteacheridByteacherName(String teacherName);
 
     void outExcel(List<AllCompMessage> allMessage) throws Exception;
+
+    boolean checkcompname(String compName);
 }

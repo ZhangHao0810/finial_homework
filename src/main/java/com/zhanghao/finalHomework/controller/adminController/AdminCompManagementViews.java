@@ -9,9 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,56 +28,37 @@ public class AdminCompManagementViews {
     private  CompService compService;
 
 
+    @RequestMapping("/searchByName")
+    public String abc(String teacherName, Model model) {
+        List<AllCompMessage> allMessage = compService.getAllMessage();
+        List<AllCompMessage> result=new ArrayList<>();
+        for (AllCompMessage allCompMessage : allMessage) {
+            if(allCompMessage.getTeacherName().equals(teacherName))
+            {
+                result.add(allCompMessage);
+            }
+        }
+        model.addAttribute("allcomps" ,result);
+        return "admin/CompManagement/admin_showAllCompInfos";
+    }
+
+
+
     /** 2019/12/28 10:39
      * 导出excel
      * 1.生成excel
      * 2.返回到界面上让用户下载
      */
     @RequestMapping("/excel")
-    public String excel(HttpServletResponse response) throws Exception {
+    public String excel(Model model) throws Exception {
+
         List<AllCompMessage> allMessage = compService.getAllMessage();
+        model.addAttribute("allcomps", allMessage);
+
+        //        生成excel文件到指定目录
         compService.outExcel(allMessage);
-
-
-        String filename="testXSSF.xlsx";
-        String filePath = "" ;
-        File file = new File(filePath + "/" + filename);
-        if(file.exists()){ //判断文件父目录是否存在
-            response.setContentType("application/force-download");
-            response.setHeader("Content-Disposition", "attachment;fileName=" + filename);
-
-            byte[] buffer = new byte[1024];
-            FileInputStream fis = null; //文件输入流
-            BufferedInputStream bis = null;
-
-            OutputStream os ; //输出流
-            try {
-                os = response.getOutputStream();
-                fis = new FileInputStream(file);
-                bis = new BufferedInputStream(fis);
-                int i = bis.read(buffer);
-                while(i != -1){
-                    os.write(buffer);
-                    i = bis.read(buffer);
-                }
-
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            System.out.println("----------file download" + filename);
-            try {
-                if (bis != null) {
-                    bis.close();
-                    fis.close();
-                }
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
-        return "forward:/admin/showAllCompInfo";
+        model.addAttribute("checkout",1);
+        return "admin/CompManagement/admin_showAllCompInfos";
     }
 
 
@@ -113,6 +93,7 @@ public class AdminCompManagementViews {
 
         List<AllCompMessage> allMessage = compService.getAllMessage();
         model.addAttribute("allcomps", allMessage);
+        model.addAttribute("checkout", 0);
         return "admin/CompManagement/admin_showAllCompInfos";
     }
 
@@ -181,9 +162,22 @@ public class AdminCompManagementViews {
     @RequestMapping("/addComp1")
     public String adminComp1(Long classId,String compName,Model model){
 
-        compService.insertComp(classId, compName);
-        model.addAttribute("classId", classId);
-        return "forward:addComp";
+        /** 2019/12/30 11:29
+         * 1.比赛名称不可重复.
+        */
+       if(compService.checkcompname(compName)) {
+           compService.insertComp(classId, compName);
+           model.addAttribute("classId", classId);
+           return "forward:addComp";
+       }else {
+           List<Comp> comps = compService.listAllComp(classId);
+           model.addAttribute("comps", comps);
+           Class compClass = classService.getClassByClassId(classId);
+           model.addAttribute("clazz", compClass);
+           return "admin/CompManagement/admin_addCompInfo_fail";
+       }
+
+
     }
 
     /** 2019/12/27 16:53

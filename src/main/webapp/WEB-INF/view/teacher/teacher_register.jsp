@@ -95,6 +95,8 @@
 
 
 </div>
-
+<div style="text-align: center;">
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+</div>
 </body>
 </html>

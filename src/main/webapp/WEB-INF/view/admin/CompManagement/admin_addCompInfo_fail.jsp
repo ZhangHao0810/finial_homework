@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ZhangHao
-  Date: 2019/12/22
-  Time: 9:14
+  Date: 2019/12/30
+  Time: 11:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="/commons/taglibs.jsp" %>
@@ -27,7 +27,7 @@
 
 
 <div class="container-fluid">
-<br/>
+    <br/>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -82,16 +82,16 @@
 
                 </tr>
                 <c:forEach items="${comps}" var="item" varStatus="status">
-                <tr >
-                    <td>${item.compName}</td>
-                    <td>${clazz.category}</td>
-                    <td>${clazz.grade}</td>
-                    <td>${clazz.base}</td>
-                    <td>${clazz.factor}</td>
-                    <td onclick="location.href='${ctx}/admin/deletComp?compId=${item.compId}&classId=${clazz.classId}';">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">删除该比赛</button>
-                    </td>
-                </tr>
+                    <tr >
+                        <td>${item.compName}</td>
+                        <td>${clazz.category}</td>
+                        <td>${clazz.grade}</td>
+                        <td>${clazz.base}</td>
+                        <td>${clazz.factor}</td>
+                        <td onclick="location.href='${ctx}/admin/deletComp?compId=${item.compId}&classId=${clazz.classId}';">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">删除该比赛</button>
+                        </td>
+                    </tr>
                 </c:forEach>
             </table>
         </div>
@@ -101,8 +101,14 @@
             <br>
             <br>
             <br>
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <strong>添加失败!</strong> 比赛名称不可以重复,建议在比赛名称中添加类别信息以区分.
+            </div>
             <br>
             <br>
+
             <form class="form-horizontal" action="${ctx}/admin/addComp1">
 
                 <div class="alert alert-info" role="alert">

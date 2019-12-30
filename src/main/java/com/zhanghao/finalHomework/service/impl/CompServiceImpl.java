@@ -43,7 +43,8 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     @Autowired
     private CompInfoStuDao compInfoStuDao;
 
-    /** 2019/12/27 16:29
+    /**
+     * 2019/12/27 16:29
      * 管理员删除比赛的逻辑
      */
 
@@ -52,7 +53,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
         /** 2019/12/27 19:59
          *  1.先根据compName 查compId
          *  2.根据compid 和teacherid 删除compinfo
-        */
+         */
         Comp compBycompName = compDao.getCompBycompName(compName);
         compInfoDao.deletByteacherIdCompId(teacherId, compBycompName.getCompId());
     }
@@ -214,11 +215,15 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     }
 
     @Override
-    public int insertSingleCompInfo(Long teacherId, String compName, byte[] compPhoto, byte[] compCert, byte[] guideCert) {
+    public int insertSingleCompInfo(Long teacherId, String compName, String compPhoto, String compCert, String guideCert) {
         CompInfo compInfo = new CompInfo();
         compInfo.setChecked(1);
         compInfo.setTeacherId(teacherId);
 
+//       插入图片
+        compInfo.setCompCert(compCert);
+        compInfo.setGuideCert(guideCert);
+        compInfo.setCompPhoto(compPhoto);
         Comp compBycompName = compDao.getCompBycompName(compName);
         compInfo.setCompId(compBycompName.getCompId());
         Date date = new Date();
@@ -228,7 +233,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     }
 
     @Override
-    public int updateSingleCompInfo(Long teacherId, String compName, byte[] compPhoto, byte[] compCert, byte[] guideCert) {
+    public int updateSingleCompInfo(Long teacherId, String compName, String compPhoto, String compCert, String guideCert) {
         return 0;
     }
 
@@ -341,15 +346,20 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     }
 
     @Override
-    public void saveSingleCompInfo(Long teacherId, String compName, Object o, Object o1, Object o2) {
+    public void saveSingleCompInfo(Long teacherId, String compName, String photo, String compcert, String guid
+    ) {
         CompInfo compInfo = new CompInfo();
         compInfo.setChecked(0);
         compInfo.setTeacherId(teacherId);
+        compInfo.setCompCert(compcert);
+        compInfo.setCompPhoto(photo);
+        compInfo.setGuideCert(guid);
 
         Comp compBycompName = compDao.getCompBycompName(compName);
         compInfo.setCompId(compBycompName.getCompId());
+
         Date date = new Date();
-        compInfo.setCreateTime(date);
+        compInfo.setUpdateTime(date);
         compInfoDao.insert(compInfo);
     }
 
@@ -409,7 +419,6 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
         List<CompInfo> allInfo = compInfoDao.getAllInfo();
         List<AllCompMessage> results = new ArrayList<>();
 
-
         for (CompInfo compInfo : allInfo) {
 
             AllCompMessage allCompMessage = new AllCompMessage();
@@ -432,7 +441,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
             allCompMessage.setCount(stuIdByInfoId.size());
             BigDecimal multiply = aClass.getBase().multiply(aClass.getFactor());
             double v = multiply.doubleValue();
-            allCompMessage.setFenshu(stuIdByInfoId.size()*v);
+            allCompMessage.setFenshu(stuIdByInfoId.size() * v);
 
             results.add(allCompMessage);
         }
@@ -449,10 +458,20 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     @Override
     public void outExcel(List<AllCompMessage> allMessage) throws Exception {
 
-        FileOutputStream out = new FileOutputStream("testXSSF.xlsx");
-        ExcelFactory.createExcel(allMessage,"org.apache.poi.xssf.usermodel.XSSFWorkbook").write(out);
+        FileOutputStream out = new FileOutputStream("src/main/webapp/EXCEL/OutPutExcel.xlsx");
+        ExcelFactory.createExcel(allMessage, "org.apache.poi.xssf.usermodel.XSSFWorkbook").write(out);
         out.close();
 
+    }
+
+    @Override
+    public boolean checkcompname(String compName) {
+        List<Comp> compBycompName = compDao.checkcompName(compName);
+        if (compBycompName.size()==1){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override

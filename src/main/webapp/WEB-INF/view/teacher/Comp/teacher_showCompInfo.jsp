@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../../../../bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     </head>
 <body>
 
@@ -78,7 +79,7 @@
         <td>${clazz.grade}</td>
         <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+            <button  type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" >
                 竞赛证书
             </button>
 
@@ -91,9 +92,7 @@
                             <h4 class="modal-title" id="myModalLabel">竞赛证书</h4>
                         </div>
                         <div class="modal-body">
-
-                            ${compInfo.compCert}
-                            <img src="../../../../img/teacher/蓝色发箍女孩.jpg" width="312px" height="400px">
+                            <img src="../../../../upload/${teacherName}/${compName}/compCert/${compCert}" width="580px" height="380px" >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,7 +118,7 @@
                             <h4 class="modal-title" id="myModalLabel1">指导证书</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="../../../../img/teacher/马尾可爱女.jpg" width="384px" height="512px">
+                            <img src="../../../../upload/${teacherName}/${compName}/guideCert/${guidecert}" width="580px" height="380px" >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -144,7 +143,7 @@
                             <h4 class="modal-title" id="myModalLabel3" >比赛照片</h4>
                         </div>
                         <div class="modal-body">
-                            <img src="../../../../img/teacher/双女比基尼.jpg" width="250px" height="357.75px">
+                            <img src="../../../../upload/${teacherName}/${compName}/compPhoto/${compPhoto}" width="580px" height="380px" >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -179,6 +178,8 @@
 
 
 </div>
-
+<div style="text-align: center;">
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+</div>
 </body>
 </html>

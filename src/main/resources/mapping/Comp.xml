@@ -16,6 +16,14 @@
 		class_id
 	</sql>
 
+	<!--checkcompName-->
+	<select id="checkcompName" resultMap="Comp" parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM comp
+		WHERE comp_name = #{compName}
+	</select>
+
 	<!--getCompByclassId-->
 	<select id="getCompByclassId" resultMap="Comp" parameterType="java.lang.Long">
 		SELECT

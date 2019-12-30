@@ -31,6 +31,13 @@
     </style>
 
 
+    <script type="text/javascript"> window.onload = function () {
+        if (${checkout}){
+            document.getElementById("exportExcel").click();
+        }
+    } </script>
+
+
 </head>
 <body>
 <<br>
@@ -76,6 +83,19 @@
 
         <br/>
         <h3>全部比赛信息</h3>
+
+        <form class="navbar-form navbar-right" action="${ctx}/admin/showAllCompInfo" method="post">
+            <button type="submit" class="btn btn-default">查看全部信息</button>
+        </form>
+
+        <form class="navbar-form navbar-right" action="${ctx}/admin/searchByName" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="teacherName" placeholder="TeacherName">
+            </div>
+            <button type="submit" class="btn btn-default">按照教师名字查询</button>
+        </form>
+
+
         <table class="table table-bordered  table-condensed">
             <tr>
                 <th>比赛名称</th>
@@ -107,16 +127,15 @@
 
     <a href="${ctx}/admin/excel">
         <button class="btn-default">
-            导出到Excel
+            点击下载全部信息统计的Excel
         </button>
-
     </a>
-
+    <a id=exportExcel href="../../../../EXCEL/OutPutExcel.xlsx" download="北信科学生竞赛管理系统全部比赛信息导出.xlsx"></a>
 
     <br/>
     <br/>
     <div style="text-align: center;">
-        Copyright © 2019-2019 北京信息科技大学 软件工程实验室 版权所有
+        Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
     </div>
 
     <br/>

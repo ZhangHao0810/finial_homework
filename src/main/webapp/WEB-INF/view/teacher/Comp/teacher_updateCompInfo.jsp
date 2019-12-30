@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-CN">
 <head>
-    <title>修改比赛信息页面</title>
+    <title>更新比赛信息页面</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="../../../../bootstrap-3.3.7-dist/css/bootstrap.css"/>
@@ -23,21 +23,20 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <script>
         function save() {
-            document.form1.action = "#";
+            document.form1.action = "${ctx}/teacher/comp/insert2";
             document.form1.submit();
         }
 
-        function send(compName,teacherId) {
-            <%--window.location.href="${ctx}/teacher/comp/update1?compName="+compName+"&teacherId="+teacherId;--%>
+        function send() {
+            document.form1.action = "${ctx}/teacher/comp/insert1";
             document.form1.submit();
         }
     </script>
 </head>
 <body>
-展示和修改具体比赛信息 信息要能返回到表单上.
-前提是比赛未提交. 若提交了,则跳向展示页面. 这里网页带信息一定要注意了带上比赛信息.插入的时候,隐藏的把教师id插入CompInfo
 <br/>
 <div class="container-fluid">
     <nav class="navbar navbar-default">
@@ -51,16 +50,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${ctx}/index">平台首页 </a>
+                <a class="navbar-brand" href="${ctx}/index">平台首页</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${ctx}/teacher/index">比赛信息展示 <span class="sr-only">(current)</span></a></li>
-                    <li class="active"><a href="#">更新比赛信息 </a></li>
+                    <li><a href="${ctx}/teacher/index1?teacherName=${teacherName}">比赛信息展示 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="active"><a href="#">录入比赛信息 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX老师</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 ${teacherName}老师</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -69,7 +69,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6" align="center">
-            <<img src="../../../../img/teacher/蓝色发箍女孩.jpg" width="416px" height="533px">
+            <img src="../../../../img/teacher/可爱睡衣小熊女.jpg">
         </div>
         <div class="col-md-6 ">
 
@@ -80,7 +80,7 @@
             <br>
             <br>
             <br>
-            <form name="form1">
+            <form name="form1" enctype="multipart/form-data" method="post">
 
                 <div class="form-group">
                     <label>比赛名称</label>
@@ -92,24 +92,26 @@
 
                 <div class="form-group">
                     <label for="竞赛证书"> 竞赛证书:</label>
-                    <input type="file" id="竞赛证书">
+                    <input type="file" id="竞赛证书" name="compCert">
                 </div>
 
 
                 <div class="form-group">
                     <label for="指导证书">指导证书:</label>
-                    <input type="file" id="指导证书">
+                    <input type="file" id="指导证书" name="guideCert">
                 </div>
 
 
                 <div class="form-group">
                     <label for="比赛照片">比赛照片:</label>
-                    <input type="file" id="比赛照片">
+                    <input type="file" id="比赛照片" name="compPhoto">
                 </div>
+
+                <input type="hidden" name="teacherName" value="${teacherName}"/>
 
                 <button type="submit" class="btn btn-default" onclick="save()">保存</button>
                 <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top"
-                        title="提交比赛信息之后不可修改!!请慎重" onclick="send(${compName},${teacherId})">提交
+                        title="提交比赛信息之后不可修改!!请慎重" onclick="send()">提交
                 </button>
             </form>
         </div>
@@ -117,6 +119,11 @@
 
 
 </div>
+<div style="text-align: center;">
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+</div>
 
 </body>
 </html>
+
+

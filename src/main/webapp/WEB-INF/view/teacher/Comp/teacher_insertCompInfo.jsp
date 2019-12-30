@@ -79,7 +79,7 @@
             <br>
             <br>
             <br>
-            <form name="form1">
+            <form name="form1" enctype="multipart/form-data" method="post">
 
                 <div class="form-group">
                     <label>比赛名称</label>
@@ -93,19 +93,19 @@
 
                     <div class="form-group">
                         <label for="竞赛证书"> 竞赛证书:</label>
-                        <input type="file" id="竞赛证书">
+                        <input type="file" id="竞赛证书" name="compCert">
                     </div>
 
 
                     <div class="form-group">
                         <label for="指导证书">指导证书:</label>
-                        <input type="file" id="指导证书">
+                        <input type="file" id="指导证书" name="guideCert">
                     </div>
 
 
                     <div class="form-group">
                         <label for="比赛照片">比赛照片:</label>
-                        <input type="file" id="比赛照片">
+                        <input type="file" id="比赛照片" name="compPhoto">
                     </div>
 
                 <input type="hidden" name="teacherName" value="${teacherName}"/>
@@ -121,6 +121,8 @@
 
 </div>
 
-
+<div style="text-align: center;">
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+</div>
 </body>
 </html>
