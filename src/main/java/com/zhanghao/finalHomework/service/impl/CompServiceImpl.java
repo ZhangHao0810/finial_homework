@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -112,7 +113,10 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
             info.setLeibie(aClass.getCategory());
             info.setXiangmu(aClass.getGrade());
 
-            info.setCreateTime(o.getCreateTime());
+            DateFormat df2 = DateFormat.getDateTimeInstance();
+            String format = df2.format(o.getCreateTime());
+
+            info.setCreateTime(format);
             if (o.getChecked() == 1) {
                 info.setChecked("已提交");
             } else {
@@ -278,13 +282,21 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
 
     /**
      * 2019/12/27 18:04
-     * 根据比赛名称删除比赛,一定要记住,当比赛删除之后,一定要连同比赛info一起删除了.
+     * 根据比赛名称删除比赛,一定要记住,当比赛删除之后,一定要连同比赛info一起删除了. 连同删除学生关联和学生.
      */
     @Override
     public void deletCompBycompId(Long compId) {
         compDao.deleteByPrimaryKey(compId);
 
         compInfoDao.deleteByCompId(compId);
+        List<CompInfo> infoByCompId = compInfoDao.getInfoByCompId(compId);
+        for (CompInfo compInfo : infoByCompId) {
+            List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(compInfo.getInfoId());
+            for (CompInfoStu infoStu : stuIdByInfoId) {
+                compInfoStuDao.deletBystuId(infoStu.getStuId());
+            }
+
+        }
     }
 
     @Override
@@ -338,10 +350,16 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     public void deletInfoByteacherIdCompName(String compName, Long teacherId) {
         /** 2019/12/27 13:06
          * 先根据compName获得compid 再根据COmpid和teacherId 获得Info
+         * 删除比赛和学生关系的字段,删除学生字段.
          */
         Comp comp = compDao.getCompBycompName(compName);
         CompInfo compInfo = compInfoDao.getinfoByteacherIdCompId(teacherId, comp.getCompId());
         compInfoDao.deleteByPrimaryKey(compInfo.getInfoId());
+        List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(compInfo.getInfoId());
+        for (CompInfoStu infoStu : stuIdByInfoId) {
+            compInfoStuDao.deletBystuId(infoStu.getStuId());
+            stuDao.deleteByPrimaryKey(infoStu.getStuId());
+        }
 
     }
 
@@ -360,6 +378,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
 
         Date date = new Date();
         compInfo.setUpdateTime(date);
+        compInfo.setCreateTime(date);
         compInfoDao.insert(compInfo);
     }
 
@@ -435,7 +454,9 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
             allCompMessage.setBase(aClass.getBase());
             allCompMessage.setFactor(aClass.getFactor());
 //            比赛时间
-            allCompMessage.setTime(compInfo.getCreateTime());
+            DateFormat df2 = DateFormat.getDateTimeInstance();
+            String format = df2.format(compInfo.getCreateTime());
+            allCompMessage.setTime(format);
 //            参赛学生数
             List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(compInfo.getInfoId());
             allCompMessage.setCount(stuIdByInfoId.size());
@@ -467,9 +488,9 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     @Override
     public boolean checkcompname(String compName) {
         List<Comp> compBycompName = compDao.checkcompName(compName);
-        if (compBycompName.size()==1){
+        if (compBycompName.size()!= 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -494,8 +515,22 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
     public int deletClass(Long classId) {
 
         /** 2019/12/25 20:47
-         * 删除类别 直接删!
+         * 删除类别 直接删!(逻辑上大错特错)
+         * 1.删除类别下的所有比赛,删除比赛id涉及的所有比赛info 删除 比赛info涉及的所有学生.
          */
+        List<Comp> compByclassId = compDao.getCompByclassId(classId);
+        for (Comp comp : compByclassId) {
+            compDao.deleteByPrimaryKey(comp.getCompId());
+            List<CompInfo> infoByCompId = compInfoDao.getInfoByCompId(comp.getCompId());
+            for (CompInfo compInfo : infoByCompId) {
+                List<CompInfoStu> stuIdByInfoId = compInfoStuDao.getStuIdByInfoId(compInfo.getInfoId());
+                for (CompInfoStu infoStu : stuIdByInfoId) {
+                    stuDao.deleteByPrimaryKey(infoStu.getStuId());
+                    compInfoStuDao.deletBystuId(infoStu.getStuId());
+                }
+            }
+            compInfoDao.deleteByCompId(comp.getCompId());
+        }
 
         return classDao.deleteByPrimaryKey(classId);
     }

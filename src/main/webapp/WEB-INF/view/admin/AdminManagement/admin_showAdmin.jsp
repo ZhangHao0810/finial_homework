@@ -25,7 +25,7 @@
 </head>
 <body>
 
-
+<br/>
 <div class="container-fluid">
 
     <nav class="navbar navbar-inverse">
@@ -55,7 +55,7 @@
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 尊敬的管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

@@ -25,7 +25,7 @@
 
 
 
-    <script>
+    <script  type="text/javascript">
         function save(){
             document.form1.action="${ctx}/teacher/comp/insert2";
             document.form1.submit();
@@ -34,7 +34,30 @@
             document.form1.action="${ctx}/teacher/comp/insert1";
             document.form1.submit();
         }
+
+        function myCheck()
+        {//循环所有的表单元素； 也可以用jQuery：$("#表单id")[0].elements.length-1
+
+            var flag=1;
+            for(var i=0;i<document.form1.elements.length-1;i++) //下面减一是因为数组的下标为0
+            {
+                if(document.form1.elements[i].value=="")
+                {
+                    flag=0;
+                    document.form1.elements[i].focus();
+                }
+            }
+            if (flag===1) {
+                send();
+            }else {
+                alert("请上传三张图片.");
+                window.location.href="${ctx}/teacher/comp/insert?teacherName=${teacherName}";
+            }
+
+        }
     </script>
+
+
 </head>
 <body>
 <br/>

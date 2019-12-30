@@ -75,6 +75,11 @@ public interface TeacherDao{
 	 **/
 	int insert(Teacher record);
 
+	/** 2019/12/30 16:36
+	 * 修改密码.添加经过检查的.
+	*/
+	int insert2(Teacher record);
+
 	/**
 	 * 
 	 * 修改 （匹配有值的字段）

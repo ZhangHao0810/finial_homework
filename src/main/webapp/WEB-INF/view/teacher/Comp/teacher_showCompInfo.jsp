@@ -45,7 +45,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${ctx}/teacher/index">比赛信息展示 </a></li>
+                    <li><a href="${ctx}/teacher/index?teacherName=${teacherName}">比赛信息展示 </a></li>
                     <li class="active"><a href="#">具体比赛信息展示 <span class="sr-only">(current)</span></a></li>
 
                 </ul>
@@ -79,12 +79,12 @@
         <td>${clazz.grade}</td>
         <td>
             <!-- Button trigger modal -->
-            <button  type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" >
+            <button  type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1" >
                 竞赛证书
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -105,12 +105,12 @@
 
         <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal12">
                 指导证书
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+            <div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -130,12 +130,12 @@
 
         <td>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal23">
                 比赛照片
             </button>
 
             <!-- Modal -->
-            <div class="modal fade"  id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+            <div class="modal fade"  id="myModal23" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

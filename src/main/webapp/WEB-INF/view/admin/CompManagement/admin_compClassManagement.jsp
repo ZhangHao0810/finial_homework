@@ -28,9 +28,6 @@
 <body>
 <br/>
 
- 类别，项目的录入和修改
- 各个项目的参数的设置和修改
-
 <div class="container-fluid">
 
     <nav class="navbar navbar-inverse">
@@ -60,7 +57,7 @@
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 尊敬的管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

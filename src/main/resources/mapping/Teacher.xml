@@ -85,23 +85,25 @@
         </selectKey>
     </insert>
 
-    <!-- 修 改-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.zhanghao.finalHomework.model.Teacher">
-        UPDATE teacher
-        <set>
-            <if test="teacherName != null and teacherName != ''">
-                teacher_name = #{teacherName},
-            </if>
-            <if test="password != null and password != ''">
-                password = #{password},
-            </if>
-            <if test="checked != null">
-                checked = #{checked},
-            </if>
+    <!-- 添加 经检查的.-->
+    <insert id="insert2" parameterType="com.zhanghao.finalHomework.model.Teacher">
+        INSERT INTO teacher
+        (
+        teacher_name,
+        password,
+        checked
+        )
+        VALUES
+        (
+        #{teacherName},
+        #{password},
+        1
+        )
+        <selectKey keyProperty="teacherId" resultType="Long" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
-        </set>
-        WHERE teacher_id = #{teacherId}
-    </update>
 
     <!-- list4Page 分页查询-->
     <select id="list4Page" resultMap="Teacher">

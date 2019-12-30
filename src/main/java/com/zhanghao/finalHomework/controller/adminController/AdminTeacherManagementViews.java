@@ -54,16 +54,20 @@ public class AdminTeacherManagementViews {
     public String addTeacher() {
         return "admin/TeacherManagement/admin_addTeacher";
     }
-    /** 2019/12/25 21:45
+
+    /**
+     * 2019/12/25 21:45
      * 添加教师的具体逻辑
-    */
+     */
     @RequestMapping("/admin/addTeacher1")
     public String addTeacher(Teacher teacher) {
-
-        int result=teacherService.insertTeacher(teacher);
-        if (result==1){
+        /** 2019/12/30 16:11
+         * 1.判断教师姓名是否重复 如果重复,返回失败页面,不重复,根据教师姓名来添加教师,返回展示教师页面
+         */
+        int result = teacherService.insertTeacher(teacher);
+        if (result == 1) {
             return "redirect:showTeachers";
-        }else {
+        } else {
             return "admin/TeacherManagement/admin_addTeacher_fail";
         }
     }
@@ -83,8 +87,22 @@ public class AdminTeacherManagementViews {
      * 修改教师密码
      */
     @RequestMapping("/admin/updateTeacher")
-    public String adminUpdate() {
+    public String adminUpdate(String teacherName, Model model) {
+        model.addAttribute("teacherName", teacherName);
         return "admin/TeacherManagement/admin_updateTeacher";
+    }
+
+    /**
+     * 2019/12/30 16:10
+     * 修改教师的具体逻辑
+     */
+    @RequestMapping("/admin/updateTeacher1")
+    public String adminUpdate1(String teacherName, String password ) {
+
+        teacherService.updateTeacher(teacherName, password);
+
+        return "forward:/admin/showTeachers";
+
     }
 
 }

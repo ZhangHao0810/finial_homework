@@ -86,4 +86,6 @@ public interface CompInfoDao{
 	List<CompInfo> getAllInfo();
 
     void deletByteacherIdCompId(@Param("teacherId")Long teacherId,@Param("compId") Long compId);
+
+    List<CompInfo> getInfoByCompId(Long compId);
 }

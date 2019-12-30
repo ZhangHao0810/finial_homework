@@ -1,6 +1,5 @@
 package com.zhanghao.finalHomework.model;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,14 +17,18 @@ public class SingleTeacherAllCompInfo {
 
     private String xiangmu;
 
-    private Date createTime;
+    private String createTime;
 
     private String checked;
 
     private List<Stu> stus;
 
-    public void setChecked(String checked) {
-        this.checked = checked;
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
     }
 
     public Long getInfoId() {
@@ -34,14 +37,6 @@ public class SingleTeacherAllCompInfo {
 
     public void setInfoId(Long infoId) {
         this.infoId = infoId;
-    }
-
-    public String getCompName() {
-        return compName;
-    }
-
-    public void setCompName(String compName) {
-        this.compName = compName;
     }
 
     public String getLeibie() {
@@ -60,12 +55,20 @@ public class SingleTeacherAllCompInfo {
         this.xiangmu = xiangmu;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
     }
 
     public List<Stu> getStus() {
@@ -74,9 +77,5 @@ public class SingleTeacherAllCompInfo {
 
     public void setStus(List<Stu> stus) {
         this.stus = stus;
-    }
-
-    public String getChecked() {
-        return checked;
     }
 }

@@ -137,6 +137,7 @@ public class AdminCompManagementViews {
 
         classService.deletClass(classId);
 
+
         return "redirect:compClass";
     }
 
@@ -165,7 +166,7 @@ public class AdminCompManagementViews {
         /** 2019/12/30 11:29
          * 1.比赛名称不可重复.
         */
-       if(compService.checkcompname(compName)) {
+       if(!compService.checkcompname(compName)) {
            compService.insertComp(classId, compName);
            model.addAttribute("classId", classId);
            return "forward:addComp";
@@ -194,7 +195,7 @@ public class AdminCompManagementViews {
     /** 2019/12/27 16:31
      * 删除比赛
      *
-     *  一定要记住,同时把跟这个比赛有关的info也都删除了.
+     *  一定要记住,同时把跟这个比赛有关的info也都删除了. 连同学生也应该删除!!!!
     */
     @RequestMapping("/deletComp")
     public String adminDeletComp(Long compId,Long classId,Model model){

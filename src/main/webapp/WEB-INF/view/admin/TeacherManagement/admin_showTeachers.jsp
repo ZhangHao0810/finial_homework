@@ -24,9 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-包含 教师名单管理:修改,删除教师.
-包含 教师注册的确认.
-
+<br/>
 <div class="container-fluid">
 
     <nav class="navbar navbar-inverse">
@@ -55,7 +53,7 @@
                     <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 尊敬的管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -108,7 +106,7 @@
         <tr>
             <td>${item.teacherName}</td>
             <td >
-                <a href="${ctx}/admin/updateTeacher" class="btn btn-default" role="button">修改</a>
+                <a href="${ctx}/admin/updateTeacher?teacherName=${item.teacherName}" class="btn btn-default" role="button">修改</a>
             </td>
             <td onclick="location.href='${ctx}/admin/deletTeacher?teacherId=${item.teacherId}';">
                 <button type="button" class="btn btn-default" data-dismiss="modal">删除</button>

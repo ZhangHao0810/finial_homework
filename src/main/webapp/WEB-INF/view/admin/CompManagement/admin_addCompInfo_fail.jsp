@@ -55,7 +55,7 @@
 
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 尊敬的管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -104,7 +104,7 @@
             <div class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
-                <strong>添加失败!</strong> 比赛名称不可以重复,建议在比赛名称中添加类别信息以区分.
+                <strong>添加失败!</strong> 比赛名称不可以重复,建议在比赛名称中添加比赛年份或类别等以区分.
             </div>
             <br>
             <br>

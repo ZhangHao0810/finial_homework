@@ -1,7 +1,6 @@
 package com.zhanghao.finalHomework.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @author ZhangHao
@@ -16,7 +15,7 @@ public class AllCompMessage {
     private String xiangmu;
     private BigDecimal base;
     private BigDecimal factor;
-    private Date time;
+    private String time;
     private Integer count;
     private Double fenshu;
 
@@ -68,11 +67,11 @@ public class AllCompMessage {
         this.factor = factor;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

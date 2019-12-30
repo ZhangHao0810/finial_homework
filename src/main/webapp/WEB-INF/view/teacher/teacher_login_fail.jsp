@@ -63,45 +63,48 @@
     </div>
     <br/>
     <br/>
-    <div class="alert alert-warning alert-dismissible fade in" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">×</span></button>
-        <strong>登录失败!</strong> 请重新检查用户名和密码
+    <div class="col-md-6 ">
+        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">×</span></button>
+            <strong>登录失败!</strong> 请重新检查用户名和密码
+        </div>
     </div>
     <div class="col-md-6 ">
         <br>
         <br>
-            <br>
-            <form action="${ctx}/teacher/login1" method="post">
-                <div class="form-group">
-                    <label for="name">教师姓名</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
-                        </div>
+        <br>
+        <form action="${ctx}/teacher/login1" method="post">
+            <div class="form-group">
+                <label for="name">教师姓名</label>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control" id="name" name="teacherName" placeholder="TeacherName">
                     </div>
                 </div>
-                <div class="form-group ">
-                    <label for="exampleInputPassword1">密码</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
-                        </div>
+            </div>
+            <div class="form-group ">
+                <label for="exampleInputPassword1">密码</label>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                               placeholder="Password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-default">登录</button>
-            </form>
-            <br/>
-            <br/>
-            未注册?
-            <a href="${ctx}/teacher/register">
-                <button class="btn btn-default">注册</button>
-            </a>
-        </div>
+            </div>
+            <button type="submit" class="btn btn-default">登录</button>
+        </form>
+        <br/>
+        <br/>
+        未注册?
+        <a href="${ctx}/teacher/register">
+            <button class="btn btn-default">注册</button>
+        </a>
     </div>
 </div>
+
 <div style="text-align: center;">
-    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!!  技术负责人:张浩
+    Copyright © 2019-2019 北京信息科技大学 软件工程研究中心 版权所有 盗用必究!! 技术负责人:张浩
 </div>
 </body>
 </html>

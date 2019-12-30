@@ -53,7 +53,7 @@
                     <li ><a href="${ctx}/admin/showAdmin">管理员管理 </a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 XXX管理员</a>
+                    <a href="#" class="btn btn-primary  btn-sm  disabled" role="button">欢迎您 尊敬的管理员</a>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -72,7 +72,7 @@
             <br>
             <br>
             <br>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/admin/updateTeacher1" method="post">
 
                 <div class="alert alert-info" role="alert">
                     请修改具体教师信息
@@ -82,13 +82,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">教师<br/>账号</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">王二麻子</p>
+                        <p class="form-control-static">${teacherName}</p>
+                        <input type="hidden" name="teacherName" value="${teacherName}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="stuid" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="stuid" placeholder="PassWord">
+                        <input type="password" class="form-control" id="stuid" name="password" placeholder="PassWord">
                     </div>
                 </div>
 

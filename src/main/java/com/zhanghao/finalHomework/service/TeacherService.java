@@ -60,7 +60,7 @@ public interface TeacherService {
      * 2019/12/23 21:34
      * 根据教师姓名,获得教师的id
      */
-    Long getTeacherId(String stuName);
+    Long getTeacherId(String Name);
 
     /** 2019/12/23 19:13
      * 添加教师信息
@@ -76,7 +76,7 @@ public interface TeacherService {
     /** 2019/12/23 19:24
      * 修改教师密码
     */
-    int updateTeacher(Long teacherId);
+    int updateTeacher(String teacherName,String password);
 
     Teacher getTeacherByTeacherId(Long teacherId);
 }

@@ -110,7 +110,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public int updateTeacher(Long teacherId) {
+    public int updateTeacher(String teacherName,String password) {
+        Teacher teacher = teacherDao.selectByName(teacherName);
+        teacherDao.deleteByPrimaryKey(teacher.getTeacherId());
+        Teacher teacher1=new Teacher();
+        teacher1.setTeacherName(teacherName);
+        teacher1.setPassword(password);
+        teacherDao.insert2(teacher1);
         return 0;
     }
 

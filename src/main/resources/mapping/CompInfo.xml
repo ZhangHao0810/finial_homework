@@ -28,6 +28,14 @@
 		update_time
 	</sql>
 
+    <!--getInfoByCompId-->
+    <select id="getInfoByCompId" resultMap="CompInfo">
+		SELECT
+		*
+		FROM comp_info
+		where comp_id=#{compId}
+	</select>
+
     <!--deletByteacherIdCompId-->
     <delete id="deletByteacherIdCompId" >
 		 DELETE FROM comp_info
