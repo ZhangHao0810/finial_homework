@@ -106,7 +106,7 @@
                 <th>成果系数</th>
                 <th>比赛时间</th>
                 <th>参赛学生数</th>
-                <th>积分(基数X系数x学生数)</th>
+                <th>积分(基数X系数)</th>
 
             </tr>
             <c:forEach items="${allcomps}" var="item" varStatus="status">

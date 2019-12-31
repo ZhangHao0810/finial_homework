@@ -464,7 +464,7 @@ public class CompServiceImpl implements CompService, ClassService, StuService {
             allCompMessage.setCount(stuIdByInfoId.size());
             BigDecimal multiply = aClass.getBase().multiply(aClass.getFactor());
             double v = multiply.doubleValue();
-            allCompMessage.setFenshu(stuIdByInfoId.size() * v);
+            allCompMessage.setFenshu( v);
 
             results.add(allCompMessage);
         }
